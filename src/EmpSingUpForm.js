@@ -1,9 +1,9 @@
 import React from "react";
 
-function DevSignUpForm() {
+function EmpSignUpForm() {
   return (
     <div>
-      <h1>Developer Sign Up</h1>
+      <h1>Employer Sign Up</h1>
       <div className="flex justify-center">
         <div className="w-full max-w-sm">
           <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -33,20 +33,6 @@ function DevSignUpForm() {
                 id="email"
                 type="text"
                 placeholder="your@email.com"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="github"
-              >
-                Github Username
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="github"
-                type="text"
-                placeholder="github username"
               />
             </div>
             <div className="mb-4">
@@ -104,4 +90,4 @@ function DevSignUpForm() {
   );
 }
 
-export default DevSignUpForm;
+export default EmpSignUpForm;
