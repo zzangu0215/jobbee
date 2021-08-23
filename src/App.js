@@ -1,6 +1,6 @@
 import React from "react";
 // import DevSignUpForm from "./DevSignUpForm";
-import EmpSignUpForm from "./EmpSingUpForm";
+import EmpSignUpForm from "./EmpSignUpForm";
 import "./App.css";
 
 function App() {
