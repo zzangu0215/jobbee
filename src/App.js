@@ -1,12 +1,13 @@
 import React from "react";
 // import DevSignUpForm from "./DevSignUpForm";
-import EmpSignUpForm from "./EmpSignUpForm";
+// import EmpSignUpForm from "./EmpSignUpForm";
+import LoginForm from "./LoginForm";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <EmpSignUpForm />
+      <LoginForm />
     </div>
   );
 }
