@@ -1,5 +1,5 @@
-// const { AuthenticationError } = require("apollo-server-express");
-const { Employer, Developer } = require("../models");
+const { AuthenticationError } = require("apollo-server-express");
+const { Employer, Developer, User } = require("../models");
 // const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -24,21 +24,21 @@ const resolvers = {
   },
 
   Mutation: {
-    addEmployer: async (parent, { name, email, password }) => {
-      const employer = await Employer.create({ name, email, password });
+    addUser: async (parent, { name, email, password }) => {
+      const user = await User.create({ name, email, password });
       // const token = signToken(Employer);
-      return { Employer };
+      return { User };
     },
-    addDeveloper: async (parent, { name, email, githubName, password }) => {
-      const developer = await Developer.create({
-        name,
-        email,
-        githubName,
-        password,
-      });
-      // const token = signToken(Developer);
-      return { Developer };
-    },
+    // addDeveloper: async (parent, { name, email, githubName, password }) => {
+    //   const developer = await Developer.create({
+    //     name,
+    //     email,
+    //     githubName,
+    //     password,
+    //   });
+    //   // const token = signToken(Developer);
+    //   return { Developer };
+    // },
     // employerlogin: async (parent, { email, password }) => {
     //   const Employer = await Employer.findOne({ email });
 
