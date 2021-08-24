@@ -45,5 +45,6 @@ const DevProfileCard = ({ name, username, bio, avatar, github }) => {
     </div>
   );
 };
+//
 
 export default DevProfileCard;
