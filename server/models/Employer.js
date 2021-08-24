@@ -10,14 +10,18 @@ const employerSchema = new Schema({
     trim: true,
   },
 
-  likedDevelopers: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  likedDevelopers: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    default: [],
+    index: true,
+  },
 
-  job: [
+  jobs: [
     {
       type: Schema.Types.ObjectId,
       ref: "Job",

@@ -7,11 +7,12 @@ const developerSchema = new Schema({
     required: true,
     trim: true,
   },
-  likedBy: {
-    type: Schema.Types.ObjectId,
-    ref: "Employer",
-    required: true,
-  },
+  likedBy: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 const Developer = User.discriminator("Developer", developerSchema);
