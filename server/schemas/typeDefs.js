@@ -33,6 +33,7 @@ const typeDefs = gql`
       githubName: String!
       password: String!
     ): Developer
+    removeJob()
   }
 
   type Query {
