@@ -33,7 +33,7 @@ const developerSchema = new Schema({
     trim: true,
   },
 
-  Job: [
+  employers: [
     {
       type: Schema.Types.ObjectId,
       ref: "Employer",
