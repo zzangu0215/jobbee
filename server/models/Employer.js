@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const bycrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 
 const employerSchema = new Schema({
   name: {
