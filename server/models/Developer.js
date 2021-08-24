@@ -33,11 +33,13 @@ const developerSchema = new Schema({
     trim: true,
   },
 
-  Job: {
-    type: Schema.Types.ObjectId,
-    ref: "Employer",
-    required: true,
-  },
+  Job: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Employer",
+      required: true,
+    },
+  ],
 });
 
 developerSchema.pre("save", async function (next) {
