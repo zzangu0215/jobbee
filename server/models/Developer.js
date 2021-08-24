@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const { bcrypt } = require("bcrypt");
+const bcrypt = require("bcrypt");
 // const developerFormat = require('../utils/developerFormat');
 
 const developerSchema = new Schema({
@@ -21,16 +21,16 @@ const developerSchema = new Schema({
     trim: true,
   },
 
-  password: {
-    type: String,
-    required: true,
-    minlength: 5,
-  },
-
   githubName: {
     type: String,
     required: true,
     trim: true,
+  },
+
+  password: {
+    type: String,
+    required: true,
+    minlength: 5,
   },
 
   employers: [

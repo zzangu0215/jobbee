@@ -25,21 +25,24 @@ const typeDefs = gql`
     createdAt: String
   }
 
-  
-  
+  type Mutation {
+    addEmployer(name: String!, email: String!, password: String!): Employer
+    addDeveloper(
+      name: String!
+      email: String!
+      githubName: String!
+      password: String!
+    ): Developer
+  }
 
   type Query {
     Developers: [Developer]
-    aEmployer(email: String!): Employer
-    aDeveloper(email: String!): Developer
+    aEmployer(_id: ID!): Employer
+    aDeveloper(_id: ID!): Developer
   }
-
 `;
 
 module.exports = typeDefs;
-
-
-
 
 // type Auth {
 //   token: ID!
