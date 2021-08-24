@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DevProfileCard from "../../components/Dev-profile-card";
+import DevProfileCard from "../../components/Dev-profile-card/Dev-profile-card";
 
 const DeveloperProfile = () => {
   const [data, setData] = useState({});
