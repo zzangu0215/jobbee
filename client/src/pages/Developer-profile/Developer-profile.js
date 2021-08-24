@@ -19,6 +19,7 @@ const DeveloperProfile = () => {
         username: githubData.login,
         bio: githubData.bio,
         avatar: githubData.avatar_url,
+        github: githubData.html_url,
       };
 
       setData(profileInfo);
@@ -29,11 +30,12 @@ const DeveloperProfile = () => {
 
   return (
     <div>
-      <p>Hi</p>
       <DevProfileCard
+        name={"Jun Park"}
         username={data.username}
         bio={data.bio}
         avatar={data.avatar}
+        github={data.github}
       />
     </div>
   );
