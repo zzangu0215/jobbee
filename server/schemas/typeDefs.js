@@ -29,6 +29,18 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+
+  type Query {
+    Developers: [Developer]
+    aEmployer(email: String!): Employer
+    aDeveloper(email: String!): Developer
+  }
+
+  type Mutation {
+    addJob()
+    updateJob()
+
+  }
 `;
 
 module.exports = typeDefs;
