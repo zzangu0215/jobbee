@@ -25,7 +25,7 @@ const employerSchema = new Schema({
     minlength: 5,
   },
 
-  jobPost: [
+  job: [
     {
       listingName: {
         type: String,
