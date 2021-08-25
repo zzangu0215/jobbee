@@ -24,6 +24,16 @@ const resolvers = {
         { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
       );
     },
+    Developer: async () => {
+      return await Developer.find();
+    },
+    // This gives a user
+    aDeveloper: async (parent, { _id }) => {
+      // if (context.employer) {
+      return await Developer.findById(_id);
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
   },
 
   Mutation: {
@@ -36,6 +46,11 @@ const resolvers = {
       const job = await Job.create({ listingName, description, createdAt, companyName });
       // const token = signToken(user);
       return { job };
+    },
+    addDeveloper: async (parent, { name, email, password, githubName }) => {
+      const developer = await Developer.create({ name, email, password, githubName });
+      // const token = signToken(user);
+      return { Developer };
     },
     // employerlogin: async (parent, { email, password }) => {
     //   const Employer = await Employer.findOne({ email });
