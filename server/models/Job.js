@@ -6,6 +6,11 @@ const jobSchema = new Schema({
     required: "Job listing must have a name.",
     trim: true,
   },
+  website: {
+    type: String,
+    required: "Must have a company website!",
+    trim: true,
+  },
   description: {
     type: String,
     required: "You must enter a description of the job.",
