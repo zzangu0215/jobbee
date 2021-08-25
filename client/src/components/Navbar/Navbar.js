@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FiMenu, FiX, FiUser } from "react-icons/fi";
 
 import logo from "../../content/logo/navbar-logo";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Browse Jobs", href: "#", current: true },
@@ -33,18 +34,21 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
-                  <img
-                    className="block lg:hidden h-12 w-auto"
-                    src={logo}
-                    alt="Jobbee"
-                  />
-                  <img
-                    className="hidden lg:block h-12 w-auto"
-                    src={logo}
-                    alt="Jobbee"
-                  />
-                </div>
+                <Link to="/">
+                  <div className="flex-shrink-0 flex items-center">
+                    <img
+                      className="block lg:hidden h-12 w-auto"
+                      src={logo}
+                      alt="Jobbee"
+                    />
+                    <img
+                      className="hidden lg:block h-12 w-auto"
+                      src={logo}
+                      alt="Jobbee"
+                    />
+                  </div>
+                </Link>
+
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -109,15 +113,15 @@ export default function Navbar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            to="/login"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Sign out
-                          </a>
+                            Login
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>
