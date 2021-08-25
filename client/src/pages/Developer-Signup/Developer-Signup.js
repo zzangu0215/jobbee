@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import { ADD_DEVELOPER } from "../../utils/mutations";
@@ -13,13 +13,6 @@ const DeveloperSignUp = () => {
   const [password, setPassword] = useState('');
   const [githubName, setGithubName] = useState('');
   const [addDeveloper, { error, data }] = useMutation(ADD_DEVELOPER);
-
-  // update state based on form input changes
-  // const handleChange = (event) => {
-  //   const { target } = event;
-
-  // };
-
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -33,8 +26,9 @@ const DeveloperSignUp = () => {
       const { data } = await addDeveloper({
         variables: { name, email, password, githubName },
       });
-
+      console.log(data.addDeveloper)
       Auth.login(data.addDeveloper.token);
+
     } catch (e) {
       console.error(e);
     }
@@ -48,9 +42,8 @@ const DeveloperSignUp = () => {
           {data ? (
             <p>
               <p>
-                Success! You may now head\
-                {/* {" "} */}
-                {/* <Link to="/">back to the homepage.</Link> */}
+                Success! You may now head{" "}
+                <Link to="/">back to the homepage.</Link>
               </p>
             </p>
           ) : (

@@ -73,7 +73,7 @@ const resolvers = {
         githubName,
       });
       const token = signToken(developer);
-      return { token, developer };
+      return { token };
     },
     addEmployer: async (parent, { name, email, password, companyName }) => {
       const employer = await Employer.create({
@@ -83,7 +83,7 @@ const resolvers = {
         companyName,
       });
       const token = signToken(employer);
-      return { token, Employer };
+      return { token };
     },
     userlogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
