@@ -73,7 +73,7 @@ const resolvers = {
         githubName,
       });
       const token = signToken(developer);
-      return { token, Developer };
+      return { token, developer };
     },
     addEmployer: async (parent, { name, email, password, companyName }) => {
       const employer = await Employer.create({
