@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { Employer, Developer, User, Job } = require("../models");
-// const { signToken } = require("../utils/auth");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -65,22 +65,18 @@ const resolvers = {
       // const token = signToken(user);
       return { Employer };
     },
-    // employerlogin: async (parent, { email, password }) => {
-    //   const Employer = await Employer.findOne({ email });
-
-    //   if (!Employer) {
-    //     throw new AuthenticationError("No Employer with this email found!");
-    //   }
-
-    //   const correctPw = await Employer.isCorrectPassword(password);
-
-    //   if (!correctPw) {
-    //     throw new AuthenticationError("Incorrect password!");
-    //   }
-
-    //   const token = signToken(Employer);
-    //   return { token, Employer };
-    // },
+    userlogin: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError("No user with this email found!");
+      }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect password!");
+      }
+      const token = signToken(user);
+      return { token, user };
+    },
     // developerlogin: async (parent, { email, password }) => {
     //   const Developer = await Developer.findOne({ email });
 
