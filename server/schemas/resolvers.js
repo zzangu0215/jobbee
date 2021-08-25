@@ -1,44 +1,42 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { Employer, Developer, User } = require("../models");
+const { Employer, Developer, User, Job } = require("../models");
 // const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    Developers: async () => {
-      return await Developer.find().populate("employers");
+    // This gives every users
+    User: async () => {
+      return await User.find();
     },
-
-    aEmployer: async (parent, { _id }) => {
+    // This gives a user
+    aUser: async (parent, { _id }) => {
       // if (context.employer) {
-      return await Employer.findById(_id);
+      return await User.findById(_id);
       // }
       // throw new AuthenticationError("You need to be logged in!");
     },
-
-    aDeveloper: async (parent, { _id }) => {
-      // if (context.developer) {
-      return await Developer.findById(_id);
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
+    Job: async () => {
+      return await Job.find();
+    },
+    aJob: async (parent, { companyName, listingName, description, createdAt }) => {
+      return await Job.findOne(
+        { companyName: companyName },
+        { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
+      );
     },
   },
 
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
-      // const token = signToken(Employer);
-      return { User };
+      // const token = signToken(user);
+      return { user };
     },
-    // addDeveloper: async (parent, { name, email, githubName, password }) => {
-    //   const developer = await Developer.create({
-    //     name,
-    //     email,
-    //     githubName,
-    //     password,
-    //   });
-    //   // const token = signToken(Developer);
-    //   return { Developer };
-    // },
+    addJob: async (parent, { listingName, description, createdAt, companyName }) => {
+      const job = await Job.create({ listingName, description, createdAt, companyName });
+      // const token = signToken(user);
+      return { job };
+    },
     // employerlogin: async (parent, { email, password }) => {
     //   const Employer = await Employer.findOne({ email });
 
