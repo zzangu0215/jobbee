@@ -9,12 +9,12 @@ const resolvers = {
       return await User.find();
     },
     // This gives a user
-    aUser: async (parent, { _id }) => {
-      // if (context.employer) {
-      return await User.findById(_id);
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
-    },
+    // aUser: async (parent, { _id }) => {
+    //   // if (context.employer) {
+    //   return await User.findById(_id);
+    //   // }
+    //   // throw new AuthenticationError("You need to be logged in!");
+    // },
     Job: async () => {
       return await Job.find();
     },
@@ -27,10 +27,18 @@ const resolvers = {
     Developer: async () => {
       return await Developer.find();
     },
-    // This gives a user
     aDeveloper: async (parent, { _id }) => {
       // if (context.employer) {
       return await Developer.findById(_id);
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
+    },
+    Employer: async () => {
+      return await Employer.find();
+    },
+    aEmployer: async (parent, { _id }) => {
+      // if (context.employer) {
+      return await Employer.findById(_id);
       // }
       // throw new AuthenticationError("You need to be logged in!");
     },
@@ -51,6 +59,11 @@ const resolvers = {
       const developer = await Developer.create({ name, email, password, githubName });
       // const token = signToken(user);
       return { Developer };
+    },
+    addEmployer: async (parent, { name, email, password, companyName }) => {
+      const employer = await Employer.create({ name, email, password, companyName });
+      // const token = signToken(user);
+      return { Employer };
     },
     // employerlogin: async (parent, { email, password }) => {
     //   const Employer = await Employer.findOne({ email });
