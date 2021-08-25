@@ -45,25 +45,24 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { name, email, password }) => {
-      const user = await User.create({ name, email, password });
-      // const token = signToken(user);
-      return { user };
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+      return { token, user };
     },
     addJob: async (parent, { listingName, description, createdAt, companyName }) => {
       const job = await Job.create({ listingName, description, createdAt, companyName });
-      // const token = signToken(user);
       return { job };
     },
     addDeveloper: async (parent, { name, email, password, githubName }) => {
       const developer = await Developer.create({ name, email, password, githubName });
-      // const token = signToken(user);
-      return { Developer };
+      const token = signToken(developer);
+      return { token, Developer };
     },
     addEmployer: async (parent, { name, email, password, companyName }) => {
       const employer = await Employer.create({ name, email, password, companyName });
-      // const token = signToken(user);
-      return { Employer };
+      const token = signToken(employer);
+      return { token, Employer };
     },
     userlogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -77,60 +76,24 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    // developerlogin: async (parent, { email, password }) => {
-    //   const Developer = await Developer.findOne({ email });
-
-    //   if (!Developer) {
-    //     throw new AuthenticationError("No Developer with this email found!");
-    //   }
-
-    //   const correctPw = await Developer.isCorrectPassword(password);
-
-    //   if (!correctPw) {
-    //     throw new AuthenticationError("Incorrect password!");
-    //   }
-
-    //   const token = signToken(Developer);
-    //   return { token, Developer };
-    // },
-    // addJob: async (parent, { employerId, post, description, date }, context) => {
-    //   if (context.employer) {
-    //     return Employer.findOneAndUpdate(
-    //       { _id: employerId },
-    //       {
-    //         $addToSet: {
-    //           listingName: post,
-    //           description: description,
-    //           CreatedAt: date
-    //         },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     );
-    //   }
-    //   throw new AuthenticationError("You need to be logged in!");
-    // },
-    // updateJob: async (parent, { employerId, post, description, date }, context) => {
-    //   if (context.employer) {
-    //     return Employer.updateOne(
-    //       { _id: employerId },
-    //       {
-    //         $set: {
-    //           listingName: post,
-    //           description: description,
-    //           CreatedAt: date
-    //         },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     );
-    //   }
-    //   throw new AuthenticationError("You need to be logged in!");
-    // },
+    updateJob: async (parent, { _id, listingName, description }, context) => {
+      if (context.user) {
+        return Job.findOneAndUpdate(
+          { _id: _id },
+          {
+            $set: {
+              listingName: listingName,
+              description: description
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
     // removeJob: async (parent, { post, description, date }, context) => {
     //   if (context.employer) {
     //     return Employer.findOneAndUpdate(
