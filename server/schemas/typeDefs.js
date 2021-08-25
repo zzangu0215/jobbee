@@ -38,7 +38,7 @@ const typeDefs = gql`
     addUser (name: String!, email: String!, password: String!): User
     addJob (listingName: String!, description: String!, createdAt: String!, companyName: String!): Job
     addDeveloper (name: String!, email: String!, password: String!, githubName: String!): Developer
-    
+    addEmployer (name: String!, email: String!, password: String!, companyName: String!): Employer
   }
 
   type Query {
@@ -48,6 +48,8 @@ const typeDefs = gql`
     aJob(companyName: String!): Job
     Developer: [Developer]
     aDeveloper(_id: ID!): Developer
+    Employer: [Employer]
+    aEmployer(_id: ID!): Employer
   }
 `;
 
