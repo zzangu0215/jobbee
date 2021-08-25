@@ -4,15 +4,17 @@ import Home from "./pages/Home/Home";
 // import EmployerSignUp from "./pages/Employer-Signup/Employer-Signup";
 // import Login from "./pages/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 // import DeveloperProfile from "./pages/Developer-profile/Developer-profile";
 
-// import "./App.css";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Home />
+      <Footer />
     </div>
   );
 }
