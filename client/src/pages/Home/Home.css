@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
+.homeDiv {
+  margin-top: 30px;
+}
+
+.welcome {
+  margin-top: 25px;
+  font-family: "Patrick Hand", cursive;
+  font-size: 3rem;
+}
+
+.greeting {
+  margin-top: 0px;
+  font-family: "Patrick Hand", cursive;
+  font-size: 2.4rem;
+}
+
+.home-buttons {
+  margin-top: 40px;
+}
+
+.view-dev,
+.view-emp {
+  font-size: 1rem;
+}

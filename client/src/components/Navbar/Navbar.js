@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FiMenu, FiX, FiUser } from "react-icons/fi";
 
-import logo from "../../content/logo/logo";
+import logo from "../../content/logo/navbar-logo";
 
 const navigation = [
   { name: "Browse Jobs", href: "#", current: true },
