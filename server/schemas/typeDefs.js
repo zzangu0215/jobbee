@@ -9,11 +9,11 @@ const typeDefs = gql`
   }
 
   type Job {
-    _id:ID
-    listingName : String
+    _id: ID
+    listingName: String
     description: String
-    createdAt : String
-    companyName : String
+    createdAt: String
+    companyName: String
   }
 
   type Developer implements User {
@@ -30,24 +30,40 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
-    companyName : String
+    companyName: String
     likedDevelopers: [User]
-    jobs : [Job]
+    jobs: [Job]
   }
 
   type Auth {
     token: ID!
-    email : String
-    password : String
+    email: String
+    password: String
   }
 
   type Mutation {
-    addUser (name: String!, email: String!, password: String!): User
-    addJob (listingName: String!, description: String!, createdAt: String!, companyName: String!): Job
-    addDeveloper (name: String!, email: String!, password: String!, githubName: String!): Developer
-    addEmployer (name: String!, email: String!, password: String!, companyName: String!): Employer
-    userlogin (email: String!, password: String!) : Auth
-    updateJob (_id:ID listingName: String!, description: String!): Job
+    addUser(name: String!, email: String!, password: String!): User
+    addJob(
+      listingName: String!
+      description: String!
+      createdAt: String!
+      companyName: String!
+    ): Job
+    addDeveloper(
+      name: String!
+      email: String!
+      password: String!
+      githubName: String!
+    ): Developer
+    addEmployer(
+      name: String!
+      email: String!
+      password: String!
+      companyName: String!
+    ): Employer
+    userlogin(email: String!, password: String!): Auth
+    updateJob(_id: ID, listingName: String!, description: String!): Job
+    removeJob(_id: ID): Job
   }
 
   type Query {
@@ -63,5 +79,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
-
