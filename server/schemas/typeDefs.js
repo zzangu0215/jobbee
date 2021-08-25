@@ -28,13 +28,15 @@ const typeDefs = gql`
 
   type Mutation {
     addUser (name: String!, email: String!, password: String!): User
+    addJob (listingName: String!, description: String!, createdAt: String!, companyName: String!): Job
     
   }
 
   type Query {
-    Developers: [Developer]
-    aEmployer(_id: ID!): Employer
-    aDeveloper(_id: ID!): Developer
+    User: [User]
+    aUser(_id: ID!): User
+    Job: [Job]
+    aJob(companyName: String!): Job
   }
 `;
 
