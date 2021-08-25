@@ -1,3 +1,12 @@
 .job-post {
   margin-top: 20px;
 }
+
+.home-buttons {
+  margin-top: 40px;
+}
+
+.view-jobs,
+.view-devs {
+  font-size: 1rem;
+}
