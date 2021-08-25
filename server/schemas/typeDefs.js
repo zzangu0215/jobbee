@@ -34,11 +34,18 @@ const typeDefs = gql`
     jobs : [Job]
   }
 
+  type Auth {
+    token: ID!
+    email : String
+    password : String
+  }
+
   type Mutation {
     addUser (name: String!, email: String!, password: String!): User
     addJob (listingName: String!, description: String!, createdAt: String!, companyName: String!): Job
     addDeveloper (name: String!, email: String!, password: String!, githubName: String!): Developer
     addEmployer (name: String!, email: String!, password: String!, companyName: String!): Employer
+    userlogin (email: String!, password: String!) : Auth
   }
 
   type Query {
@@ -55,7 +62,4 @@ const typeDefs = gql`
 
 module.exports = typeDefs;
 
-// type Auth {
-//   token: ID!
-//   user: User
-// }
+
