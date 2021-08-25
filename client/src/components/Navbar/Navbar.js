@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { FiMenu, FiX, FiUser } from "react-icons/fi";
+import { FiMenu, FiX, FiUser, FiMessageSquare } from "react-icons/fi";
 
 import logo from "../../content/logo/navbar-logo";
 import { Link } from "react-router-dom";
@@ -74,7 +74,10 @@ export default function Navbar() {
                   type="button"
                   className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
-                  <span className="sr-only">View notifications</span>
+                  <FiMessageSquare
+                    className="h-6 w-6"
+                    style={{ color: "white" }}
+                  />
                 </button>
 
                 {/* Profile dropdown */}
@@ -82,10 +85,7 @@ export default function Navbar() {
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
-                      <FiUser
-                        className="h-8 w-8 rounded-full"
-                        style={{ color: "white" }}
-                      />
+                      <FiUser className="h-8 w-8" style={{ color: "white" }} />
                     </Menu.Button>
                   </div>
                   <Transition
