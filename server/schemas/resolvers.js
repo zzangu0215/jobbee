@@ -18,7 +18,10 @@ const resolvers = {
     Job: async () => {
       return await Job.find();
     },
-    aJob: async (parent, { companyName, listingName, description, createdAt }) => {
+    aJob: async (
+      parent,
+      { companyName, listingName, description, createdAt }
+    ) => {
       return await Job.findOne(
         { companyName: companyName },
         { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
@@ -50,17 +53,35 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addJob: async (parent, { listingName, description, createdAt, companyName }) => {
-      const job = await Job.create({ listingName, description, createdAt, companyName });
+    addJob: async (
+      parent,
+      { listingName, description, createdAt, companyName }
+    ) => {
+      const job = await Job.create({
+        listingName,
+        description,
+        createdAt,
+        companyName,
+      });
       return { job };
     },
     addDeveloper: async (parent, { name, email, password, githubName }) => {
-      const developer = await Developer.create({ name, email, password, githubName });
+      const developer = await Developer.create({
+        name,
+        email,
+        password,
+        githubName,
+      });
       const token = signToken(developer);
       return { token, Developer };
     },
     addEmployer: async (parent, { name, email, password, companyName }) => {
-      const employer = await Employer.create({ name, email, password, companyName });
+      const employer = await Employer.create({
+        name,
+        email,
+        password,
+        companyName,
+      });
       const token = signToken(employer);
       return { token, Employer };
     },
@@ -83,7 +104,7 @@ const resolvers = {
           {
             $set: {
               listingName: listingName,
-              description: description
+              description: description,
             },
           },
           {
@@ -94,22 +115,12 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    // removeJob: async (parent, { post, description, date }, context) => {
-    //   if (context.employer) {
-    //     return Employer.findOneAndUpdate(
-    //       { _id: context.employer._id },
-    //       {
-    //         $pull: {
-    //           listingName: post,
-    //           description: description,
-    //           CreatedAt: date
-    //         }
-    //       },
-    //       { new: true }
-    //     );
-    //   }
-    //   throw new AuthenticationError("You need to be logged in!");
-    // },
+    removeJob: async (parent, { _id }, context) => {
+      if (context.employer) {
+        return Job.findByIdAndDelete(_id);
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 module.exports = resolvers;
