@@ -37,8 +37,7 @@ const typeDefs = gql`
 
   type Auth {
     token: ID!
-    email: String
-    password: String
+    user: User
   }
 
   type Mutation {
@@ -54,13 +53,13 @@ const typeDefs = gql`
       email: String!
       password: String!
       githubName: String!
-    ): Developer
+    ): Auth
     addEmployer(
       name: String!
       email: String!
       password: String!
       companyName: String!
-    ): Employer
+    ): Auth
     userlogin(email: String!, password: String!): Auth
     updateJob(_id: ID, listingName: String!, description: String!): Job
     removeJob(_id: ID): Job

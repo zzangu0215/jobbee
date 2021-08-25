@@ -14,12 +14,7 @@ mutation addJob($listingName: String!, $description: String!, $createdAt: String
 export const ADD_DEVELOPER = gql`
 mutation addDeveloper($name: String!, $email: String!, $password: String!, $githubName:String!) {
     addDeveloper(name:$name, email:$email, password:$password, githubName:$githubName) {
-      name
-      email
-      password
-      ... on Developer {
-          githubName
-      }
+      token
     }
   }
 `;
@@ -27,12 +22,7 @@ mutation addDeveloper($name: String!, $email: String!, $password: String!, $gith
 export const ADD_EMPLOYER = gql`
 mutation addEmployer($name: String!, $email: String!, $password: String!, $companyName:String!) {
     addEmployer(name:$name, email:$email, password:$password, companyName:$companyName) {
-      name
-      email
-      password
-      ... on Employer {
-          companyName
-      }
+        token
     }
   }
 `;
