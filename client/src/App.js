@@ -14,7 +14,8 @@ import EmployerSignUp from "./pages/Employer-Signup/Employer-Signup";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-// import DeveloperProfile from "./pages/Developer-profile/Developer-profile";
+import DeveloperProfile from "./pages/Developer-profile/Developer-profile";
+import EmployerProfile from "./pages/Employer-profile/Employer-profile";
 
 import "./App.css";
 
@@ -45,6 +46,12 @@ function App() {
         <div className="App">
           <Navbar />
           <Switch>
+            <Route
+              exact
+              path="/profile/developer"
+              component={DeveloperProfile}
+            />
+            <Route exact path="/profile/employer" component={EmployerProfile} />
             <Route exact path="/signup/developer" component={DeveloperSignUp} />
             <Route exact path="/signup/employer" component={EmployerSignUp} />
             <Route exact path="/login" component={Login} />
