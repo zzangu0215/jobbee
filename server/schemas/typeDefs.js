@@ -9,6 +9,7 @@ const typeDefs = gql`
   }
 
   type Job {
+    _id:ID
     listingName : String
     description: String
     createdAt : String
@@ -46,6 +47,7 @@ const typeDefs = gql`
     addDeveloper (name: String!, email: String!, password: String!, githubName: String!): Developer
     addEmployer (name: String!, email: String!, password: String!, companyName: String!): Employer
     userlogin (email: String!, password: String!) : Auth
+    updateJob (_id:ID listingName: String!, description: String!): Job
   }
 
   type Query {
