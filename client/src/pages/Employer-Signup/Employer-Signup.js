@@ -7,28 +7,25 @@ import { ADD_EMPLOYER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 function EmployerSignUp() {
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [companyName, setCompanyName] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [companyName, setCompanyName] = useState("");
   const [addEmployer, { error, data }] = useMutation(ADD_EMPLOYER);
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    setName('');
-    setEmail('');
-    setPassword('');
-    setCompanyName('');
-
+    setName("");
+    setEmail("");
+    setPassword("");
+    setCompanyName("");
 
     try {
       const { data } = await addEmployer({
         variables: { name, email, password, companyName },
       });
-      console.log(data.addEmployer)
+      console.log(data.addEmployer);
       Auth.login(data.addEmployer.token);
-
     } catch (e) {
       console.error(e);
     }
@@ -47,7 +44,10 @@ function EmployerSignUp() {
               </p>
             </p>
           ) : (
-            <form onSubmit={handleFormSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form
+              onSubmit={handleFormSubmit}
+              className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            >
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
@@ -137,21 +137,18 @@ function EmployerSignUp() {
                 >
                   Sign Up
                 </button>
-                <a
+                <Link
+                  to="/login"
                   className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                  href="/"
                 >
                   Already have an account?
-                </a>
+                </Link>
               </div>
             </form>
           )}
 
           {error && (
-            <div className="my-3 p-3 bg-danger text-white">
-              {error.message}
-            </div>
-
+            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
           )}
           <p className="text-center text-gray-500 text-xs">
             &copy;2021 FANTOM Corp. All rights reserved.

@@ -90,12 +90,12 @@ function Login() {
                 >
                   Login
                 </button>
-                <a
+                <Link
+                  to="/signup"
                   className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                  href="/"
                 >
                   Don't have an account yet?
-                </a>
+                </Link>
               </div>
             </form>
           )}
