@@ -8,18 +8,14 @@ export const QUERY_ADEVELOPER = gql`
   }
 `;
 
-// export const QUERY_ME = gql`
-//   query me {
-//     me {
-//       _id
-//       username
-//       email
-//       thoughts {
-//         _id
-//         thoughtText
-//         thoughtAuthor
-//         createdAt
-//       }
-//     }
-//   }
-// `;
+export const QUERY_JOB = gql`
+  query Job  {
+    Job {
+      listingName
+      description
+      createdAt
+      companyName
+      website
+    }
+  }
+`;
