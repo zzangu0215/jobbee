@@ -3,6 +3,11 @@ const { Employer, Developer, User, Job } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
+  User: {
+    __resolveType(obj, context, info) {
+      return obj.__t;
+    },
+  },
   Query: {
     // This gives every users
     User: async () => {
@@ -30,12 +35,7 @@ const resolvers = {
     Developer: async () => {
       return await Developer.find();
     },
-    aDeveloper: async (parent, { email }) => {
-      // if (context.employer) {
-      return await Developer.findOne({ email: email }, { githubName: 1 });
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
-    },
+
     Employer: async () => {
       return await Employer.find();
     },
@@ -44,6 +44,12 @@ const resolvers = {
       return await Employer.findById(_id);
       // }
       // throw new AuthenticationError("You need to be logged in!");
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 
