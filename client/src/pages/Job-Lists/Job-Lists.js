@@ -1,10 +1,17 @@
 import React from "react";
+import { useQuery } from '@apollo/client';
+
 import JobListCard from "../../components/Job-List-card/Job-List-card";
 import { FiSearch } from "react-icons/fi";
 
 import "./Job-Lists.css";
+import { QUERY_JOB } from '../../utils/queries';
 
-function JobLists() {
+const JobLists = () => {
+
+  const { loading, data } = useQuery(QUERY_JOB);
+  const job = data?.job || [];
+
   return (
     <>
       <div className="mt-8 flex justify-center job-lists">Job Lists</div>
@@ -20,12 +27,13 @@ function JobLists() {
         </button>
       </div>
       <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
-        <JobListCard />
-        <JobListCard />
-        <JobListCard />
+        <JobListCard job={job} />
+
       </div>
     </>
   );
 }
 
 export default JobLists;
+
+
