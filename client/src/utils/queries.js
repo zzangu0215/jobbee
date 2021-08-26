@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const QUERY_ADEVELOPER = gql`
   query aDeveloper($_id: ID!) {
-    aDeveloper(_id: $id) {
+    aDeveloper(_id: $_id) {
       githubName
     }
   }

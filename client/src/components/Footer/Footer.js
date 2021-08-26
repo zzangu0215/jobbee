@@ -4,7 +4,7 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="sticky bottom-0">
       <section className="bg-gray-800">
         <div className="max-w-screen-xl px-2 py-1 mx-auto space-y-3 overflow-hidden sm:px-6 lg:px-8">
           <div className="flex justify-center mt-8 space-x-6">
