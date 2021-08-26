@@ -12,9 +12,9 @@ export const QUERY_ME = gql`
   }
 `;
 
-export const QUERY_JOB = gql`
-  query Job {
-    Job {
+export const QUERY_JOBS = gql`
+  query Jobs {
+    Jobs {
       listingName
       description
       createdAt

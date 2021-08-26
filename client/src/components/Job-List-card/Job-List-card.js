@@ -11,7 +11,14 @@ import Button from "@material-tailwind/react/Button";
 // import { QUERY_JOB } from "../../utils/queries";
 import ApplyModal from "../Apply-modal/Apply-modal";
 
-const JobListCard = () => {
+const JobListCard = ({
+  key,
+  createdAt,
+  companyName,
+  listingName,
+  website,
+  description,
+}) => {
   const [showModal, setShowModal] = useState(false);
   // const { jobId } = useParams();
   // const { loading, data } = useQuery(QUERY_JOB, {
@@ -26,19 +33,14 @@ const JobListCard = () => {
       <div className="bg-white  mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="mt-2">
           <h1 className="text-xl text-gray-700 font-semibold hover:underline cursor-pointer">
-            Company Name
+            {companyName}
           </h1>
           <div className="flex mt-3">
             <h2 className="text-md text-gray-700 font-semibold">
-              Full Stack Developer
+              {listingName}
             </h2>
           </div>
-          <p className="mt-4 text-md text-gray-600">
-            But I must explain to you how all this mistaken idea of denouncing
-            pleasure and praising pain was born and I will give you a complete
-            account of the system, and expound the actual teachings of the great
-            explorer of the truth, the master-builder of human happines.
-          </p>
+          <p className="mt-4 text-md text-gray-600">{description}</p>
           <div className="flex justify-between items-center">
             <div className="mt-4 flex items-center space-x-4 py-6">
               <div className="">
