@@ -37,6 +37,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    sendMessage(message: String!): Auth
     addUser(name: String!, email: String!, password: String!): User
     addJob(listingName: String!, description: String!, website: String!): Auth
     addDeveloper(

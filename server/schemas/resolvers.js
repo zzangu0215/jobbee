@@ -88,6 +88,21 @@ const resolvers = {
       const token = signToken(employer);
       return { token };
     },
+
+    sendMessage: async (parent, { _id, message }, context) => {
+      if (context.user) {
+        const message = await Employer.findOneAndUpdate(
+          { _id: _id },
+          {
+            $set: {
+              message: message,
+            },
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
     userlogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
