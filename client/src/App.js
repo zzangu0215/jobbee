@@ -9,13 +9,14 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import DeveloperSignUp from "./pages/Developer-Signup/Developer-Signup";
 import EmployerSignUp from "./pages/Employer-Signup/Employer-Signup";
 import Login from "./pages/Login/Login";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import DeveloperProfile from "./pages/Developer-profile/Developer-profile";
 import EmployerProfile from "./pages/Employer-profile/Employer-profile";
+import JobLists from "./pages/Job-Lists/Job-Lists";
 
 import "./App.css";
 
@@ -43,7 +44,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="App">
+        <div className="App bg-gray-100">
           <Navbar />
           <Switch>
             <Route
@@ -55,6 +56,7 @@ function App() {
             <Route exact path="/signup/developer" component={DeveloperSignUp} />
             <Route exact path="/signup/employer" component={EmployerSignUp} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/view/jobs" component={JobLists} />
             <Route exact path="/" component={Home} />
           </Switch>
           <Footer />
