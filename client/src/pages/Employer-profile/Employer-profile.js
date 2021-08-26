@@ -157,13 +157,17 @@ function EmployerProfile() {
       </div>
 
       <div className="container flex flex-wrap justify-center emp-profile-button">
-        <div class="p-2 md:w-50 ">
-          <div class="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
-            <div>
-              <p class="text-xs font-medium ml-2 view-jobs">Jobs you posted</p>
+        <Link to="/profile/employer/jobs">
+          <div class="p-2 md:w-50 ">
+            <div class="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
+              <div>
+                <p class="text-xs font-medium ml-2 view-jobs">
+                  Jobs you posted
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         <div class="p-2 md:w-50 ">
           <div class="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
