@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import Signup from "./pages/Signup/Signup";
 import DeveloperSignUp from "./pages/Developer-Signup/Developer-Signup";
 import EmployerSignUp from "./pages/Employer-Signup/Employer-Signup";
 import Login from "./pages/Login/Login";
@@ -53,6 +54,7 @@ function App() {
               component={DeveloperProfile}
             />
             <Route exact path="/profile/employer" component={EmployerProfile} />
+            <Route exact path="/signup" component={Signup} />
             <Route exact path="/signup/developer" component={DeveloperSignUp} />
             <Route exact path="/signup/employer" component={EmployerSignUp} />
             <Route exact path="/login" component={Login} />

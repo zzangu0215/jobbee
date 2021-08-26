@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
+.welcome {
+  font-size: 3.5rem;
+  font-family: "Patrick Hand", cursive;
+}
+
+.signup-redirect {
+  font-size: 3rem;
+  font-family: "Patrick Hand", cursive;
+}
+
+.emp-signup,
+.dev-signup {
+  font-size: 1rem;
+}
