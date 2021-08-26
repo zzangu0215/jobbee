@@ -53,17 +53,14 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addJob: async (
-      parent,
-      { listingName, description, createdAt, companyName }
-    ) => {
+    addJob: async (parent, { listingName, description, website }) => {
       const job = await Job.create({
         listingName,
         description,
-        createdAt,
-        companyName,
+        website,
       });
-      return { job };
+      const token = signToken(job);
+      return { token };
     },
     addDeveloper: async (parent, { name, email, password, githubName }) => {
       const developer = await Developer.create({

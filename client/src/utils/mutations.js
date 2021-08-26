@@ -4,19 +4,14 @@ export const ADD_JOB = gql`
   mutation addJob(
     $listingName: String!
     $description: String!
-    $createdAt: String!
-    $companyName: String!
+    $website: String!
   ) {
     addJob(
       listingName: $listingName
       description: $description
-      createdAt: $createdAt
-      companyName: $companyName
+      website: $website
     ) {
-      listingName
-      description
-      createdAt
-      companyName
+      token
     }
   }
 `;

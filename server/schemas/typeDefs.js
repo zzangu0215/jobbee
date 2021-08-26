@@ -14,6 +14,7 @@ const typeDefs = gql`
     description: String
     createdAt: String
     companyName: String
+    website: String
   }
 
   type Developer implements User {
@@ -42,12 +43,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(name: String!, email: String!, password: String!): User
-    addJob(
-      listingName: String!
-      description: String!
-      createdAt: String!
-      companyName: String!
-    ): Job
+    addJob(listingName: String!, description: String!, website: String!): Auth
     addDeveloper(
       name: String!
       email: String!
