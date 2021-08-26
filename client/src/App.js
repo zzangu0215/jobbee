@@ -17,6 +17,7 @@ import EmployerSignUp from "./pages/Employer-Signup/Employer-Signup";
 import Login from "./pages/Login/Login";
 import DeveloperProfile from "./pages/Developer-profile/Developer-profile";
 import EmployerProfile from "./pages/Employer-profile/Employer-profile";
+import EmployerJobs from "./pages/Employer-jobs/Employer-jobs";
 import DeveloperLists from "./pages/Developer-Lists/Developer-Lists";
 import JobLists from "./pages/Job-Lists/Job-Lists";
 
@@ -55,6 +56,11 @@ function App() {
               component={DeveloperProfile}
             />
             <Route exact path="/profile/employer" component={EmployerProfile} />
+            <Route
+              exact
+              path="/profile/employer/jobs"
+              component={EmployerJobs}
+            />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signup/developer" component={DeveloperSignUp} />
             <Route exact path="/signup/employer" component={EmployerSignUp} />
