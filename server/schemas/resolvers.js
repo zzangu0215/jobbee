@@ -30,9 +30,9 @@ const resolvers = {
     Developer: async () => {
       return await Developer.find();
     },
-    aDeveloper: async (parent, { _id }) => {
+    aDeveloper: async (parent, { email }) => {
       // if (context.employer) {
-      return await Developer.findById(_id);
+      return await Developer.findOne({ email: email }, { githubName: 1 });
       // }
       // throw new AuthenticationError("You need to be logged in!");
     },
