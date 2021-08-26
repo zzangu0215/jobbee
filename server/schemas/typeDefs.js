@@ -71,7 +71,7 @@ const typeDefs = gql`
     Job: [Job]
     aJob(companyName: String!): Job
     Developer: [Developer]
-    aDeveloper(email: String!): Developer
+    aDeveloper(_id: ID!): Developer
     Employer: [Employer]
     aEmployer(_id: ID!): Employer
   }
