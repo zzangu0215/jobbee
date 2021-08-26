@@ -17,7 +17,7 @@ const DeveloperProfile = () => {
   useEffect(() => {
     getGithubInfo(developer);
   }, [developer]);
-
+  //
   // if (loading) {
   //   return <div>Loading...</div>;
   // }
