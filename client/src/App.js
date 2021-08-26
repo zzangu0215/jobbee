@@ -17,6 +17,7 @@ import EmployerSignUp from "./pages/Employer-Signup/Employer-Signup";
 import Login from "./pages/Login/Login";
 import DeveloperProfile from "./pages/Developer-profile/Developer-profile";
 import EmployerProfile from "./pages/Employer-profile/Employer-profile";
+import DeveloperLists from "./pages/Developer-Lists/Developer-Lists";
 import JobLists from "./pages/Job-Lists/Job-Lists";
 
 import "./App.css";
@@ -58,6 +59,7 @@ function App() {
             <Route exact path="/signup/developer" component={DeveloperSignUp} />
             <Route exact path="/signup/employer" component={EmployerSignUp} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/view/developers" component={DeveloperLists} />
             <Route exact path="/view/jobs" component={JobLists} />
             <Route exact path="/" component={Home} />
           </Switch>
