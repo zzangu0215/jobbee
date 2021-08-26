@@ -8,41 +8,44 @@ const DevProfileCard = ({ name, username, bio, avatar, github }) => {
   const [active, setActive] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="container flex justify-center">
-        <div className="max-w-sm py-16">
-          <div className="bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg">
-            <img
-              className="rounded-t-lg"
-              // style={avatarSize}
-              src={avatar}
-              alt=""
+    <>
+      <div className="md:flex-1 px-10 mt-8">
+        <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
+          <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
+            <Heart
+              isActive={active}
+              onClick={() => setActive(!active)}
+              animationScale={1.25}
+              style={{ marginBottom: "1rem" }}
             />
-            <div className="py-6 px-8 rounded-lg bg-white">
-              <h1 className="text-gray-700 font-bold text-2xl mb-3 hover:text-gray-900 hover:cursor-pointer">
-                {name}
-              </h1>
-              <p className="text-gray-700 tracking-wide">{bio}</p>
-              <br />
-              <img src={skillsURL} alt={username} /> <br />
-              <p align="center">
-                <a href={github}>
-                  <FaGithub size={40} />
-                </a>
-              </p>
-            </div>
-            <div className="absolute top-2 right-2" style={{ width: "3rem" }}>
-              <Heart
-                isActive={active}
-                onClick={() => setActive(!active)}
-                animationScale={1.25}
-                style={{ marginBottom: "1rem" }}
-              />
-            </div>
+            <a href={github}>
+              <FaGithub size={40} />
+            </a>
+          </div>
+          <div className="">
+            <img
+              className="w-20 h-20 rounded-full"
+              src={avatar}
+              alt={username}
+            />
+          </div>
+
+          <div className="mt-4">
+            <h1
+              className="text-gray-700 font-semibold"
+              style={{ fontSize: "2rem" }}
+            >
+              {name}{" "}
+            </h1>
+            <p className="mt-4 text-md text-gray-600">{bio}</p>
+          </div>
+
+          <div className="mt-4 sm:flex sm:justify-center">
+            <img src={skillsURL} alt={username} />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 //
