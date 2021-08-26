@@ -1,16 +1,18 @@
 import React from "react";
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 
 import JobListCard from "../../components/Job-List-card/Job-List-card";
 import { FiSearch } from "react-icons/fi";
 
 import "./Job-Lists.css";
-import { QUERY_JOB } from '../../utils/queries';
+import { QUERY_JOBS } from "../../utils/queries";
 
 const JobLists = () => {
+  const { loading, error, data: jobData } = useQuery(QUERY_JOBS);
+  // console.log(jobData);
 
-  const { loading, data } = useQuery(QUERY_JOB);
-  const job = data?.job || [];
+  const jobs = jobData?.Jobs || [];
+  console.log(jobs.map((job) => job.listingName));
 
   return (
     <>
@@ -27,13 +29,19 @@ const JobLists = () => {
         </button>
       </div>
       <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
-        <JobListCard job={job} />
-
+        {jobs.map((job) => (
+          <JobListCard
+            listingName={job.listingName}
+            companyName={job.companyName}
+            key={job._id}
+            website={job.website}
+            description={job.description}
+            createdAt={job.createdAt}
+          />
+        ))}
       </div>
     </>
   );
-}
+};
 
 export default JobLists;
-
-

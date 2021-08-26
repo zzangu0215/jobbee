@@ -20,7 +20,7 @@ const resolvers = {
     //   // }
     //   // throw new AuthenticationError("You need to be logged in!");
     // },
-    Job: async () => {
+    Jobs: async () => {
       return await Job.find();
     },
     aJob: async (
@@ -37,7 +37,7 @@ const resolvers = {
     },
 
     Employer: async () => {
-      return await Employer.find();
+      return await Employer.find().populate("Jobs");
     },
     aEmployer: async (parent, { _id }) => {
       // if (context.employer) {

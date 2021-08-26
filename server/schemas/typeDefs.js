@@ -60,7 +60,7 @@ const typeDefs = gql`
     User: [User]
     me: User
 
-    Job: [Job]
+    Jobs: [Job]
     aJob(companyName: String!): Job
     Developer: [Developer]
 
