@@ -61,8 +61,8 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/view/developers" component={DeveloperLists} />
             <Route exact path="/view/jobs" component={JobLists} />
-            <Route exact path="/" component={Home} />
             <Route exact path="/job/:jobId" />
+            <Route exact path="/" component={Home} />
           </Switch>
           <Footer />
         </div>
