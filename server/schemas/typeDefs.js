@@ -1,13 +1,6 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  interface User {
-    _id: ID
-    name: String
-    email: String
-    password: String
-  }
-
   type Job {
     _id: ID
     listingName: String
@@ -17,7 +10,9 @@ const typeDefs = gql`
     website: String
   }
 
-  type Developer implements User {
+  union User = Developer | Employer
+
+  type Developer {
     _id: ID
     name: String
     email: String
@@ -26,7 +21,7 @@ const typeDefs = gql`
     likedBy: [User]
   }
 
-  type Employer implements User {
+  type Employer {
     _id: ID
     name: String
     email: String
@@ -63,11 +58,12 @@ const typeDefs = gql`
 
   type Query {
     User: [User]
-    aUser(_id: ID!): Developer
+    me: User
+
     Job: [Job]
     aJob(companyName: String!): Job
     Developer: [Developer]
-    aDeveloper(_id: ID!): Developer
+
     Employer: [Employer]
     aEmployer(_id: ID!): Employer
   }
