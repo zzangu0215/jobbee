@@ -23,18 +23,20 @@ function Home() {
         <h2>Developer!</h2>
       </div>
       <div className="container flex flex-wrap justify-center home-buttons">
-        <div class="p-2 md:w-50 ">
-          <div class="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
+        <div className="p-2 md:w-50 ">
+          <div className="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
             <div>
-              <p class="text-xs font-medium ml-2 view-dev">View Developer</p>
+              <p className="text-xs font-medium ml-2 view-dev">
+                View Developer
+              </p>
             </div>
           </div>
         </div>
 
-        <div class="p-2 md:w-50 ">
-          <div class="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
+        <div className="p-2 md:w-50 ">
+          <div className="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
             <div>
-              <p class="text-xs font-medium ml-2 view-emp">View Employer</p>
+              <p className="text-xs font-medium ml-2 view-emp">View Employer</p>
             </div>
           </div>
         </div>
