@@ -12,7 +12,6 @@ const JobLists = () => {
   // console.log(jobData);
 
   const jobs = jobData?.Jobs || [];
-  console.log(jobs.map((job) => job.listingName));
 
   return (
     <>

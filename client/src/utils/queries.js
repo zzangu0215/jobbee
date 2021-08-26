@@ -15,6 +15,7 @@ export const QUERY_ME = gql`
 export const QUERY_JOBS = gql`
   query Jobs {
     Jobs {
+      _id
       listingName
       description
       createdAt
