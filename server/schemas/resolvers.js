@@ -62,6 +62,43 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    addDevLike: async (parent, { employerId, developerId }) => {
+      const query = { _id: developerId };
+      const query2 = { _id: employerId };
+
+      const update = {
+        $push: {
+          likedBy: employerId,
+        },
+      };
+      const update2 = {
+        $push: {
+          likedDevelopers: developerId,
+        },
+      };
+
+      const options = {
+        new: true,
+        runValidators: true,
+      };
+
+      const updatedDev = await Developer.findOneAndUpdate(
+        query,
+        update,
+        options
+      );
+
+      const updateEmp = await Employer.findOneAndUpdate(
+        query2,
+        update2,
+        options
+      );
+
+      const token = signToken(updatedDev, updateEmp);
+      return { token, user: updatedDev };
+    },
+
     addJob: async (
       parent,
       { listingName, description, website, companyName }
@@ -95,6 +132,21 @@ const resolvers = {
       const token = signToken(employer);
       return { token };
     },
+
+    sendMessage: async (parent, { _id, message }, context) => {
+      if (context.user) {
+        const message = await Employer.findOneAndUpdate(
+          { _id: _id },
+          {
+            $set: {
+              message: message,
+            },
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
     userlogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {

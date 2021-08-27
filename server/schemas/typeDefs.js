@@ -37,7 +37,9 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    sendMessage(message: String!): Auth
     addUser(name: String!, email: String!, password: String!): User
+
     addJob(
       listingName: String!
       description: String!
@@ -58,7 +60,10 @@ const typeDefs = gql`
     ): Auth
     userlogin(email: String!, password: String!): Auth
     updateJob(_id: ID!, listingName: String!, description: String!): Job
-    removeJob(_id: ID!): Job
+
+    removeJob(_id: ID): Job
+    addDevLike(employerId: ID!, developerId: ID!): Auth
+
   }
 
   type Query {
@@ -75,3 +80,5 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+// addDevToEmployerList(employerId: ID!, developerId: ID!): Auth

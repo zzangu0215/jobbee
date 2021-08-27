@@ -32,7 +32,6 @@ export default function Navbar() {
   }
 
   const loggedInUser = userData?.me.__typename || "";
-  // console.log(userData.me.__typename);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -92,10 +91,25 @@ export default function Navbar() {
                   type="button"
                   className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
-                  <FiMessageSquare
+                  {loggedInUser === "Developer" ? (
+                    <Link to="/profile/developer/inbox">
+                      <FiMessageSquare
+                        className="h-6 w-6"
+                        style={{ color: "white" }}
+                      />
+                    </Link>
+                  ) : (
+                    <Link to="/">
+                      <FiMessageSquare
+                        className="h-6 w-6"
+                        style={{ color: "white" }}
+                      />
+                    </Link>
+                  )}
+                  {/* <FiMessageSquare
                     className="h-6 w-6"
                     style={{ color: "white" }}
-                  />
+                  /> */}
                 </button>
 
                 {/* Profile dropdown */}
@@ -148,15 +162,16 @@ export default function Navbar() {
                       {Auth.loggedIn() ? (
                         <Menu.Item>
                           {({ active }) => (
-                            <button
+                            <Link
                               onClick={logout}
+                              to="/"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
                               Logout
-                            </button>
+                            </Link>
                           )}
                         </Menu.Item>
                       ) : (
@@ -174,19 +189,6 @@ export default function Navbar() {
                           )}
                         </Menu.Item>
                       )}
-                      {/* <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="/login"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Login
-                          </Link>
-                        )}
-                      </Menu.Item> */}
                     </Menu.Items>
                   </Transition>
                 </Menu>

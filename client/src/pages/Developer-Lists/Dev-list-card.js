@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Heart from "react-heart";
 
 import { FaGithub } from "react-icons/fa";
 
+const getGithubInfo = async (user) => {
+  let infoURL = `https://api.github.com/users/${user}`;
 
-const DevProfileCard = ({
-  username, bio, avatar, github
-}) => {
-  const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact`;
+  try {
+    const res = await fetch(infoURL);
+    const githubData = await res.json();
+
+    return {
+      username: githubData.login,
+      bio: githubData.bio,
+      avatar: githubData.avatar_url,
+      github: githubData.html_url,
+    };
+  } catch (err) {
+    console.log(`Network Error. ${err}`);
+  }
+};
+
+const DevProfileCard = ({ developer }) => {
+  const [{ username, bio, avatar, github }, setGithubInfo] = useState({});
   const [active, setActive] = useState(false);
 
+  const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.username}&show_icons=true&locale=en&layout=compact`;
+
+  useEffect(() => {
+    getGithubInfo(developer.githubName).then(setGithubInfo);
+  }, [developer.githubName]);
 
   return (
     <div className="md:flex-1 px-10 mt-8">
@@ -26,11 +46,7 @@ const DevProfileCard = ({
           </a>
         </div>
         <div className="">
-          <img
-            className="w-20 h-20 rounded-full"
-            src={avatar}
-            alt={username}
-          />
+          <img className="w-20 h-20 rounded-full" src={avatar} alt={username} />
         </div>
 
         <div className="mt-4">
@@ -40,9 +56,7 @@ const DevProfileCard = ({
           >
             {username}
           </h1>
-          <p className="mt-4 text-md text-gray-600">
-            {bio}
-          </p>
+          <p className="mt-4 text-md text-gray-600">{bio}</p>
         </div>
 
         <div className="mt-4 sm:flex sm:justify-center">
@@ -51,11 +65,6 @@ const DevProfileCard = ({
       </div>
     </div>
   );
-}
-
-
-
-
-
+};
 
 export default DevProfileCard;
