@@ -5,7 +5,6 @@ import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import { ADD_JOB } from "../../utils/mutations";
-import Auth from "../../utils/auth";
 
 function EmployerProfile() {
   const [listingName, setListingName] = useState("");
@@ -34,7 +33,6 @@ function EmployerProfile() {
       });
 
       console.log(data);
-      Auth.login(data.addJob.token);
     } catch (e) {
       console.error(e);
     }
