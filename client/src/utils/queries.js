@@ -33,6 +33,7 @@ export const QUERY_DEVELOPERS = gql`
   query Developers {
     Developers {
       githubName
+      name
     }
   }
 `;
