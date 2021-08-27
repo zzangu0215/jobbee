@@ -59,7 +59,7 @@ const typeDefs = gql`
       companyName: String!
     ): Auth
     userlogin(email: String!, password: String!): Auth
-    updateJob(_id: ID, listingName: String!, description: String!): Job
+    updateJob(_id: ID!, listingName: String!, description: String!): Job
     removeJob(_id: ID): Job
     addDevLike(employerId: ID!, developerId: ID!): Auth
   }

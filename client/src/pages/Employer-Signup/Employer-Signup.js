@@ -12,6 +12,7 @@ function EmployerSignUp() {
   const [password, setPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [addEmployer, { error, data }] = useMutation(ADD_EMPLOYER);
+  console.log(data);
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -40,7 +41,7 @@ function EmployerSignUp() {
             <p>
               <p>
                 Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                {/* <Link to="/">back to the homepage.</Link> */}
               </p>
             </p>
           ) : (
