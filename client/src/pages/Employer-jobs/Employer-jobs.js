@@ -19,6 +19,7 @@ const EmployerJobs = () => {
       <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
         {jobs.map((job) => (
           <EmpJobCard
+            _id={job._id}
             listingName={job.listingName}
             companyName={job.companyName}
             key={job._id}

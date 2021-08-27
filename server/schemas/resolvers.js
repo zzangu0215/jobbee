@@ -147,12 +147,12 @@ const resolvers = {
     },
     updateJob: async (parent, { _id, listingName, description }, context) => {
       if (context.user) {
-        return Job.findOneAndUpdate(
+        return Job.findByIdAndUpdate(
           { _id: _id },
           {
             $set: {
               listingName: listingName,
-              description: description,
+              description: description
             },
           },
           {

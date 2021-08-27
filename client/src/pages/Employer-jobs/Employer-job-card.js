@@ -9,6 +9,7 @@ import Button from "@material-tailwind/react/Button";
 import UpdateModal from "../../components/Update-modal/Update-modal";
 
 const EmpJobCard = ({
+  _id,
   createdAt,
   companyName,
   listingName,
@@ -56,7 +57,7 @@ const EmpJobCard = ({
                 Update your job!
               </ModalHeader>
               <ModalBody>
-                <UpdateModal />
+                <UpdateModal _id={_id} />
               </ModalBody>
               <ModalFooter>
                 <Button
@@ -66,14 +67,6 @@ const EmpJobCard = ({
                   ripple="dark"
                 >
                   Close
-                </Button>
-
-                <Button
-                  color="green"
-                  onClick={(e) => setShowModal(false)}
-                  ripple="light"
-                >
-                  Confirm
                 </Button>
               </ModalFooter>
             </Modal>
