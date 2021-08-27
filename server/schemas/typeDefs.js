@@ -78,3 +78,5 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+// addDevToEmployerList(employerId: ID!, developerId: ID!): Auth
