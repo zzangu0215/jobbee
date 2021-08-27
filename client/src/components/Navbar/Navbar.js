@@ -32,7 +32,6 @@ export default function Navbar() {
   }
 
   const loggedInUser = userData?.me.__typename || "";
-  // console.log(userData.me.__typename);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -148,7 +147,7 @@ export default function Navbar() {
                       {Auth.loggedIn() ? (
                         <Menu.Item>
                           {({ active }) => (
-                            <button
+                            <Link
                               onClick={logout}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
@@ -156,7 +155,7 @@ export default function Navbar() {
                               )}
                             >
                               Logout
-                            </button>
+                            </Link>
                           )}
                         </Menu.Item>
                       ) : (
@@ -174,19 +173,6 @@ export default function Navbar() {
                           )}
                         </Menu.Item>
                       )}
-                      {/* <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="/login"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Login
-                          </Link>
-                        )}
-                      </Menu.Item> */}
                     </Menu.Items>
                   </Transition>
                 </Menu>
