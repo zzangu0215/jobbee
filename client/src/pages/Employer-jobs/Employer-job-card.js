@@ -6,7 +6,12 @@ import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
 
+import { useMutation } from "@apollo/client";
+import { REMOVE_JOB } from "../../utils/mutations";
+import { QUERY_JOBS } from "../../utils/queries";
+
 import UpdateModal from "../../components/Update-modal/Update-modal";
+
 
 const EmpJobCard = ({
   _id,
@@ -17,6 +22,33 @@ const EmpJobCard = ({
   description,
 }) => {
   const [showModal, setShowModal] = useState(false);
+  const [removeJob, { error, data }] = useMutation(REMOVE_JOB, {
+    refetchQueries: [QUERY_JOBS]
+  });
+  console.log(data)
+
+  const handleRemoveJob = async (event) => {
+    event.preventDefault();
+    try {
+      await removeJob({
+        variables: { _id }
+      });
+      // await removeJob({
+      //   variables: { _id },
+      //   optimisticResponse: true,
+      //   update: (cache) => {
+      //     const existingJobs = cache.readQuery({ query: QUERY_JOBS });
+      //     const newJobs = existingJobs.Jobs.filter(j => (j._id !== _id));
+      //     cache.writeQuery({
+      //       query: QUERY_JOBS,
+      //       data: { Jobs: newJobs }
+      //     });
+      //   }
+      // });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="md:flex-1 px-10 mt-8">
@@ -45,7 +77,7 @@ const EmpJobCard = ({
             >
               Update
             </button>
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+            <button onClick={handleRemoveJob} onSubmit={handleRemoveJob} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
               Delete
             </button>
             <Modal
