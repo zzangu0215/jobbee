@@ -18,3 +18,5 @@ const developerSchema = new Schema({
 const Developer = User.discriminator("Developer", developerSchema);
 
 module.exports = Developer;
+
+//make a post request when the heart is clicked that pushes the employer's object id into the user array and save it
