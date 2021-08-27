@@ -107,7 +107,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    updateJob: async (parent, { _id, listingName, description }, context) => {
+    updateJob: async (parent, { _id, listingName, description, companyName }, context) => {
       if (context.user) {
         return Job.findOneAndUpdate(
           { _id: _id },
@@ -115,6 +115,7 @@ const resolvers = {
             $set: {
               listingName: listingName,
               description: description,
+              companyName: companyName
             },
           },
           {
