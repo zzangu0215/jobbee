@@ -10,16 +10,13 @@ const DeveloperProfile = () => {
   const [githubInfo, setgithubInfo] = useState({});
 
   const { loading, data: userData } = useQuery(QUERY_ME);
-  // console.log({ loading, userData });
-  // console.log(loading);
 
   const developer = userData?.me.githubName || "";
-  // console.log(developer);
 
   useEffect(() => {
     getGithubInfo(developer);
   }, [developer]);
-  //
+
   if (loading) {
     return <div>Loading...</div>;
   }
