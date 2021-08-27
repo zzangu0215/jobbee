@@ -35,6 +35,9 @@ const resolvers = {
     Developer: async () => {
       return await Developer.find();
     },
+    Developers: async () => {
+      return await Developer.find();
+    },
 
     Employer: async () => {
       return await Employer.find().populate("Jobs");
