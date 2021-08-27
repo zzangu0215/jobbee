@@ -9,14 +9,15 @@ import { QUERY_DEVELOPERS } from "../../utils/queries";
 const DeveloperLists = () => {
   const [githubInfo, setgithubInfo] = useState({});
 
-  const { loading, error, data: developerData } = useQuery(QUERY_DEVELOPERS);
-  console.log({ loading, error, developerData });
+  // const { loading, error, data: developerData } = useQuery(QUERY_DEVELOPERS);
+  // console.log({ loading, error, developerData });
 
-  const developers = developerData?.Developers || "";
-  console.log(developers);
+  // const developers = developerData?.Developers || [];
+
+  // console.log(developers);
   useEffect(() => {
-    getGithubInfo(developers);
-  }, [developers]);
+    getGithubInfo("imagallon");
+  }, []);
 
   const getGithubInfo = async (repo) => {
     let infoURL = `https://api.github.com/users/${repo}`;
@@ -42,17 +43,19 @@ const DeveloperLists = () => {
     <>
       <div className="mt-8 flex justify-center dev-lists">Developer Lists</div>
       <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
-        {developers.map((developer) => (
-          <DevListCard
-            name={githubInfo.name}
-            email={githubInfo.email}
-            key={githubInfo._id}
-            githubName={githubInfo.githubName}
-          />
-        ))}
+        {/* {developers.map((developer) => ( */}
+        <DevListCard
+          username={githubInfo.username}
+          bio={githubInfo.bio}
+          key={githubInfo._id}
+          avatar={githubInfo.avatar}
+          github={githubInfo.github}
+        />
+        {/* <DevListCard githubName={"zzangu0215"} /> */}
+        {/* ))} */}
       </div>
     </>
   );
-}
+};
 
 export default DeveloperLists;

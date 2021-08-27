@@ -3,13 +3,9 @@ import Heart from "react-heart";
 
 import { FaGithub } from "react-icons/fa";
 
-
-const DevProfileCard = ({
-  username, bio, avatar, github
-}) => {
+const DevListCard = ({ username, bio, avatar, github }) => {
   const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact`;
   const [active, setActive] = useState(false);
-
 
   return (
     <div className="md:flex-1 px-10 mt-8">
@@ -26,11 +22,7 @@ const DevProfileCard = ({
           </a>
         </div>
         <div className="">
-          <img
-            className="w-20 h-20 rounded-full"
-            src={avatar}
-            alt={username}
-          />
+          <img className="w-20 h-20 rounded-full" src={avatar} alt={username} />
         </div>
 
         <div className="mt-4">
@@ -40,9 +32,7 @@ const DevProfileCard = ({
           >
             {username}
           </h1>
-          <p className="mt-4 text-md text-gray-600">
-            {bio}
-          </p>
+          <p className="mt-4 text-md text-gray-600">{bio}</p>
         </div>
 
         <div className="mt-4 sm:flex sm:justify-center">
@@ -51,11 +41,6 @@ const DevProfileCard = ({
       </div>
     </div>
   );
-}
+};
 
-
-
-
-
-
-export default DevProfileCard;
+export default DevListCard;
