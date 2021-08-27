@@ -27,11 +27,11 @@ export default function Navbar() {
 
   const { loading, data: userData } = useQuery(QUERY_ME);
 
+  const loggedInUser = userData?.me.__typename || "";
+
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  const loggedInUser = userData?.me.__typename || "";
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
