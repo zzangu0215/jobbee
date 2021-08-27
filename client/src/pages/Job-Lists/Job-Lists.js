@@ -8,10 +8,14 @@ import "./Job-Lists.css";
 import { QUERY_JOBS } from "../../utils/queries";
 
 const JobLists = () => {
-  const { loading, error, data: jobData } = useQuery(QUERY_JOBS);
+  const { loading, data: jobData } = useQuery(QUERY_JOBS);
   console.log(jobData);
 
   const jobs = jobData?.Jobs || [];
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

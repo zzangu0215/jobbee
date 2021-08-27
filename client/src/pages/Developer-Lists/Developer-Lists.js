@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
+// import { useQuery } from "@apollo/client";
 
 import DevListCard from "./Dev-list-card";
 
 import "./Developer-Lists.css";
-import { QUERY_DEVELOPERS } from "../../utils/queries";
+// import { QUERY_DEVELOPERS } from "../../utils/queries";
 
 const DeveloperLists = () => {
   const [githubInfo, setgithubInfo] = useState({});
