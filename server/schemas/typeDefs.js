@@ -63,14 +63,13 @@ const typeDefs = gql`
 
     removeJob(_id: ID): Job
     addDevLike(employerId: ID!, developerId: ID!): Auth
-
   }
 
   type Query {
     User: [User]
     me: User
 
-    Jobs(companyName: String!): [Job]
+    Jobs: [Job]
     aJob(companyName: String!): Job
     Developers: [Developer]
     Developer: [Developer]
