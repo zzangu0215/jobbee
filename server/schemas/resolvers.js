@@ -62,6 +62,28 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    addDevLike: async (parent, { employerId, developerId }) => {
+      const query = { _id: developerId };
+      const update = {
+        $push: {
+          likedBy: employerId,
+        },
+      };
+      const options = {
+        new: true,
+        runValidators: true,
+      };
+
+      const updatedDev = await Developer.findOneAndUpdate(
+        query,
+        update,
+        options
+      );
+      const token = signToken(user);
+      return { token, user: updatedDev };
+    },
+
     addJob: async (
       parent,
       { listingName, description, website, companyName }
