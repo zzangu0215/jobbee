@@ -76,7 +76,8 @@ export const UPDATE_JOB = gql`
     updateJob(_id: $_id, listingName: $listingName, description: $description) {
       _id
       listingName
-      description
+      companyName
+      description      
     }
   }
 `;

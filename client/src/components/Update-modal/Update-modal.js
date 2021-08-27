@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { UPDATE_JOB } from "../../utils/mutations";
+import { useState } from "react";
 
-function UpdateModal() {
+const UpdateModal = () => {
+  const [listingName, setlistingName] = useState("");
+  const [companyName, setcompanyName] = useState("");
+  const [description, setDescription] = useState("");
+  const [updateJob, { error, data }] = useMutation(UPDATE_JOB);
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    setName("");
+    setEmail("");
+    setPassword("");
+    setGithubName("");
+
+    try {
+      const { data } = await addDeveloper({
+        variables: { name, email, password, githubName },
+      });
+      console.log(data.addDeveloper);
+      Auth.login(data.addDeveloper.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <div className="container mx-auto job-post">
       <div className="md:grid md:grid-cols-3 md:gap-6">
