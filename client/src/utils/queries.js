@@ -32,6 +32,7 @@ export const QUERY_JOBS = gql`
 export const QUERY_DEVELOPERS = gql`
   query Developers {
     Developers {
+      _id
       githubName
       name
     }
