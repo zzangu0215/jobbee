@@ -72,7 +72,7 @@ export const USER_LOGIN = gql`
 `;
 
 export const UPDATE_JOB = gql`
-  mutation updateJob($_id: ID, $listingName: String!, $description: String!) {
+  mutation updateJob($_id: ID!, $listingName: String!, $description: String!) {
     updateJob(_id: $_id, listingName: $listingName, description: $description) {
       _id
       listingName
