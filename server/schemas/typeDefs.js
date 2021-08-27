@@ -58,14 +58,14 @@ const typeDefs = gql`
     ): Auth
     userlogin(email: String!, password: String!): Auth
     updateJob(_id: ID!, listingName: String!, description: String!): Job
-    removeJob(_id: ID): Job
+    removeJob(_id: ID!): Job
   }
 
   type Query {
     User: [User]
     me: User
 
-    Jobs: [Job]
+    Jobs(companyName: String!): [Job]
     aJob(companyName: String!): Job
     Developers: [Developer]
     Developer: [Developer]

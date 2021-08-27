@@ -20,8 +20,8 @@ const resolvers = {
     //   // }
     //   // throw new AuthenticationError("You need to be logged in!");
     // },
-    Jobs: async () => {
-      return await Job.find();
+    Jobs: async (parent, { companyName }) => {
+      return await Job.find(companyName);
     },
     aJob: async (
       parent,
@@ -126,10 +126,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     removeJob: async (parent, { _id }, context) => {
-      if (context.employer) {
-        return Job.findByIdAndDelete(_id);
-      }
-      throw new AuthenticationError("You need to be logged in!");
+      // if (context.employer) {
+      return Job.findByIdAndDelete(_id);
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
     },
   },
 };

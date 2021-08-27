@@ -17,8 +17,8 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_JOBS = gql`
-  query Jobs {
-    Jobs {
+  query Jobs($companyName: String!) {
+    Jobs(companyName:$companyName) {
       _id
       listingName
       description

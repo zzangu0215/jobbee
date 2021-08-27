@@ -23,7 +23,6 @@ function UpdateModal({ _id }) {
         variables: { _id, listingName, description },
       });
 
-
     } catch (e) {
       console.error(e);
     }
