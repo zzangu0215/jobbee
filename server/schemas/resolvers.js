@@ -80,7 +80,8 @@ const resolvers = {
         update,
         options
       );
-      const token = signToken(user);
+
+      const token = signToken(updatedDev);
       return { token, user: updatedDev };
     },
 
