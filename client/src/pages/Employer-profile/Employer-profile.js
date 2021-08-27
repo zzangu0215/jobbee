@@ -14,8 +14,11 @@ function EmployerProfile() {
 
   const [addJob, { error, data }] = useMutation(ADD_JOB);
 
-  const { loading, error: err, data: userData } = useQuery(QUERY_ME);
+  const { loading, data: userData } = useQuery(QUERY_ME);
   // console.log({ loading, err, userData });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const companyName = userData?.me.companyName || "";
   console.log(companyName);

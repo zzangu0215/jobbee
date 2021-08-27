@@ -30,12 +30,12 @@ class AuthService {
   login(idToken) {
     localStorage.setItem("id_token", idToken);
     console.log(idToken);
-    // window.location.assign("/");
+    window.location.assign("/");
   }
 
   logout() {
     localStorage.removeItem("id_token");
-    window.location.reload();
+    window.location.assign("/");
   }
 }
 
