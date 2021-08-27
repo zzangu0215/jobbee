@@ -20,8 +20,8 @@ const resolvers = {
     //   // }
     //   // throw new AuthenticationError("You need to be logged in!");
     // },
-    Jobs: async (parent, { companyName }) => {
-      return await Job.find(companyName);
+    Jobs: async () => {
+      return await Job.find();
     },
     aJob: async (
       parent,
