@@ -22,7 +22,8 @@ import EmployerJobs from "./pages/Employer-jobs/Employer-jobs";
 import DeveloperLists from "./pages/Developer-Lists/Developer-Lists";
 import JobLists from "./pages/Job-Lists/Job-Lists";
 
-import "./App.css";
+// import "./App.css";
+import "./index.css";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
