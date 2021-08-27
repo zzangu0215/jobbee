@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Employer-profile.css";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
 import { ADD_JOB } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
@@ -9,7 +11,14 @@ function EmployerProfile() {
   const [listingName, setListingName] = useState("");
   const [description, setDescription] = useState("");
   const [website, setWebsite] = useState("");
+
   const [addJob, { error, data }] = useMutation(ADD_JOB);
+
+  const { loading, error: err, data: userData } = useQuery(QUERY_ME);
+  // console.log({ loading, err, userData });
+
+  const companyName = userData?.me.companyName || "";
+  console.log(companyName);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -18,7 +27,7 @@ function EmployerProfile() {
     setWebsite("");
     try {
       const { data } = await addJob({
-        variables: { listingName, description, website },
+        variables: { listingName, description, website, companyName },
       });
 
       console.log(data);
@@ -57,6 +66,7 @@ function EmployerProfile() {
                   <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
+                        <input type="hidden" value={companyName} />
                         <label
                           htmlFor="company-website"
                           className="block text-sm font-medium text-gray-700"
@@ -157,18 +167,22 @@ function EmployerProfile() {
       </div>
 
       <div className="container flex flex-wrap justify-center emp-profile-button">
-        <div class="p-2 md:w-50 ">
-          <div class="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
-            <div>
-              <p class="text-xs font-medium ml-2 view-jobs">Jobs you posted</p>
+        <Link to="/profile/employer/jobs">
+          <div className="p-2 md:w-50 ">
+            <div className="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
+              <div>
+                <p className="text-xs font-medium ml-2 view-jobs">
+                  Jobs you posted
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div class="p-2 md:w-50 ">
-          <div class="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
+        <div className="p-2 md:w-50 ">
+          <div className="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
             <div>
-              <p class="text-xs font-medium ml-2 view-devs">
+              <p className="text-xs font-medium ml-2 view-devs">
                 Employers you liked
               </p>
             </div>

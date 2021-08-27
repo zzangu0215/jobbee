@@ -35,6 +35,9 @@ const resolvers = {
     Developer: async () => {
       return await Developer.find();
     },
+    Developers: async () => {
+      return await Developer.find();
+    },
 
     Employer: async () => {
       return await Employer.find().populate("Jobs");
@@ -59,11 +62,15 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addJob: async (parent, { listingName, description, website }) => {
+    addJob: async (
+      parent,
+      { listingName, description, website, companyName }
+    ) => {
       const job = await Job.create({
         listingName,
         description,
         website,
+        companyName,
       });
       const token = signToken(job);
       return { token };

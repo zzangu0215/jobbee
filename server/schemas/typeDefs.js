@@ -39,7 +39,12 @@ const typeDefs = gql`
   type Mutation {
     sendMessage(message: String!): Auth
     addUser(name: String!, email: String!, password: String!): User
-    addJob(listingName: String!, description: String!, website: String!): Auth
+    addJob(
+      listingName: String!
+      description: String!
+      website: String!
+      companyName: String!
+    ): Auth
     addDeveloper(
       name: String!
       email: String!
@@ -63,8 +68,8 @@ const typeDefs = gql`
 
     Jobs: [Job]
     aJob(companyName: String!): Job
+    Developers: [Developer]
     Developer: [Developer]
-
     Employer: [Employer]
     aEmployer(_id: ID!): Employer
   }

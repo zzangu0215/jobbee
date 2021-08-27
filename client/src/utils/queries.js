@@ -8,6 +8,10 @@ export const QUERY_ME = gql`
         githubName
         name
       }
+      ... on Employer {
+        companyName
+        name
+      }
     }
   }
 `;
@@ -21,6 +25,15 @@ export const QUERY_JOBS = gql`
       createdAt
       companyName
       website
+    }
+  }
+`;
+
+export const QUERY_DEVELOPERS = gql`
+  query Developers {
+    Developers {
+      githubName
+      name
     }
   }
 `;

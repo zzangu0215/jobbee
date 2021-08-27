@@ -9,7 +9,7 @@ import { QUERY_JOBS } from "../../utils/queries";
 
 const JobLists = () => {
   const { loading, error, data: jobData } = useQuery(QUERY_JOBS);
-  // console.log(jobData);
+  console.log(jobData);
 
   const jobs = jobData?.Jobs || [];
 
