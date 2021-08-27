@@ -1,9 +1,19 @@
 import React from "react";
 import "./Home.css";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
+import Auth from "../../utils/auth";
+
 import homeLogo from "../../content/logo/home-logo";
+import { Link } from "react-router-dom";
 
 function Home() {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
   return (
     <div className="flex flex-wrap justify-center homeDiv">
       <div className="xl:w-5/12 lg:w-6/12 md:w-7/12 sm:w-8/12 w-8/12 px-4">
@@ -17,29 +27,53 @@ function Home() {
         <h1>Welcome to JOBBEE!</h1>
       </div>
       <div className="flex justify-center w-10/12 greeting">
-        <h2>Employer!</h2>
+        {Auth.loggedIn() ? (
+          <>
+            <button onClick={logout}>
+              <div className="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
+                <div>
+                  <p className="text-xs font-medium view-emp">Logout</p>
+                </div>
+              </div>
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">
+              <div className="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
+                <div>
+                  <p className="text-xs font-medium view-emp">Login</p>
+                </div>
+              </div>
+            </Link>
+          </>
+        )}
       </div>
       <div className="flex justify-center w-10/12 greeting">
-        <h2>Developer!</h2>
+        <h2>Employer!</h2>
       </div>
       <div className="container flex flex-wrap justify-center home-buttons">
-        <div className="p-2 md:w-50 ">
-          <div className="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
-            <div>
-              <p className="text-xs font-medium ml-2 view-dev">
-                View Developer
-              </p>
+        <Link to="/view/developers">
+          <div className="p-2 md:w-50 ">
+            <div className="flex items-center p-4 bg-green-200 rounded-lg shadow-xs cursor-pointer hover:bg-green-500 hover:text-gray-100">
+              <div>
+                <p className="text-xs font-medium view-dev">
+                  Browse Developers
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="p-2 md:w-50 ">
-          <div className="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
-            <div>
-              <p className="text-xs font-medium ml-2 view-emp">View Employer</p>
+        <Link to="/view/jobs">
+          <div className="p-2 md:w-50 ">
+            <div className="flex items-center p-4 bg-green-200 rounded-lg shadow-xs cursor-pointer hover:bg-green-500 hover:text-gray-100">
+              <div>
+                <p className="text-xs font-medium view-emp">Browse Jobs</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
