@@ -4,6 +4,7 @@ import { FiMenu, FiX, FiUser, FiMessageSquare } from "react-icons/fi";
 
 import logo from "../../content/logo/navbar-logo";
 import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
 
 const navigation = [
   { name: "Browse Jobs", href: "/view/jobs", current: false },
@@ -16,6 +17,11 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -111,7 +117,36 @@ export default function Navbar() {
                           </Link>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                      {Auth.loggedIn() ? (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={logout}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Logout
+                            </button>
+                          )}
+                        </Menu.Item>
+                      ) : (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/login"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Login
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      )}
+                      {/* <Menu.Item>
                         {({ active }) => (
                           <Link
                             to="/login"
@@ -123,7 +158,7 @@ export default function Navbar() {
                             Login
                           </Link>
                         )}
-                      </Menu.Item>
+                      </Menu.Item> */}
                     </Menu.Items>
                   </Transition>
                 </Menu>
