@@ -82,9 +82,17 @@ export const UPDATE_JOB = gql`
 `;
 
 export const REMOVE_JOB = gql`
-mutation removeJob($_id: ID!) {
-  removeJob(_id: $_id) {
-    _id
+  mutation removeJob($_id: ID!) {
+    removeJob(_id: $_id) {
+      _id
+    }
   }
-}
+`;
+
+export const ADD_DEV_LIKE = gql`
+  mutation addDevLike($employerId: ID!, $developerId: ID!) {
+    addDevLike(employerId: $employerId, developerId: $developerId) {
+      _id
+    }
+  }
 `;

@@ -5,10 +5,12 @@ export const QUERY_ME = gql`
     me {
       __typename
       ... on Developer {
+        _id
         githubName
         name
       }
       ... on Employer {
+        _id
         companyName
         name
       }

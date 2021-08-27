@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Heart from "react-heart";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_DEV_LIKE } from "../../utils/mutations";
 
 import { FaGithub } from "react-icons/fa";
+import { QUERY_ME, QUERY_DEVELOPERS } from "../../utils/queries";
 
 const getGithubInfo = async (user) => {
   let infoURL = `https://api.github.com/users/${user}`;
@@ -24,6 +27,7 @@ const getGithubInfo = async (user) => {
 const DevProfileCard = ({ developer }) => {
   const [{ username, bio, avatar, github }, setGithubInfo] = useState({});
   const [active, setActive] = useState(false);
+  const [developerId, setDeveloperId] = useState("");
 
   const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.username}&show_icons=true&locale=en&layout=compact`;
 
@@ -31,13 +35,36 @@ const DevProfileCard = ({ developer }) => {
     getGithubInfo(developer.githubName).then(setGithubInfo);
   }, [developer.githubName]);
 
+  const [addDevLike, { error, data }] = useMutation(ADD_DEV_LIKE, {
+    refetchQueries: [QUERY_DEVELOPERS],
+  });
+
+  const { loading, data: userData } = useQuery(QUERY_ME);
+
+  const userId = userData?.me._id || "";
+  console.log(userId);
+
+  const handleAddLike = async (developerId) => {
+    try {
+      setDeveloperId(developerId);
+      await addDevLike({
+        variables: { employerId: userId, developerId: developerId },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="md:flex-1 px-10 mt-8">
       <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
           <Heart
             isActive={active}
-            onClick={() => setActive(!active)}
+            onClick={() => {
+              setActive(!active);
+              handleAddLike(developer._id);
+            }}
             animationScale={1.25}
             style={{ marginBottom: "1rem" }}
           />
@@ -68,3 +95,4 @@ const DevProfileCard = ({ developer }) => {
 };
 
 export default DevProfileCard;
+//

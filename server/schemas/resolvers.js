@@ -82,21 +82,12 @@ const resolvers = {
         new: true,
         runValidators: true,
       };
+      const [updatedDev, updateEmp] = await Promise.all([
+        Developer.findOneAndUpdate(query, update, options),
+        Employer.findOneAndUpdate(query2, update2, options),
+      ]);
 
-      const updatedDev = await Developer.findOneAndUpdate(
-        query,
-        update,
-        options
-      );
-
-      const updateEmp = await Employer.findOneAndUpdate(
-        query2,
-        update2,
-        options
-      );
-
-      const token = signToken(updatedDev, updateEmp);
-      return { token, user: updatedDev };
+      return updateEmp;
     },
 
     addJob: async (
