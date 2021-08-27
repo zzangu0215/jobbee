@@ -8,6 +8,10 @@ export const QUERY_ME = gql`
         githubName
         name
       }
+      ... on Employer {
+        companyName
+        name
+      }
     }
   }
 `;

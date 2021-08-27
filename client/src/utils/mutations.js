@@ -5,11 +5,13 @@ export const ADD_JOB = gql`
     $listingName: String!
     $description: String!
     $website: String!
+    $companyName: String!
   ) {
     addJob(
       listingName: $listingName
       description: $description
       website: $website
+      companyName: $companyName
     ) {
       token
     }
@@ -56,6 +58,15 @@ export const USER_LOGIN = gql`
   mutation userlogin($email: String!, $password: String!) {
     userlogin(email: $email, password: $password) {
       token
+      user {
+        __typename
+        ... on Employer {
+          companyName
+        }
+        ... on Developer {
+          githubName
+        }
+      }
     }
   }
 `;
