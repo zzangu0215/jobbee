@@ -5,10 +5,12 @@ export const QUERY_ME = gql`
     me {
       __typename
       ... on Developer {
+        _id
         githubName
         name
       }
       ... on Employer {
+        _id
         companyName
         name
       }
@@ -18,7 +20,7 @@ export const QUERY_ME = gql`
 
 export const QUERY_JOBS = gql`
   query Jobs($companyName: String!) {
-    Jobs(companyName:$companyName) {
+    Jobs(companyName: $companyName) {
       _id
       listingName
       description
