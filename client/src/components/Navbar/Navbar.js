@@ -5,6 +5,10 @@ import { FiMenu, FiX, FiUser, FiMessageSquare } from "react-icons/fi";
 import logo from "../../content/logo/navbar-logo";
 import { Link } from "react-router-dom";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
+import Auth from "../../utils/auth";
+
 const navigation = [
   { name: "Browse Jobs", href: "/view/jobs", current: false },
   { name: "Browse Developers", href: "/view/developers", current: false },
@@ -16,6 +20,20 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
+  const { loading, data: userData } = useQuery(QUERY_ME);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const loggedInUser = userData?.me.__typename || "";
+  // console.log(userData.me.__typename);
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -98,20 +116,65 @@ export default function Navbar() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="/profile/employer"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Your Profile
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
+                      {loggedInUser === "Employer" ? (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/profile/employer"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Your Profile
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      ) : (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/profile/developer"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Your Profile
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      )}
+                      {Auth.loggedIn() ? (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={logout}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Logout
+                            </button>
+                          )}
+                        </Menu.Item>
+                      ) : (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/login"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Login
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      )}
+                      {/* <Menu.Item>
                         {({ active }) => (
                           <Link
                             to="/login"
@@ -123,7 +186,7 @@ export default function Navbar() {
                             Login
                           </Link>
                         )}
-                      </Menu.Item>
+                      </Menu.Item> */}
                     </Menu.Items>
                   </Transition>
                 </Menu>

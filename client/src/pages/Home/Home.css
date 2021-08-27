@@ -6,12 +6,17 @@
 
 .welcome {
   margin-top: 25px;
+}
+.welcome h1 {
   font-family: "Patrick Hand", cursive;
-  font-size: 3rem;
+  font-size: 2.8rem;
 }
 
 .greeting {
   margin-top: 0px;
+}
+
+.greeting h2 {
   font-family: "Patrick Hand", cursive;
   font-size: 2.4rem;
 }
