@@ -24,12 +24,12 @@ const getGithubInfo = async (user) => {
   }
 };
 
-const DevProfileCard = ({ developer }) => {
+const DevListCard = ({ developer }) => {
   const [{ username, bio, avatar, github }, setGithubInfo] = useState({});
   const [active, setActive] = useState(false);
   const [developerId, setDeveloperId] = useState("");
 
-  const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.username}&show_icons=true&locale=en&layout=compact`;
+  const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.githubName}&show_icons=true&locale=en&layout=compact`;
 
   useEffect(() => {
     getGithubInfo(developer.githubName).then(setGithubInfo);
@@ -97,5 +97,5 @@ const DevProfileCard = ({ developer }) => {
   );
 };
 
-export default DevProfileCard;
+export default DevListCard;
 //
