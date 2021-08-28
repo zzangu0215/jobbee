@@ -63,12 +63,17 @@ export const QUERY_DEVELOPERS = gql`
 export const QUERY_EMPLOYER = gql`
   query Employer {
     Employer {
-      _id
-      jobs {
+      __typename
+      ... on Employer {
         _id
-        listingName
-        website
-        description
+        companyName
+        jobs {
+          _id
+          createdAt
+          listingName
+          website
+          description
+        }
       }
     }
   }
