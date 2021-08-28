@@ -32,8 +32,12 @@ const resolvers = {
         { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
       );
     },
-    Developer: async (parent, { _id }) => {
-      return await Developer.findById(_id);
+    Developer: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findById({ _id: context.user._id }).populate(
+          "likedBy"
+        );
+      }
     },
     Developers: async () => {
       return await Developer.find();

@@ -8,6 +8,9 @@ export const QUERY_ME = gql`
         _id
         githubName
         name
+        likedBy {
+          _id
+        }
       }
       ... on Employer {
         _id
@@ -32,13 +35,15 @@ export const QUERY_JOBS = gql`
 `;
 
 export const QUERY_DEVELOPER = gql`
-  query Developer($_id: ID!) {
-    Developer(_id: $_id) {
-      _id
-      likedBy {
-        __typename
-        ... on Employer {
+  query Developer {
+    Developer {
+      __typename
+      ... on Developer {
+        _id
+        likedBy {
           _id
+          name
+          companyName
         }
       }
     }
