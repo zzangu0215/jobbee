@@ -102,6 +102,25 @@ const resolvers = {
       return updateEmp;
     },
 
+    addJobb: async (parent, { listingName, description, website }, context) => {
+      if (context.user) {
+        const newJob = await Job.create({
+          listingName,
+          description,
+          website,
+          companyName: context.user.companyName,
+        });
+
+        await Employer.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { jobs: newJob._id } }
+        );
+
+        return newJob;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
     addJob: async (
       parent,
       { listingName, description, website, companyName }

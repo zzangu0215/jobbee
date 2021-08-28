@@ -40,6 +40,8 @@ const typeDefs = gql`
     sendMessage(message: String!): Auth
     addUser(name: String!, email: String!, password: String!): User
 
+    addJobb(listingName: String!, description: String!, website: String!): Job
+
     addJob(
       listingName: String!
       description: String!
