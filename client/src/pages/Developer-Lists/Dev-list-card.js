@@ -5,6 +5,7 @@ import { ADD_DEV_LIKE } from "../../utils/mutations";
 
 import { FaGithub } from "react-icons/fa";
 import { QUERY_ME, QUERY_DEVELOPERS } from "../../utils/queries";
+import Auth from "../../utils/auth";
 
 const getGithubInfo = async (user) => {
   let infoURL = `https://api.github.com/users/${user}`;
@@ -24,25 +25,28 @@ const getGithubInfo = async (user) => {
   }
 };
 
-const DevProfileCard = ({ developer }) => {
+const DevListCard = ({ developer }) => {
   const [{ username, bio, avatar, github }, setGithubInfo] = useState({});
   const [active, setActive] = useState(false);
   const [developerId, setDeveloperId] = useState("");
 
-  const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.username}&show_icons=true&locale=en&layout=compact`;
+  const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.githubName}&show_icons=true&locale=en&layout=compact`;
 
   useEffect(() => {
     getGithubInfo(developer.githubName).then(setGithubInfo);
   }, [developer.githubName]);
 
-  const [addDevLike, { error, data }] = useMutation(ADD_DEV_LIKE, {
+  const [addDevLike] = useMutation(ADD_DEV_LIKE, {
     refetchQueries: [QUERY_DEVELOPERS],
   });
 
   const { loading, data: userData } = useQuery(QUERY_ME);
 
   const userId = userData?.me._id || "";
-  console.log(userId);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const handleAddLike = async (developerId) => {
     try {
@@ -59,15 +63,20 @@ const DevProfileCard = ({ developer }) => {
     <div className="md:flex-1 px-10 mt-8">
       <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
-          <Heart
-            isActive={active}
-            onClick={() => {
-              setActive(!active);
-              handleAddLike(developer._id);
-            }}
-            animationScale={1.25}
-            style={{ marginBottom: "1rem" }}
-          />
+          {Auth.loggedIn() ? (
+            <Heart
+              isActive={active}
+              onClick={() => {
+                setActive(!active);
+                handleAddLike(developer._id);
+              }}
+              animationScale={1.25}
+              style={{ marginBottom: "1rem" }}
+            />
+          ) : (
+            <></>
+          )}
+
           <a href={github}>
             <FaGithub size={40} />
           </a>
@@ -81,7 +90,7 @@ const DevProfileCard = ({ developer }) => {
             className="text-gray-700 font-semibold"
             style={{ fontSize: "2rem" }}
           >
-            {username}
+            {developer.name}
           </h1>
           <p className="mt-4 text-md text-gray-600">{bio}</p>
         </div>
@@ -94,5 +103,5 @@ const DevProfileCard = ({ developer }) => {
   );
 };
 
-export default DevProfileCard;
+export default DevListCard;
 //

@@ -18,6 +18,25 @@ export const ADD_JOB = gql`
   }
 `;
 
+export const POST_JOB = gql`
+  mutation addJobb(
+    $listingName: String!
+    $description: String!
+    $website: String!
+  ) {
+    addJobb(
+      listingName: $listingName
+      description: $description
+      website: $website
+    ) {
+      _id
+      listingName
+      description
+      website
+    }
+  }
+`;
+
 export const ADD_DEVELOPER = gql`
   mutation addDeveloper(
     $name: String!

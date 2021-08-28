@@ -61,13 +61,18 @@ export const QUERY_DEVELOPERS = gql`
 `;
 
 export const QUERY_EMPLOYER = gql`
-  query Employer($_id: ID!) {
-    Employer(_id: $_id) {
-      _id
-      likedDevelopers {
-        __typename
-        ... on Developer {
+  query Employer {
+    Employer {
+      __typename
+      ... on Employer {
+        _id
+        companyName
+        jobs {
           _id
+          createdAt
+          listingName
+          website
+          description
         }
       }
     }
@@ -78,14 +83,13 @@ export const QUERY_EMPLIKEDLIST = gql`
   query EmpLikedList {
     EmpLikedList {
       __typename
-      ...on Employer {
+      ... on Employer {
         _id
-        likedDevelopers{
+        likedDevelopers {
           _id
           name
           githubName
         }
-        
       }
     }
   }

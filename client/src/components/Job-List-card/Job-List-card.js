@@ -9,6 +9,7 @@ import Button from "@material-tailwind/react/Button";
 import ApplyModal from "../Apply-modal/Apply-modal";
 
 const JobListCard = ({
+  jobId,
   createdAt,
   companyName,
   listingName,
@@ -60,7 +61,7 @@ const JobListCard = ({
                 Apply for this Job!
               </ModalHeader>
               <ModalBody>
-                <ApplyModal />
+                <ApplyModal jobId={jobId} />
               </ModalBody>
               <ModalFooter>
                 <Button

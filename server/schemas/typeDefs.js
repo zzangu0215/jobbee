@@ -40,6 +40,8 @@ const typeDefs = gql`
     sendMessage(message: String!): Auth
     addUser(name: String!, email: String!, password: String!): User
 
+    addJobb(listingName: String!, description: String!, website: String!): Job
+
     addJob(
       listingName: String!
       description: String!
@@ -72,7 +74,7 @@ const typeDefs = gql`
     aJob(companyName: String!): Job
     Developers: [Developer]
     Developer: User
-    Employer(_id: ID!): Employer
+    Employer: User
     aEmployer(_id: ID!): Employer
     EmpLikedList: User
     employerJobs(_id: ID!): Employer

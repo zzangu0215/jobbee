@@ -9,6 +9,10 @@ function LikedDevLists() {
   console.log(employerData);
   const likedDevelopers = employerData?.EmpLikedList.likedDevelopers || [];
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="mt-8 flex justify-center dev-lists">Developer Lists</div>

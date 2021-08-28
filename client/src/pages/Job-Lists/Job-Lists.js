@@ -9,7 +9,6 @@ import { QUERY_JOBS } from "../../utils/queries";
 
 const JobLists = () => {
   const { loading, data: jobData } = useQuery(QUERY_JOBS);
-  console.log(jobData);
 
   const jobs = jobData?.Jobs || [];
 
@@ -34,6 +33,7 @@ const JobLists = () => {
       <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
         {jobs.map((job) => (
           <JobListCard
+            jobId={job._id}
             listingName={job.listingName}
             companyName={job.companyName}
             key={job._id}

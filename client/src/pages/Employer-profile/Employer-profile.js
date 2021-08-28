@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
-import { ADD_JOB } from "../../utils/mutations";
+import { POST_JOB } from "../../utils/mutations";
 
 function EmployerProfile() {
   const [listingName, setListingName] = useState("");
   const [description, setDescription] = useState("");
   const [website, setWebsite] = useState("");
 
-  const [addJob, { error, data }] = useMutation(ADD_JOB);
+  const [addJobb, { error, data }] = useMutation(POST_JOB);
 
   const { loading, data: userData } = useQuery(QUERY_ME);
   // console.log({ loading, err, userData });
@@ -28,11 +28,11 @@ function EmployerProfile() {
     setDescription("");
     setWebsite("");
     try {
-      const { data } = await addJob({
-        variables: { listingName, description, website, companyName },
+      await addJobb({
+        variables: { listingName, description, website },
       });
 
-      console.log(data);
+      window.location.assign("/profile/employer/jobs");
     } catch (e) {
       console.error(e);
     }

@@ -4,24 +4,27 @@ import { useQuery } from "@apollo/client";
 import EmpJobCard from "./Employer-job-card";
 
 import "./Employer-jobs.css";
-import { QUERY_JOBS } from "../../utils/queries";
+import { QUERY_EMPLOYER } from "../../utils/queries";
 
 const EmployerJobs = () => {
-  const { loading, error, data: empJobsData } = useQuery(QUERY_JOBS);
-  console.log(loading, error);
+  const { loading, data: employer } = useQuery(QUERY_EMPLOYER);
+  const employerCompany = employer?.Employer.companyName || "";
+  const employerJobs = employer?.Employer.jobs || [];
 
-  const jobs = empJobsData?.Jobs || [];
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <div className="mt-8 flex justify-center emp-jobs">Your Jobs</div>
 
       <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
-        {jobs.map((job) => (
+        {employerJobs.map((job) => (
           <EmpJobCard
             _id={job._id}
             listingName={job.listingName}
-            companyName={job.companyName}
+            companyName={employerCompany}
             key={job._id}
             website={job.website}
             description={job.description}
