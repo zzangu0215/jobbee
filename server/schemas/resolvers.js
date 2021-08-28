@@ -53,6 +53,10 @@ const resolvers = {
         );
       }
     },
+    employerJobs: async (parent, { _id }) => {
+      return await Employer.findById(_id).populate("Jobs");
+    },
+
     aEmployer: async (parent, { _id }) => {
       // if (context.employer) {
       return await Employer.findById(_id);
