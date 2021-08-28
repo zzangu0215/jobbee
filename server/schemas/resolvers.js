@@ -32,15 +32,15 @@ const resolvers = {
         { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
       );
     },
-    Developer: async () => {
-      return await Developer.find();
+    Developer: async (parent, { _id }) => {
+      return await Developer.findById(_id);
     },
     Developers: async () => {
       return await Developer.find();
     },
 
-    Employer: async () => {
-      return await Employer.find().populate("Jobs");
+    Employer: async (parent, { _id }) => {
+      return await Employer.findById(_id).populate("Jobs");
     },
     aEmployer: async (parent, { _id }) => {
       // if (context.employer) {

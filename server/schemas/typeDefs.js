@@ -18,7 +18,7 @@ const typeDefs = gql`
     email: String
     password: String
     githubName: String
-    likedBy: [User]
+    likedBy: [Employer]
   }
 
   type Employer {
@@ -27,7 +27,7 @@ const typeDefs = gql`
     email: String
     password: String
     companyName: String
-    likedDevelopers: [User]
+    likedDevelopers: [Developer]
     jobs: [Job]
   }
 
@@ -68,12 +68,11 @@ const typeDefs = gql`
   type Query {
     User: [User]
     me: User
-
     Jobs: [Job]
     aJob(companyName: String!): Job
     Developers: [Developer]
-    Developer: [Developer]
-    Employer: [Employer]
+    Developer(_id: ID!): Developer
+    Employer(_id: ID!): Employer
     aEmployer(_id: ID!): Employer
   }
 `;
