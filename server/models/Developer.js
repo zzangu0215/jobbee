@@ -10,7 +10,7 @@ const developerSchema = new Schema({
   likedBy: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Employer",
     },
   ],
 });
