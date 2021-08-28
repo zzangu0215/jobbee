@@ -121,19 +121,6 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    addJob: async (
-      parent,
-      { listingName, description, website, companyName }
-    ) => {
-      const job = await Job.create({
-        listingName,
-        description,
-        website,
-        companyName,
-      });
-      const token = signToken(job);
-      return { token };
-    },
     addDeveloper: async (parent, { name, email, password, githubName }) => {
       const developer = await Developer.create({
         name,
