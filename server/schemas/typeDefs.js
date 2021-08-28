@@ -74,6 +74,7 @@ const typeDefs = gql`
     Developer: User
     Employer(_id: ID!): Employer
     aEmployer(_id: ID!): Employer
+    EmpLikedList: User
   }
 `;
 
