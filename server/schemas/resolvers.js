@@ -32,14 +32,12 @@ const resolvers = {
         { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
       );
     },
-    likedByEmployers: async (parent, { developerId }, context) => {
+    Developer: async (parent, args, context) => {
       if (context.user) {
-        return await Developer.findById({ _id: context.user._id });
+        return await User.findById({ _id: context.user._id }).populate(
+          "likedBy"
+        );
       }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-    Developer: async () => {
-      return await Developer.find();
     },
     Developers: async () => {
       return await Developer.find();
@@ -48,11 +46,13 @@ const resolvers = {
     Employer: async (parent, { _id }) => {
       return await Employer.findById(_id).populate("Jobs");
     },
-
-    employerJobs: async (parent, { _id }) => {
-      return await Employer.findById(_id).populate("Jobs");
+    EmpLikedList: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findById({ _id: context.user._id }).populate(
+          "likedDevelopers"
+        );
+      }
     },
-
     aEmployer: async (parent, { _id }) => {
       // if (context.employer) {
       return await Employer.findById(_id);
