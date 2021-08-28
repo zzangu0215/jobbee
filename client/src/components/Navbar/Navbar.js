@@ -99,7 +99,7 @@ export default function Navbar() {
                       />
                     </Link>
                   ) : (
-                    <Link to="/">
+                    <Link to="/profile/employer/inbox">
                       <FiMessageSquare
                         className="h-6 w-6"
                         style={{ color: "white" }}
