@@ -90,7 +90,7 @@ const DevListCard = ({ developer }) => {
             className="text-gray-700 font-semibold"
             style={{ fontSize: "2rem" }}
           >
-            {username}
+            {developer.name}
           </h1>
           <p className="mt-4 text-md text-gray-600">{bio}</p>
         </div>
