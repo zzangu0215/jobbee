@@ -32,8 +32,14 @@ const resolvers = {
         { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
       );
     },
-    Developer: async (parent, { _id }) => {
-      return await Developer.findById(_id);
+    likedByEmployers: async (parent, { developerId }, context) => {
+      if (context.user) {
+        return await Developer.findById({ _id: context.user._id });
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    Developer: async () => {
+      return await Developer.find();
     },
     Developers: async () => {
       return await Developer.find();
@@ -42,6 +48,11 @@ const resolvers = {
     Employer: async (parent, { _id }) => {
       return await Employer.findById(_id).populate("Jobs");
     },
+
+    employerJobs: async (parent, { _id }) => {
+      return await Employer.findById(_id).populate("Jobs");
+    },
+
     aEmployer: async (parent, { _id }) => {
       // if (context.employer) {
       return await Employer.findById(_id);

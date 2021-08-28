@@ -28,7 +28,7 @@ const typeDefs = gql`
     password: String
     companyName: String
     likedDevelopers: [Developer]
-    jobs: [Job]
+    jobs: [Job!]!
   }
 
   type Auth {
@@ -68,12 +68,14 @@ const typeDefs = gql`
   type Query {
     User: [User]
     me: User
+    likedByEmployers(developerId: ID!): Developer
     Jobs: [Job]
     aJob(companyName: String!): Job
     Developers: [Developer]
     Developer(_id: ID!): Developer
     Employer(_id: ID!): Employer
     aEmployer(_id: ID!): Employer
+    employerJobs(_id: ID!): Employer
   }
 `;
 
