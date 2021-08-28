@@ -35,14 +35,17 @@ const DevProfileCard = ({ developer }) => {
     getGithubInfo(developer.githubName).then(setGithubInfo);
   }, [developer.githubName]);
 
-  const [addDevLike, { error, data }] = useMutation(ADD_DEV_LIKE, {
+  const [addDevLike] = useMutation(ADD_DEV_LIKE, {
     refetchQueries: [QUERY_DEVELOPERS],
   });
 
   const { loading, data: userData } = useQuery(QUERY_ME);
 
   const userId = userData?.me._id || "";
-  console.log(userId);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const handleAddLike = async (developerId) => {
     try {

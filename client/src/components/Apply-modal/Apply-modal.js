@@ -1,6 +1,9 @@
 import React from "react";
 // f
-function ApplyModal() {
+function ApplyModal({ jobId }) {
+  const msg = `${jobId}msg`;
+  const file = `${jobId}file`;
+
   return (
     <div className="container mx-auto job-post">
       <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -27,7 +30,7 @@ function ApplyModal() {
                   </label>
                   <div className="mt-1">
                     <textarea
-                      id="about"
+                      id={msg}
                       name="about"
                       rows={7}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
@@ -52,7 +55,7 @@ function ApplyModal() {
                         >
                           <span>Upload a file</span>
                           <input
-                            id="file-upload"
+                            id={file}
                             name="file-upload"
                             type="file"
                             className="sr-only"

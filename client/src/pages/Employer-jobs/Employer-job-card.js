@@ -21,10 +21,9 @@ const EmpJobCard = ({
   description,
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const [removeJob, { data }] = useMutation(REMOVE_JOB, {
+  const [removeJob] = useMutation(REMOVE_JOB, {
     refetchQueries: [QUERY_EMPLOYER],
   });
-  console.log(data);
 
   const handleRemoveJob = async (event) => {
     event.preventDefault();

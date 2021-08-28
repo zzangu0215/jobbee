@@ -8,13 +8,8 @@ import { QUERY_EMPLOYER } from "../../utils/queries";
 
 const EmployerJobs = () => {
   const { loading, data: employer } = useQuery(QUERY_EMPLOYER);
-  console.log(employer);
   const employerCompany = employer?.Employer.companyName || "";
-  const employerId = employer?.Employer._id || "";
   const employerJobs = employer?.Employer.jobs || [];
-  console.log(employerCompany);
-  console.log(employerJobs);
-  console.log(employerId);
 
   if (loading) {
     return <div>Loading...</div>;
