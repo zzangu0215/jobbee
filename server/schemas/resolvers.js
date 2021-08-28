@@ -13,13 +13,6 @@ const resolvers = {
     User: async () => {
       return await User.find();
     },
-    // This gives a user
-    // aUser: async (parent, { _id }) => {
-    //   // if (context.employer) {
-    //   return await User.findById(_id);
-    //   // }
-    //   // throw new AuthenticationError("You need to be logged in!");
-    // },
     Jobs: async () => {
       return await Job.find();
     },
@@ -43,8 +36,12 @@ const resolvers = {
       return await Developer.find();
     },
 
-    Employer: async (parent, { _id }) => {
-      return await Employer.findById(_id).populate("Jobs");
+    Employer: async (parent, args, context) => {
+      if (context.user) {
+        return await Employer.findById({ _id: context.user._id }).populate(
+          "jobs"
+        );
+      }
     },
     EmpLikedList: async (parent, args, context) => {
       if (context.user) {
