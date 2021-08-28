@@ -73,3 +73,20 @@ export const QUERY_EMPLOYER = gql`
     }
   }
 `;
+
+export const QUERY_EMPLIKEDLIST = gql`
+  query EmpLikedList {
+    EmpLikedList {
+      __typename
+      ...on Employer {
+        _id
+        likedDevelopers{
+          _id
+          name
+          githubName
+        }
+        
+      }
+    }
+  }
+`;

@@ -46,6 +46,13 @@ const resolvers = {
     Employer: async (parent, { _id }) => {
       return await Employer.findById(_id).populate("Jobs");
     },
+    EmpLikedList: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findById({ _id: context.user._id }).populate(
+          "likedDevelopers"
+        );
+      }
+    },
     aEmployer: async (parent, { _id }) => {
       // if (context.employer) {
       return await Employer.findById(_id);
