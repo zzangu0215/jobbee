@@ -11,7 +11,7 @@ const DeveloperLists = () => {
   // console.log({ loading, error, developerData });
 
   const developers = developerData?.Developers || [];
-  console.log(developers);
+  // console.log(developers);
 
   if (loading) {
     return <div>Loading...</div>;

@@ -5,6 +5,7 @@ import { ADD_DEV_LIKE } from "../../utils/mutations";
 
 import { FaGithub } from "react-icons/fa";
 import { QUERY_ME, QUERY_DEVELOPERS } from "../../utils/queries";
+import Auth from "../../utils/auth";
 
 const getGithubInfo = async (user) => {
   let infoURL = `https://api.github.com/users/${user}`;
@@ -62,15 +63,20 @@ const DevListCard = ({ developer }) => {
     <div className="md:flex-1 px-10 mt-8">
       <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
-          <Heart
-            isActive={active}
-            onClick={() => {
-              setActive(!active);
-              handleAddLike(developer._id);
-            }}
-            animationScale={1.25}
-            style={{ marginBottom: "1rem" }}
-          />
+          {Auth.loggedIn() ? (
+            <Heart
+              isActive={active}
+              onClick={() => {
+                setActive(!active);
+                handleAddLike(developer._id);
+              }}
+              animationScale={1.25}
+              style={{ marginBottom: "1rem" }}
+            />
+          ) : (
+            <></>
+          )}
+
           <a href={github}>
             <FaGithub size={40} />
           </a>
