@@ -4,20 +4,12 @@ import { useMutation } from "@apollo/client";
 import { USER_LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
+import "./Login.css";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { error, data }] = useMutation(USER_LOGIN);
-
-  // update state based on form input changes
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-
-  //   setFormState({
-  //     ...formState,
-  //     [name]: value,
-  //   });
-  // };
 
   // submit form
   const handleFormSubmit = async (event) => {
@@ -38,7 +30,7 @@ function Login() {
 
   return (
     <div>
-      <h1>Log In</h1>
+      <div className="mt-8 flex justify-center login-header">User Login</div>
       <div className="flex justify-center">
         <div className="w-full max-w-sm">
           {data ? (

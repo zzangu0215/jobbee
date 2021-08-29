@@ -19,8 +19,8 @@ const JobListCard = ({
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="md:flex-1 px-10 mt-8">
-      <div className="bg-white  mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
+    <div className="md:flex-1 lg:flex-1 px-10 mt-8">
+      <div className="bg-white mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="mt-2">
           <a href={website}>
             <h1 className="text-xl text-gray-700 font-semibold hover:underline cursor-pointer">
