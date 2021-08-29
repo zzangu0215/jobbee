@@ -10,20 +10,8 @@ const resolvers = {
   },
   Query: {
     // This gives every users
-    User: async () => {
-      return await User.find();
-    },
     Jobs: async () => {
       return await Job.find();
-    },
-    aJob: async (
-      parent,
-      { companyName, listingName, description, createdAt }
-    ) => {
-      return await Job.findOne(
-        { companyName: companyName },
-        { listingName: 1, description: 1, createdAt: 1, companyName: 1 }
-      );
     },
     Developer: async (parent, args, context) => {
       if (context.user) {
@@ -50,16 +38,7 @@ const resolvers = {
         );
       }
     },
-    employerJobs: async (parent, { _id }) => {
-      return await Employer.findById(_id).populate("Jobs");
-    },
 
-    aEmployer: async (parent, { _id }) => {
-      // if (context.employer) {
-      return await Employer.findById(_id);
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
-    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
@@ -187,10 +166,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     removeJob: async (parent, { _id }, context) => {
-      // if (context.employer) {
-      return Job.findByIdAndDelete(_id);
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
+      if (context.user) {
+        return Job.findByIdAndDelete(_id);
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
