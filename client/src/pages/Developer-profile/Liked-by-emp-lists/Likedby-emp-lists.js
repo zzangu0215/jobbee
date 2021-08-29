@@ -6,11 +6,8 @@ import LikedByEmpCard from "./Likedby-emp-card";
 
 function LikedByEmpLists() {
   const { loading, data: userData } = useQuery(QUERY_DEVELOPER);
-  // const { loading: devLoading, }
-  // console.log(userData);
 
   const likedByEmployers = userData?.Developer.likedBy || [];
-  // console.log(likedByEmployers);
 
   if (loading) {
     return <div>Loading...</div>;

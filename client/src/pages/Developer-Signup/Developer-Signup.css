@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500&display=swap");
+
+.dev-signup-header {
+  font-size: 2rem;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  margin-bottom: 0.5rem;
+}

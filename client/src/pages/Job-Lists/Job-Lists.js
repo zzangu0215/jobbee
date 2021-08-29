@@ -30,7 +30,7 @@ const JobLists = () => {
           <FiSearch size={30} className="right-0" />
         </button>
       </div>
-      <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
+      <div className="min-h-screen pb-8 bg-gray-100 md:flex md:flex-wrap md:justify-center lg:flex lg:flex-wrap lg:justify-center item-center">
         {jobs.map((job) => (
           <JobListCard
             jobId={job._id}

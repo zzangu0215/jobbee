@@ -20,7 +20,7 @@ const DeveloperLists = () => {
   return (
     <>
       <div className="mt-8 flex justify-center dev-lists">Developer Lists</div>
-      <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
+      <div className="min-h-screen pb-8 bg-gray-100 md:flex md:flex-wrap items-center md:justify-center">
         {developers.map((developer) => (
           <DevListCard key={developer._id} developer={developer} />
         ))}
