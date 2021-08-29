@@ -61,7 +61,11 @@ const JobListCard = ({
                 Apply for this Job!
               </ModalHeader>
               <ModalBody>
-                <ApplyModal jobId={jobId} />
+                <ApplyModal
+                  jobId={jobId}
+                  companyName={companyName}
+                  listingName={listingName}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button

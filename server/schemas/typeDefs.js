@@ -37,7 +37,6 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    sendMessage(message: String!): Auth
     addUser(name: String!, email: String!, password: String!): User
 
     addJobb(listingName: String!, description: String!, website: String!): Job
@@ -48,23 +47,30 @@ const typeDefs = gql`
       website: String!
       companyName: String!
     ): Auth
+
     addDeveloper(
       name: String!
       email: String!
       password: String!
       githubName: String!
     ): Auth
+
     addEmployer(
       name: String!
       email: String!
       password: String!
       companyName: String!
     ): Auth
+
     userlogin(email: String!, password: String!): Auth
+
     updateJob(_id: ID!, listingName: String!, description: String!): Job
 
     removeJob(_id: ID): Job
-    addDevLike(employerId: ID!, developerId: ID!): Employer
+
+    addDevLike(developerId: ID!): Employer
+
+    applyMessage(employerId: ID!, jobID: ID, message: String!): Developer
   }
 
   type Query {

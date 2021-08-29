@@ -54,31 +54,33 @@ const resolvers = {
       return { token, user };
     },
 
-    addDevLike: async (parent, { employerId, developerId }) => {
-      const query = { _id: developerId };
-      const query2 = { _id: employerId };
+    addDevLike: async (parent, { developerId }, context) => {
+      if (context.user) {
+        const query = { _id: developerId };
+        const query2 = { _id: context.user._id };
 
-      const update = {
-        $push: {
-          likedBy: employerId,
-        },
-      };
-      const update2 = {
-        $push: {
-          likedDevelopers: developerId,
-        },
-      };
+        const update = {
+          $push: {
+            likedBy: context.user._id,
+          },
+        };
+        const update2 = {
+          $push: {
+            likedDevelopers: developerId,
+          },
+        };
 
-      const options = {
-        new: true,
-        runValidators: true,
-      };
-      const [updatedDev, updateEmp] = await Promise.all([
-        Developer.findOneAndUpdate(query, update, options),
-        Employer.findOneAndUpdate(query2, update2, options),
-      ]);
+        const options = {
+          new: true,
+          runValidators: true,
+        };
+        const [updatedDev, updateEmp] = await Promise.all([
+          Developer.findOneAndUpdate(query, update, options),
+          Employer.findOneAndUpdate(query2, update2, options),
+        ]);
 
-      return updateEmp;
+        return updateEmp;
+      }
     },
 
     addJobb: async (parent, { listingName, description, website }, context) => {
@@ -121,16 +123,26 @@ const resolvers = {
       return { token };
     },
 
-    sendMessage: async (parent, { _id, message }, context) => {
+    applyMessage: async (parent, { employerId, jobID, message }, context) => {
       if (context.user) {
-        const message = await Employer.findOneAndUpdate(
-          { _id: _id },
-          {
-            $set: {
+        const query = { _id: employerId };
+
+        const update = {
+          $push: {
+            messages: {
               message: message,
+              jobID: jobID,
+              sentBy: context.user._id,
             },
-          }
-        );
+          },
+        };
+
+        const options = {
+          new: true,
+          runValidators: true,
+        };
+
+        await Employer.findOneAndUpdate(query, update, options);
       }
       throw new AuthenticationError("You need to be logged in!");
     },
