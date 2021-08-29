@@ -15,7 +15,7 @@ function LikedDevLists() {
 
   return (
     <>
-      <div className="mt-8 flex justify-center dev-lists">Developer Lists</div>
+      <div className="mt-8 flex justify-center dev-lists">Liked Developers</div>
       <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
         {likedDevelopers.map((developer) => (
           <LikedDevCard key={developer._id} developer={developer} />
