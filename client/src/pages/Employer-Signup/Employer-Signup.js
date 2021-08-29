@@ -6,11 +6,20 @@ import { ADD_EMPLOYER } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
+
 function EmployerSignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
+  const [errorsName, seterrorsName] = useState("");
+  const [errorsEmail1, seterrorsEmail1] = useState("");
+  const [errorsEmail2, seterrorsEmail2] = useState("");
+  const [errorsPassword, seterrorsPassword] = useState("");
+  const [errorscompanyName, seterrorscompanyName] = useState("");
+  const [errorsConfirmPassword, seterrorsConfirmPassword] = useState("");
+  const [errorPasswordMatch, seterrorPasswordMatch] = useState("");
   const [addEmployer, { error, data }] = useMutation(ADD_EMPLOYER);
   console.log(data);
   // submit form
@@ -20,17 +29,67 @@ function EmployerSignUp() {
     setEmail("");
     setPassword("");
     setCompanyName("");
+    seterrorsName("");
+    seterrorsEmail1("");
+    seterrorsEmail2("");
+    seterrorsPassword("");
+    seterrorsConfirmPassword("");
+    seterrorPasswordMatch("");
+    seterrorscompanyName("");
+    setconfirmPassword("");
 
-    try {
+
+
+    if (name && email && password && companyName && confirmPassword && (password === confirmPassword)) {
       const { data } = await addEmployer({
         variables: { name, email, password, companyName },
       });
       console.log(data.addEmployer);
       Auth.login(data.addEmployer.token);
-    } catch (e) {
-      console.error(e);
+    } else {
+      console.log(error)
     }
-  };
+
+    if (!name) {
+      seterrorsName("Please enter your name.");
+
+    }
+
+    if (!email) {
+      seterrorsEmail1("Please enter your email.");
+    }
+
+    if (typeof email !== "undefined") {
+
+      var pattern = new RegExp(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,5})?$/);
+      if (!pattern.test(email)) {
+        seterrorsEmail2("Please enter valid email address.");
+      }
+    }
+
+    if (!password) {
+      seterrorsPassword("Please enter your password.");
+    }
+
+    if (!companyName) {
+      seterrorscompanyName("Please enter your company name.")
+    }
+
+    if (!confirmPassword) {
+      seterrorsConfirmPassword("Please enter your confirm password.");
+    }
+
+    if (typeof password !== "undefined" && typeof confirmPassword !== "undefined") {
+
+      if (password !== confirmPassword) {
+        seterrorPasswordMatch("Passwords don't match.");
+      }
+    }
+
+
+  }
+
+
 
   return (
     <div>
@@ -41,7 +100,7 @@ function EmployerSignUp() {
             <p>
               <p>
                 Success! You may now head{" "}
-                {/* <Link to="/">back to the homepage.</Link> */}
+                <Link to="/">back to the homepage.</Link>
               </p>
             </p>
           ) : (
@@ -64,6 +123,9 @@ function EmployerSignUp() {
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorsName}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -80,6 +142,10 @@ function EmployerSignUp() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorsEmail1}
+                  {errorsEmail2}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -96,6 +162,9 @@ function EmployerSignUp() {
                   value={companyName}
                   onChange={(event) => setCompanyName(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorscompanyName}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -112,6 +181,9 @@ function EmployerSignUp() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorsPassword}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -125,9 +197,13 @@ function EmployerSignUp() {
                   id="confirm-password"
                   type="password"
                   placeholder="**********"
+                  onChange={(event) => setconfirmPassword(event.target.value)}
                 />
                 <p className="text-red-500 text-xs italic">
-                  Password should match.
+                  {errorsConfirmPassword}
+                </p>
+                <p className="text-red-500 text-xs italic">
+                  {errorPasswordMatch}
                 </p>
               </div>
               <div className="flex items-center justify-between">
