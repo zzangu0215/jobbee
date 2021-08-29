@@ -18,6 +18,10 @@ const employerSchema = new Schema({
         minlength: 1,
         maxlength: 280,
       },
+      jobID: {
+        type: Schema.Types.ObjectId,
+        ref: "Job",
+      },
       sentBy: {
         type: String,
         required: true,

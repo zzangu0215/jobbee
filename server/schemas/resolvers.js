@@ -123,13 +123,17 @@ const resolvers = {
       return { token };
     },
 
-    applyMessage: async (parent, { employerId, message }, context) => {
+    applyMessage: async (parent, { employerId, jobID, message }, context) => {
       if (context.user) {
         const query = { _id: employerId };
 
         const update = {
           $push: {
-            messages: { message: message, sentBy: context.user._id },
+            messages: {
+              message: message,
+              jobID: jobID,
+              sentBy: context.user._id,
+            },
           },
         };
 
@@ -138,13 +142,7 @@ const resolvers = {
           runValidators: true,
         };
 
-        const updatedEmp = await Employer.findOneAndUpdate(
-          query,
-          update,
-          options
-        );
-
-        return updatedEmp;
+        await Employer.findOneAndUpdate(query, update, options);
       }
       throw new AuthenticationError("You need to be logged in!");
     },

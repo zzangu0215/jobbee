@@ -97,3 +97,12 @@ export const ADD_DEV_LIKE = gql`
     }
   }
 `;
+
+export const APPLY_MESSAGE = gql`
+  mutation applyMessage($employerId: ID!, $jobID: ID!, $message: String!) {
+    applyMessage(employerId: $employerId, jobID: $jobID, message: $message) {
+      _id
+      name
+    }
+  }
+`;
