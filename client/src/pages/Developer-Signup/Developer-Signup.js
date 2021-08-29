@@ -10,7 +10,15 @@ const DeveloperSignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
   const [githubName, setGithubName] = useState("");
+  const [errorsName, seterrorsName] = useState("");
+  const [errorsEmail1, seterrorsEmail1] = useState("");
+  const [errorsEmail2, seterrorsEmail2] = useState("");
+  const [errorsPassword, seterrorsPassword] = useState("");
+  const [errorsgithubName, seterrorsgithubName] = useState("");
+  const [errorsConfirmPassword, seterrorsConfirmPassword] = useState("");
+  const [errorPasswordMatch, seterrorPasswordMatch] = useState("");
   const [addDeveloper, { error, data }] = useMutation(ADD_DEVELOPER);
   // submit form
   const handleFormSubmit = async (event) => {
@@ -19,15 +27,69 @@ const DeveloperSignUp = () => {
     setEmail("");
     setPassword("");
     setGithubName("");
+    seterrorsName("");
+    seterrorsEmail1("");
+    seterrorsEmail2("");
+    seterrorsPassword("");
+    seterrorsConfirmPassword("");
+    seterrorPasswordMatch("");
+    seterrorsgithubName("");
+    setconfirmPassword("");
 
-    try {
+    // try {
+    //   const { data } = await addDeveloper({
+    //     variables: { name, email, password, githubName },
+    //   });
+    //   console.log(data.addDeveloper);
+    //   Auth.login(data.addDeveloper.token);
+    // } catch (e) {
+    //   console.error(e);
+    // }
+
+    if (name && email && password && githubName && confirmPassword && (password === confirmPassword)) {
       const { data } = await addDeveloper({
         variables: { name, email, password, githubName },
       });
       console.log(data.addDeveloper);
       Auth.login(data.addDeveloper.token);
-    } catch (e) {
-      console.error(e);
+    } else {
+      console.log(error)
+    }
+
+    if (!name) {
+      seterrorsName("Please enter your name.");
+
+    }
+
+    if (!email) {
+      seterrorsEmail1("Please enter your email.");
+    }
+
+    if (typeof email !== "undefined") {
+
+      var pattern = new RegExp(/^([\w-.]+@([\w-]+\.)+[\w-]{2,5})?$/);
+      if (!pattern.test(email)) {
+        seterrorsEmail2("Please enter valid email address.");
+      }
+    }
+
+    if (!password) {
+      seterrorsPassword("Please enter your password.");
+    }
+
+    if (!githubName) {
+      seterrorsgithubName("Please enter your github name.")
+    }
+
+    if (!confirmPassword) {
+      seterrorsConfirmPassword("Please enter your confirm password.");
+    }
+
+    if (typeof password !== "undefined" && typeof confirmPassword !== "undefined") {
+
+      if (password !== confirmPassword) {
+        seterrorPasswordMatch("Passwords don't match.");
+      }
     }
   };
 
@@ -63,6 +125,9 @@ const DeveloperSignUp = () => {
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorsName}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -79,6 +144,10 @@ const DeveloperSignUp = () => {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorsEmail1}
+                  {errorsEmail2}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -95,6 +164,9 @@ const DeveloperSignUp = () => {
                   value={githubName}
                   onChange={(event) => setGithubName(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorsgithubName}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -111,6 +183,9 @@ const DeveloperSignUp = () => {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
+                <p className="text-red-500 text-xs italic">
+                  {errorsPassword}
+                </p>
               </div>
               <div className="mb-4">
                 <label
@@ -124,9 +199,13 @@ const DeveloperSignUp = () => {
                   id="confirm-password"
                   type="password"
                   placeholder="**********"
+                  onChange={(event) => setconfirmPassword(event.target.value)}
                 />
                 <p className="text-red-500 text-xs italic">
-                  Password should match.
+                  {errorsConfirmPassword}
+                </p>
+                <p className="text-red-500 text-xs italic">
+                  {errorPasswordMatch}
                 </p>
               </div>
               <div className="flex items-center justify-between">
