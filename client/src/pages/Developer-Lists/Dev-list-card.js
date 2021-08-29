@@ -52,7 +52,7 @@ const DevListCard = ({ developer }) => {
     try {
       setDeveloperId(developerId);
       await addDevLike({
-        variables: { employerId: userId, developerId: developerId },
+        variables: { developerId: developerId },
       });
     } catch (error) {
       console.log(error);

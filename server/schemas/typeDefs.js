@@ -64,7 +64,7 @@ const typeDefs = gql`
     updateJob(_id: ID!, listingName: String!, description: String!): Job
 
     removeJob(_id: ID): Job
-    addDevLike(employerId: ID!, developerId: ID!): Employer
+    addDevLike(developerId: ID!): Employer
   }
 
   type Query {

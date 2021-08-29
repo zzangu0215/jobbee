@@ -54,31 +54,33 @@ const resolvers = {
       return { token, user };
     },
 
-    addDevLike: async (parent, { employerId, developerId }) => {
-      const query = { _id: developerId };
-      const query2 = { _id: employerId };
+    addDevLike: async (parent, { developerId }, context) => {
+      if (context.user) {
+        const query = { _id: developerId };
+        const query2 = { _id: context.user._id };
 
-      const update = {
-        $push: {
-          likedBy: employerId,
-        },
-      };
-      const update2 = {
-        $push: {
-          likedDevelopers: developerId,
-        },
-      };
+        const update = {
+          $push: {
+            likedBy: context.user._id,
+          },
+        };
+        const update2 = {
+          $push: {
+            likedDevelopers: developerId,
+          },
+        };
 
-      const options = {
-        new: true,
-        runValidators: true,
-      };
-      const [updatedDev, updateEmp] = await Promise.all([
-        Developer.findOneAndUpdate(query, update, options),
-        Employer.findOneAndUpdate(query2, update2, options),
-      ]);
+        const options = {
+          new: true,
+          runValidators: true,
+        };
+        const [updatedDev, updateEmp] = await Promise.all([
+          Developer.findOneAndUpdate(query, update, options),
+          Employer.findOneAndUpdate(query2, update2, options),
+        ]);
 
-      return updateEmp;
+        return updateEmp;
+      }
     },
 
     addJobb: async (parent, { listingName, description, website }, context) => {

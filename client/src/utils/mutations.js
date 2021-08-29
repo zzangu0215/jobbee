@@ -91,8 +91,8 @@ export const REMOVE_JOB = gql`
 `;
 
 export const ADD_DEV_LIKE = gql`
-  mutation addDevLike($employerId: ID!, $developerId: ID!) {
-    addDevLike(employerId: $employerId, developerId: $developerId) {
+  mutation addDevLike($developerId: ID!) {
+    addDevLike(developerId: $developerId) {
       _id
     }
   }
