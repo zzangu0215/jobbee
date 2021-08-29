@@ -180,15 +180,18 @@ function EmployerProfile() {
           </div>
         </Link>
 
-        <div className="p-2 md:w-50 ">
-          <div className="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
-            <div>
-              <p className="text-xs font-medium ml-2 view-devs">
-                Employers you liked
-              </p>
+        <Link to="/profile/employer/likeddevelopers">
+          <div className="p-2 md:w-50 ">
+            <div className="flex items-center p-4 bg-gray-200 rounded-lg shadow-xs cursor-pointer hover:bg-gray-500 hover:text-gray-100">
+              <div>
+                <p className="text-xs font-medium ml-2 view-devs">
+                  Developers you liked
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
+        
       </div>
     </>
   );
