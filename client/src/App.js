@@ -19,6 +19,7 @@ import DeveloperProfile from "./pages/Developer-profile/Developer-profile";
 import LikedByEmpLists from "./pages/Developer-profile/Liked-by-emp-lists/Likedby-emp-lists";
 import EmployerProfile from "./pages/Employer-profile/Employer-profile";
 import LikedDevLists from "./pages/Employer-profile/Liked-dev-lists/Liked-dev-lists";
+import Applicants from "./pages/Employer-profile/Applicants/Applicants";
 import EmployerJobs from "./pages/Employer-jobs/Employer-jobs";
 import DeveloperLists from "./pages/Developer-Lists/Developer-Lists";
 import JobLists from "./pages/Job-Lists/Job-Lists";
@@ -66,8 +67,9 @@ function App() {
             <Route
               exact
               path="/profile/employer/inbox"
-              component={LikedDevLists}
+              component={Applicants}
             />
+            <Route exact path="/profile/employer/likeddevelopers" component={LikedDevLists}/>
             <Route
               exact
               path="/profile/employer/jobs"
