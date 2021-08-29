@@ -1,4 +1,4 @@
-# MyKNL
+# JOBBEE
 
 [![License](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/IPL-1.0)
 
@@ -25,7 +25,7 @@
 ## 📑 Description
 
 **CLICK THE LOGO TO EXPLORE OUR WEBSITE**  
-[![Image Caption](/images/logo_readme.PNG)](https://jobbee-fantom.herokuapp.com/)
+[![Image Caption](/images/logo_readme.png)](https://jobbee-fantom.herokuapp.com/)
 
 Below are the links for our proposal and presentation.
 
