@@ -1,23 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const ADD_JOB = gql`
-  mutation addJob(
-    $listingName: String!
-    $description: String!
-    $website: String!
-    $companyName: String!
-  ) {
-    addJob(
-      listingName: $listingName
-      description: $description
-      website: $website
-      companyName: $companyName
-    ) {
-      token
-    }
-  }
-`;
-
 export const POST_JOB = gql`
   mutation addJobb(
     $listingName: String!
