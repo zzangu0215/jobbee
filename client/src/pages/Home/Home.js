@@ -24,6 +24,9 @@ function Home() {
         <h1>Welcome to JOBBEE!</h1>
       </div>
       <div className="flex justify-center w-10/12 greeting">
+        <h2>Explore jobs and developers for your needs!</h2>
+      </div>
+      <div className="flex justify-center w-10/12 greeting">
         {Auth.loggedIn() ? (
           <>
             <button onClick={logout}>
@@ -45,9 +48,6 @@ function Home() {
             </Link>
           </>
         )}
-      </div>
-      <div className="flex justify-center w-10/12 greeting">
-        <h2>Employer!</h2>
       </div>
       <div className="container flex flex-wrap justify-center home-buttons">
         <Link to="/view/developers">
