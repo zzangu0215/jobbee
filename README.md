@@ -92,5 +92,5 @@ This application is covered by the **ISC** license.
 - **Daeyoung Bae**
 
   - [**Daeyoung's Portfolio**](https://wooglow.github.io/react-portfolio/#/about) (to be updated)
-  - **Github**: [**vivicowan**](https://github.com/wooglow)
+  - **Github**: [**wooglow**](https://github.com/wooglow)
   - Email: **wooglow@gmail.com**
