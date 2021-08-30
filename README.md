@@ -24,6 +24,12 @@
 
 ## 📑 Description
 
+Woohoo! According to the US Bureau of Labor Statistics, the projected growth of web developers and digital interface designers has been increasing of whopping 8%. This is great news because there will be more opportunities for us to seize. 
+
+So, both employers and developers, just come to **JOBBEE** and meet up whoever they are looking for the jobs, or looking for the workers. 
+
+Our app, **JOBBEE** allows new users to to sign up as Developers and Employers. Employers can post job listings and like their favorite developers. Developers can look at job listings and see which employer has liked them.
+
 **CLICK THE LOGO TO EXPLORE OUR WEBSITE**  
 [![Image Caption](/images/logo_readme.png)](https://jobbee-fantom.herokuapp.com/)
 
@@ -57,7 +63,7 @@ SECRET=YOURSECRET
 
 Type and run **`npm i`** in your terminal to install all the dependencies in `client` side and `server` side.
 
-To test my app locally, type the following command to your terminal.
+To test our app locally, type the following command to your terminal.
 
 - **`npm run develop`**
 

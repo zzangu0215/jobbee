@@ -15,8 +15,8 @@ function LikedByEmpLists() {
 
   return (
     <>
-      <div>
-        <h1>Employers who liked you!</h1>
+      <div className="mt-8 flex justify-center dev-lists">
+        Hearts from Employers
       </div>
       <div className="min-h-screen md:flex items-center md:justify-center">
         {likedByEmployers.map((employer) => (
