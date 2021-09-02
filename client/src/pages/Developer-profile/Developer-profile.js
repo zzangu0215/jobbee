@@ -6,40 +6,39 @@ import DevProfileCard from "../../components/Dev-profile-card/Dev-profile-card";
 
 import "./Developer-profile.css";
 
+const getGithubInfo = async (repo) => {
+  let infoURL = `https://api.github.com/users/${repo}`;
+
+  try {
+    const res = await fetch(infoURL);
+    const githubData = await res.json();
+
+    return {
+      username: githubData.login,
+      bio: githubData.bio,
+      avatar: githubData.avatar_url,
+      github: githubData.html_url,
+    };
+  } catch (err) {
+    console.log(`Network Error. ${err}`);
+  }
+};
+
 const DeveloperProfile = () => {
-  const [githubInfo, setgithubInfo] = useState({});
+  const [{ username, bio, avatar, github }, setgithubInfo] = useState({});
 
   const { loading, data: userData } = useQuery(QUERY_ME);
+  console.log(userData);
 
   const developer = userData?.me.githubName || "";
 
   useEffect(() => {
-    getGithubInfo(developer);
+    if (developer) getGithubInfo(developer).then(setgithubInfo);
   }, [developer]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  const getGithubInfo = async (repo) => {
-    let infoURL = `https://api.github.com/users/${repo}`;
-
-    try {
-      const res = await fetch(infoURL);
-      const githubData = await res.json();
-
-      const profileInfo = {
-        username: githubData.login,
-        bio: githubData.bio,
-        avatar: githubData.avatar_url,
-        github: githubData.html_url,
-      };
-
-      setgithubInfo(profileInfo);
-    } catch (err) {
-      console.log(`Network Error. ${err}`);
-    }
-  };
 
   return (
     <>
@@ -49,10 +48,10 @@ const DeveloperProfile = () => {
       <div className="min-h-screen bg-gray-100 flex justify-center">
         <DevProfileCard
           name={userData.me.name}
-          username={githubInfo.username}
-          bio={githubInfo.bio}
-          avatar={githubInfo.avatar}
-          github={githubInfo.github}
+          username={username}
+          bio={bio}
+          avatar={avatar}
+          github={github}
         />
       </div>
     </>

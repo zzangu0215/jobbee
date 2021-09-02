@@ -85,6 +85,7 @@ const resolvers = {
 
     addJobb: async (parent, { listingName, description, website }, context) => {
       if (context.user) {
+        console.log(context.user._id + "freak");
         const newJob = await Job.create({
           listingName,
           description,

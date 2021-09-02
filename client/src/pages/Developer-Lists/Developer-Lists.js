@@ -8,10 +8,8 @@ import { QUERY_DEVELOPERS } from "../../utils/queries";
 
 const DeveloperLists = () => {
   const { loading, data: developerData } = useQuery(QUERY_DEVELOPERS);
-  // console.log({ loading, error, developerData });
 
   const developers = developerData?.Developers || [];
-  // console.log(developers);
 
   if (loading) {
     return <div>Loading...</div>;
