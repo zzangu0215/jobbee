@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./Employer-profile.css";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries";
 import { POST_JOB } from "../../utils/mutations";
 
 function EmployerProfile() {
@@ -12,15 +10,6 @@ function EmployerProfile() {
   const [website, setWebsite] = useState("");
 
   const [addJobb, { error, data }] = useMutation(POST_JOB);
-
-  const { loading, data: userData } = useQuery(QUERY_ME);
-  // console.log({ loading, err, userData });
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const companyName = userData?.me.companyName || "";
-  console.log(companyName);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -67,7 +56,6 @@ function EmployerProfile() {
                   <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
-                        <input type="hidden" value={companyName} />
                         <label
                           htmlFor="company-website"
                           className="block text-sm font-medium text-gray-700"
