@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 
 import JobListCard from "../../components/Job-List-card/Job-List-card";
@@ -9,6 +9,13 @@ import { QUERY_JOBS } from "../../utils/queries";
 
 const JobLists = () => {
   const { loading, data: jobData } = useQuery(QUERY_JOBS);
+  const [formState, setFormState] = useState("");
+
+  const handleFormChange = (e) => {
+    const { target } = e;
+    const formInput = target.value;
+    setFormState(formInput);
+  };
 
   const jobs = jobData?.Jobs || [];
 
@@ -24,6 +31,8 @@ const JobLists = () => {
           type="search"
           name="serch"
           placeholder="Search by Position..."
+          value={formState}
+          onChange={handleFormChange}
           className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
         />
         <button type="submit">
