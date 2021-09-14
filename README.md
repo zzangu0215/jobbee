@@ -24,9 +24,9 @@
 
 ## 📑 Description
 
-Woohoo! According to the US Bureau of Labor Statistics, the projected growth of web developers and digital interface designers has been increasing of whopping 8%. This is great news because there will be more opportunities for us to seize. 
+Woohoo! According to the US Bureau of Labor Statistics, the projected growth of web developers and digital interface designers has been increasing of whopping 8%. This is great news because there will be more opportunities for us to seize.
 
-So, both employers and developers, just come to **JOBBEE** and meet up whoever they are looking for the jobs, or looking for the workers. 
+So, both employers and developers, just come to **JOBBEE** and meet up whoever they are looking for the jobs, or looking for the workers.
 
 Our app, **JOBBEE** allows new users to to sign up as Developers and Employers. Employers can post job listings and like their favorite developers. Developers can look at job listings and see which employer has liked them.
 
@@ -88,6 +88,12 @@ This application is covered by the **ISC** license.
   - [**Israel's Portfolio**](https://imagallon.github.io/react-portfolio/) (to be updated)
   - **Github**: [**imagallon**](https://github.com/imagallon)
   - Email: **izzymagallonworks@gmail.com**
+
+- **Maxwell Dunn**
+
+  - [**Maxwell's Portfolio**](https://mdd-portfolio.herokuapp.com/) (to be updated)
+  - **Github**: [**maxd66**](https://github.com/maxd66)
+  - Email: **max.dunn63@gmail.com**
 
 - **Daeyoung Bae**
 
