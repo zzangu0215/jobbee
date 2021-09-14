@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 
 import JobListCard from "../../components/Job-List-card/Job-List-card";
@@ -9,8 +9,27 @@ import { QUERY_JOBS } from "../../utils/queries";
 
 const JobLists = () => {
   const { loading, data: jobData } = useQuery(QUERY_JOBS);
+  const [formState, setFormState] = useState("");
 
-  const jobs = jobData?.Jobs || [];
+  const handleFormChange = (e) => {
+    const { target } = e;
+    const formInput = target.value;
+    setFormState(formInput);
+  };
+
+  let regex = new RegExp(formState, "i");
+
+  const jobs =
+    jobData?.Jobs.filter((el) => {
+      if (el.companyName.match(regex)) {
+        return true;
+      } else if (el.listingName.match(regex)) {
+        return true;
+      } else if (el.createdAt.match(regex)) {
+        return true;
+      }
+      return false;
+    }) || [];
 
   if (loading) {
     return <div>Loading...</div>;
@@ -24,6 +43,8 @@ const JobLists = () => {
           type="search"
           name="serch"
           placeholder="Search by Position..."
+          value={formState}
+          onChange={handleFormChange}
           className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
         />
         <button type="submit">
