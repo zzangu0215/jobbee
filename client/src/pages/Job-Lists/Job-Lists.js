@@ -52,17 +52,21 @@ const JobLists = () => {
         </button>
       </div>
       <div className="min-h-screen pb-8 bg-gray-100 md:flex md:flex-wrap md:justify-center lg:flex lg:flex-wrap lg:justify-center item-center">
-        {jobs.map((job) => (
-          <JobListCard
-            jobId={job._id}
-            listingName={job.listingName}
-            companyName={job.companyName}
-            key={job._id}
-            website={job.website}
-            description={job.description}
-            createdAt={job.createdAt}
-          />
-        ))}
+        {jobs.length ? (
+          jobs.map((job) => (
+            <JobListCard
+              jobId={job._id}
+              listingName={job.listingName}
+              companyName={job.companyName}
+              key={job._id}
+              website={job.website}
+              description={job.description}
+              createdAt={job.createdAt}
+            />
+          ))
+        ) : (
+          <h1>Sorry! No jobs found</h1>
+        )}
       </div>
     </>
   );
