@@ -17,9 +17,19 @@ const JobLists = () => {
     setFormState(formInput);
   };
 
-  let regex = new RegExp(formState);
+  let regex = new RegExp(formState, "i");
 
-  const jobs = jobData?.Jobs.filter((el) => el.match(regex)) || [];
+  const jobs =
+    jobData?.Jobs.filter((el) => {
+      if (el.companyName.match(regex)) {
+        return true;
+      } else if (el.listingName.match(regex)) {
+        return true;
+      } else if (el.createdAt.match(regex)) {
+        return true;
+      }
+      return false;
+    }) || [];
 
   if (loading) {
     return <div>Loading...</div>;
