@@ -28,7 +28,6 @@ const DeveloperProfile = () => {
   const [{ username, bio, avatar, github }, setgithubInfo] = useState({});
 
   const { loading, data: userData } = useQuery(QUERY_ME);
-  console.log(userData);
 
   const developer = userData?.me.githubName || "";
 
@@ -52,6 +51,7 @@ const DeveloperProfile = () => {
           bio={bio}
           avatar={avatar}
           github={github}
+          linkedIn={userData.me.linkedIn}
         />
       </div>
     </>

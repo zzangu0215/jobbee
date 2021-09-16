@@ -18,6 +18,7 @@ const typeDefs = gql`
     email: String
     password: String
     githubName: String
+    linkedIn: String
     likedBy: [Employer!]!
   }
 
@@ -69,6 +70,8 @@ const typeDefs = gql`
     removeJob(_id: ID): Job
 
     addDevLike(developerId: ID!): Employer
+
+    addLinkedIn(developerId: ID!, linkedIn: String): Developer
 
     applyMessage(employerId: ID!, jobID: ID, message: String!): Developer
   }

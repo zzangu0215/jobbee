@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import Heart from "react-heart";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const DevProfileCard = ({ name, username, bio, avatar, github }) => {
+const DevProfileCard = ({ name, username, bio, avatar, github, linkedIn }) => {
   const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact`;
 
   const [active, setActive] = useState(false);
+
+  const linkedInButton = () => {
+    if (linkedIn) {
+      return (
+        <a href={linkedIn}>
+          <FaLinkedin size={40} />
+        </a>
+      );
+    }
+  };
 
   return (
     <>
@@ -21,6 +31,7 @@ const DevProfileCard = ({ name, username, bio, avatar, github }) => {
             <a href={github}>
               <FaGithub size={40} />
             </a>
+            {linkedInButton}
           </div>
           <div className="">
             <img
