@@ -8,6 +8,7 @@ export const QUERY_ME = gql`
         _id
         githubName
         name
+        linkedIn
         likedBy {
           _id
         }
@@ -56,6 +57,7 @@ export const QUERY_DEVELOPERS = gql`
       _id
       githubName
       name
+      linkedIn
     }
   }
 `;

@@ -14,6 +14,7 @@ const DeveloperSignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [githubName, setGithubName] = useState("");
+  const [linkedIn, setLinkedIn] = useState("");
   const [errorsName, seterrorsName] = useState("");
   const [errorsEmail1, seterrorsEmail1] = useState("");
   const [errorsEmail2, seterrorsEmail2] = useState("");

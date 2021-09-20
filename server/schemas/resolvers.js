@@ -1,5 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { Employer, Developer, User, Job } = require("../models");
+const { update } = require("../models/User");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -81,6 +82,21 @@ const resolvers = {
 
         return updateEmp;
       }
+    },
+
+    addLinkedIn: async (parent, { developerId, linkedIn }, context) => {
+      const update = {};
+      linkedIn ? (update.linkedIn = linkedIn) : (update.linkedIn = "");
+      const newLink = await Developer.findOneAndUpdate(
+        { _id: developerId },
+        update
+      );
+      return newLink;
+      // if (context.user) {
+      //   if (context.user._id === developerId) {
+      //   }
+      //   return;
+      // }
     },
 
     addJobb: async (parent, { listingName, description, website }, context) => {

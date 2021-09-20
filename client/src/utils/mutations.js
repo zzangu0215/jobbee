@@ -106,3 +106,12 @@ export const APPLY_MESSAGE = gql`
     }
   }
 `;
+
+export const UPDATE_LINKEDIN = gql`
+  mutation addLinkedIn($developerId: ID!, $linkedIn: String) {
+    addLinkedIn(developerId: $developerId, linkedIn: $linkedIn) {
+      githubName
+      linkedIn
+    }
+  }
+`;

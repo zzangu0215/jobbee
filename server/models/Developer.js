@@ -7,6 +7,10 @@ const developerSchema = new Schema({
     required: true,
     trim: true,
   },
+  linkedIn: {
+    type: String,
+    trim: true,
+  },
   likedBy: [
     {
       type: Schema.Types.ObjectId,

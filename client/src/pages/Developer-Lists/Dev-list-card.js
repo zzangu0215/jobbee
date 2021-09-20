@@ -3,7 +3,7 @@ import Heart from "react-heart";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_DEV_LIKE } from "../../utils/mutations";
 
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { QUERY_ME, QUERY_DEVELOPERS } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
@@ -59,6 +59,18 @@ const DevListCard = ({ developer }) => {
     }
   };
 
+  const linkedInButton = () => {
+    if (developer.linkedIn) {
+      return (
+        <a href={developer.linkedIn}>
+          <FaLinkedin size={40} />
+        </a>
+      );
+    }
+  };
+
+  console.log(linkedInButton());
+
   return (
     <div className="md:flex-1 px-10 mt-8">
       <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
@@ -76,10 +88,18 @@ const DevListCard = ({ developer }) => {
           ) : (
             <></>
           )}
-
-          <a href={github}>
-            <FaGithub size={40} />
-          </a>
+          <div className="inlineButtons">
+            <a href={github}>
+              <FaGithub size={40} />
+            </a>
+            {developer.linkedIn ? (
+              <a href={developer.linkedIn}>
+                <FaLinkedin size={40} />
+              </a>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
         <div className="">
           <img className="w-20 h-20 rounded-full" src={avatar} alt={username} />
