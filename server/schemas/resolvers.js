@@ -99,6 +99,15 @@ const resolvers = {
       // }
     },
 
+    addResumeLink: async (parent, { developerId, resumeLink }, context) => {
+      const update = {};
+      resumeLink ? (update.resumeLink = resumeLink) : (update.resumeLink = "");
+      const newLink = await Developer.findOneAndUpdate(
+        { _id: developerId },
+        update
+      );
+    },
+
     addJobb: async (parent, { listingName, description, website }, context) => {
       if (context.user) {
         console.log(context.user._id + "freak");

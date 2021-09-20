@@ -42,16 +42,16 @@ const DeveloperProfile = () => {
   return (
     <>
       <div className="mt-8 flex justify-center dev-profile">
-        {userData.me.name}'s Profile
+        {userData?.me.name}'s Profile
       </div>
       <div className="min-h-screen bg-gray-100 flex justify-center">
         <DevProfileCard
-          name={userData.me.name}
+          name={userData?.me.name}
           username={username}
           bio={bio}
           avatar={avatar}
           github={github}
-          linkedIn={userData.me.linkedIn}
+          linkedIn={userData?.me.linkedIn}
         />
       </div>
     </>

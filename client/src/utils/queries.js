@@ -9,6 +9,7 @@ export const QUERY_ME = gql`
         githubName
         name
         linkedIn
+        resumeLink
         likedBy {
           _id
         }

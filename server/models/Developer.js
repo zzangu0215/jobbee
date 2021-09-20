@@ -11,6 +11,10 @@ const developerSchema = new Schema({
     type: String,
     trim: true,
   },
+  resumeLink: {
+    type: String,
+    trim: true,
+  },
   likedBy: [
     {
       type: Schema.Types.ObjectId,
