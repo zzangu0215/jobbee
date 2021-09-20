@@ -4,3 +4,8 @@
   font-size: 3rem;
   font-family: "IBM Plex Sans KR", sans-serif;
 }
+
+.inlineButtons {
+  display: flex;
+  justify-content: end;
+}

@@ -1,19 +1,27 @@
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import Heart from "react-heart";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import auth from "../../utils/auth";
+import { UPDATE_LINKEDIN } from "../../utils/mutations";
 
 const DevProfileCard = ({ name, username, bio, avatar, github, linkedIn }) => {
   const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact`;
 
   const [active, setActive] = useState(false);
+  const [linkedInValue, setLinkedInValue] = useState("");
+  const [updateLinkedIn, { error, data }] = useMutation(UPDATE_LINKEDIN);
 
-  const linkedInButton = () => {
-    if (linkedIn) {
-      return (
-        <a href={linkedIn}>
-          <FaLinkedin size={40} />
-        </a>
-      );
+  const handleFormSubmit = async () => {
+    try {
+      const { data } = await auth.getProfile();
+      const userId = data._id;
+      await updateLinkedIn({
+        variables: { developerId: userId, linkedIn: linkedInValue },
+      });
+      setLinkedInValue("");
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -28,10 +36,18 @@ const DevProfileCard = ({ name, username, bio, avatar, github, linkedIn }) => {
               animationScale={1.25}
               style={{ marginBottom: "1rem" }}
             />
-            <a href={github}>
-              <FaGithub size={40} />
-            </a>
-            {linkedInButton}
+            <div style={{ display: "flex", justifyContent: "end" }}>
+              <a href={github}>
+                <FaGithub size={40} />
+              </a>
+              {linkedIn ? (
+                <a href={linkedIn}>
+                  <FaLinkedin size={40} />
+                </a>
+              ) : (
+                <div></div>
+              )}
+            </div>
           </div>
           <div className="">
             <img
@@ -54,6 +70,23 @@ const DevProfileCard = ({ name, username, bio, avatar, github, linkedIn }) => {
           <div className="mt-4 sm:flex sm:justify-center">
             <img src={skillsURL} alt={username} />
           </div>
+          <form className="my-3" onSubmit={handleFormSubmit}>
+            <label>
+              <FaLinkedin size="35" />
+            </label>
+            <input
+              className="my-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Update LinkedIn..."
+              value={linkedInValue}
+              onChange={(event) => setLinkedInValue(event.target.value)}
+            />
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              +
+            </button>
+          </form>
         </div>
       </div>
     </>

@@ -21,7 +21,6 @@ function Login() {
         variables: { email, password },
       });
 
-      console.log(data);
       Auth.login(data.userlogin.token);
     } catch (e) {
       console.error(e);
