@@ -52,6 +52,7 @@ const DeveloperProfile = () => {
           avatar={avatar}
           github={github}
           linkedIn={userData?.me.linkedIn}
+          resumeLink={userData?.me.resumeLink}
         />
       </div>
     </>

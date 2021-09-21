@@ -3,7 +3,7 @@ import Heart from "react-heart";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_DEV_LIKE } from "../../utils/mutations";
 
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
 import { QUERY_ME, QUERY_DEVELOPERS } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
@@ -72,7 +72,7 @@ const DevListCard = ({ developer }) => {
   console.log(linkedInButton());
 
   return (
-    <div className="md:flex-1 px-10 mt-8">
+    <div className="px-10 mt-8" style={{ flex: "1 1 300px" }}>
       <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
           {Auth.loggedIn() ? (
@@ -101,7 +101,7 @@ const DevListCard = ({ developer }) => {
             )}
           </div>
         </div>
-        <div className="">
+        <div>
           <img className="w-20 h-20 rounded-full" src={avatar} alt={username} />
         </div>
 
@@ -113,6 +113,17 @@ const DevListCard = ({ developer }) => {
             {developer.name}
           </h1>
           <p className="mt-4 text-md text-gray-600">{bio}</p>
+          {developer.resumeLink ? (
+            <a
+              href={developer.resumeLink}
+              className="mt-4 text-md text-blue-600 no-underline hover:underline"
+            >
+              My resume
+              <FaArrowRight size="15" />
+            </a>
+          ) : (
+            <div></div>
+          )}
         </div>
 
         <div className="mt-4 sm:flex sm:justify-center">

@@ -115,3 +115,12 @@ export const UPDATE_LINKEDIN = gql`
     }
   }
 `;
+
+export const UPDATE_RESUME = gql`
+  mutation addResumeLink($developerId: ID!, $resumeLink: String) {
+    addResumeLink(developerId: $developerId, resumeLink: $resumeLink) {
+      githubName
+      resumeLink
+    }
+  }
+`;

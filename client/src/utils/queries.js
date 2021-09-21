@@ -59,6 +59,7 @@ export const QUERY_DEVELOPERS = gql`
       githubName
       name
       linkedIn
+      resumeLink
     }
   }
 `;
