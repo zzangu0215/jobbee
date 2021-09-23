@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
 const User = require("./User");
 
 const employerSchema = new Schema({
@@ -9,30 +8,6 @@ const employerSchema = new Schema({
     required: true,
     trim: true,
   },
-
-  messages: [
-    {
-      message: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      jobID: {
-        type: Schema.Types.ObjectId,
-        ref: "Job",
-      },
-      sentBy: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-    },
-  ],
 
   likedDevelopers: {
     type: [
@@ -49,6 +24,13 @@ const employerSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Job",
+    },
+  ],
+
+  messages: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Application",
     },
   ],
 });
