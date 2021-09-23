@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { Employer, Developer, User, Job } = require("../models");
+const { Employer, Developer, User, Job, Application } = require("../models");
 const { update } = require("../models/User");
 const { signToken } = require("../utils/auth");
 
@@ -84,6 +84,31 @@ const resolvers = {
       }
     },
 
+    jobApply: async (parent, { employerId, jobID, message }, context) => {
+      if (context.user) {
+        const jobInfo = await Job.findOne({ _id: jobID });
+
+        const newApplication = await Application.create({
+          companyName: jobInfo.companyName,
+          listingName: jobInfo.listingName,
+          message,
+        });
+
+        await Employer.findOneAndUpdate(
+          { _id: employerId },
+          { $addToSet: { messages: newApplication._id } }
+        );
+
+        await Developer.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { appliedJobs: newApplication._id } }
+        );
+
+        return newApplication;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
     addLinkedIn: async (parent, { developerId, linkedIn }, context) => {
       const update = {};
       linkedIn ? (update.linkedIn = linkedIn) : (update.linkedIn = "");
@@ -101,7 +126,6 @@ const resolvers = {
 
     addJobb: async (parent, { listingName, description, website }, context) => {
       if (context.user) {
-        console.log(context.user._id + "freak");
         const newJob = await Job.create({
           listingName,
           description,
