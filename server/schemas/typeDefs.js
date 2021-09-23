@@ -28,6 +28,7 @@ const typeDefs = gql`
     githubName: String
     linkedIn: String
     likedBy: [Employer!]!
+    appliedJobs: [Application]
   }
 
   type Employer {
@@ -38,6 +39,7 @@ const typeDefs = gql`
     companyName: String
     likedDevelopers: [Developer]
     jobs: [Job]
+    messages: [Application]
   }
 
   type Auth {

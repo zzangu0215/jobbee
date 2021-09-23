@@ -99,6 +99,11 @@ const resolvers = {
           { $addToSet: { messages: newApplication._id } }
         );
 
+        await Developer.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { appliedJobs: newApplication._id } }
+        );
+
         return newApplication;
       }
       throw new AuthenticationError("You need to be logged in!");

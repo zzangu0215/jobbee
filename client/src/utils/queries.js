@@ -46,6 +46,13 @@ export const QUERY_DEVELOPER = gql`
           name
           companyName
         }
+        appliedJobs {
+          _id
+          createdAt
+          listingName
+          companyName
+          message
+        }
       }
     }
   }
@@ -58,6 +65,13 @@ export const QUERY_DEVELOPERS = gql`
       githubName
       name
       linkedIn
+      appliedJobs {
+        _id
+        createdAt
+        listingName
+        companyName
+        message
+      }
     }
   }
 `;
