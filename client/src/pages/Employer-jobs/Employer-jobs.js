@@ -19,7 +19,7 @@ const EmployerJobs = () => {
     <>
       <div className="mt-8 flex justify-center emp-jobs">Your Jobs</div>
 
-      <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center">
+      <div className="min-h-screen pb-8 bg-gray-100 md:flex items-center md:justify-center md:flex-wrap">
         {employerJobs.map((job) => (
           <EmpJobCard
             _id={job._id}

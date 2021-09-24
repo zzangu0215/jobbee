@@ -9,6 +9,7 @@ export const QUERY_ME = gql`
         githubName
         name
         linkedIn
+        resumeLink
         likedBy {
           _id
         }
@@ -65,6 +66,9 @@ export const QUERY_DEVELOPERS = gql`
       githubName
       name
       linkedIn
+<<<<<<< HEAD
+      resumeLink
+=======
       appliedJobs {
         _id
         createdAt
@@ -72,6 +76,7 @@ export const QUERY_DEVELOPERS = gql`
         companyName
         message
       }
+>>>>>>> cda623c0f0973bf7b329aee430b02838c560e807
     }
   }
 `;
