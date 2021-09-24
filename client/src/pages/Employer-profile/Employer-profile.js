@@ -17,13 +17,10 @@ function EmployerProfile() {
     const expression =
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
     const regex = new RegExp(expression);
-    console.log(website.match(regex));
     if (!website.match(regex)) {
-      console.log("going here");
       setWebsite("https://" + website);
       formattedSite = `https://${website}`;
     }
-    console.log(formattedSite);
     setListingName("");
     setDescription("");
     setWebsite("");
