@@ -1,6 +1,14 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type Application {
+    _id: ID
+    companyName: String
+    listingName: String
+    message: String
+    createdAt: String
+  }
+
   type Job {
     _id: ID
     listingName: String
@@ -21,6 +29,7 @@ const typeDefs = gql`
     linkedIn: String
     resumeLink: String
     likedBy: [Employer!]!
+    appliedJobs: [Application]
   }
 
   type Employer {
@@ -31,6 +40,7 @@ const typeDefs = gql`
     companyName: String
     likedDevelopers: [Developer]
     jobs: [Job]
+    messages: [Application]
   }
 
   type Auth {
@@ -77,6 +87,8 @@ const typeDefs = gql`
     addResumeLink(developerId: ID!, resumeLink: String): Developer
 
     applyMessage(employerId: ID!, jobID: ID, message: String!): Developer
+
+    jobApply(employerId: ID!, jobID: ID!, message: String!): Application
   }
 
   type Query {

@@ -21,6 +21,12 @@ const developerSchema = new Schema({
       ref: "User",
     },
   ],
+  appliedJobs: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Application",
+    },
+  ],
 });
 
 const Developer = User.discriminator("Developer", developerSchema);

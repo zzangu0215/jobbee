@@ -47,6 +47,13 @@ export const QUERY_DEVELOPER = gql`
           name
           companyName
         }
+        appliedJobs {
+          _id
+          createdAt
+          listingName
+          companyName
+          message
+        }
       }
     }
   }
@@ -59,7 +66,17 @@ export const QUERY_DEVELOPERS = gql`
       githubName
       name
       linkedIn
+<<<<<<< HEAD
       resumeLink
+=======
+      appliedJobs {
+        _id
+        createdAt
+        listingName
+        companyName
+        message
+      }
+>>>>>>> cda623c0f0973bf7b329aee430b02838c560e807
     }
   }
 `;
