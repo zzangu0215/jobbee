@@ -13,12 +13,23 @@ function EmployerProfile() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    let formattedSite = website;
+    const expression =
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+    const regex = new RegExp(expression);
+    console.log(website.match(regex));
+    if (!website.match(regex)) {
+      console.log("going here");
+      setWebsite("https://" + website);
+      formattedSite = `https://${website}`;
+    }
+    console.log(formattedSite);
     setListingName("");
     setDescription("");
     setWebsite("");
     try {
       await addJobb({
-        variables: { listingName, description, website },
+        variables: { listingName, description, website: formattedSite },
       });
 
       window.location.assign("/profile/employer/jobs");
@@ -108,13 +119,29 @@ function EmployerProfile() {
                         htmlFor="details"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Details
+                        Details{" "}
+                        {description.length >= 200 ? (
+                          description.length >= 275 ? (
+                            <span className="text-red-500 text-sm">
+                              {description.length}/275
+                            </span>
+                          ) : (
+                            <span className="text-yellow-500 text-sm">
+                              {description.length}/275
+                            </span>
+                          )
+                        ) : (
+                          <span className="text-gray-500 text-sm">
+                            {description.length}/275
+                          </span>
+                        )}
                       </label>
                       <div className="mt-1">
                         <textarea
                           id="about"
                           name="about"
                           rows={3}
+                          maxLength="275"
                           className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                           placeholder=""
                           onChange={(event) =>
@@ -179,7 +206,6 @@ function EmployerProfile() {
             </div>
           </div>
         </Link>
-        
       </div>
     </>
   );
