@@ -12,7 +12,7 @@ import Auth from "../../utils/auth";
 const navigation = [
   { name: "Browse Jobs", href: "/view/jobs", current: false },
   { name: "Browse Developers", href: "/view/developers", current: false },
-  { name: "About Us", href: "#", current: false },
+  { name: "About Us", href: "/aboutus", current: false },
 ];
 
 function classNames(...classes) {

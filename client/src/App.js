@@ -23,6 +23,7 @@ import Applicants from "./pages/Employer-profile/Applicants/Applicants";
 import EmployerJobs from "./pages/Employer-jobs/Employer-jobs";
 import DeveloperLists from "./pages/Developer-Lists/Developer-Lists";
 import JobLists from "./pages/Job-Lists/Job-Lists";
+import AboutUs from "./pages/About-Us/About-Us";
 
 import "./App.css";
 
@@ -69,7 +70,11 @@ function App() {
               path="/profile/employer/inbox"
               component={Applicants}
             />
-            <Route exact path="/profile/employer/likeddevelopers" component={LikedDevLists}/>
+            <Route
+              exact
+              path="/profile/employer/likeddevelopers"
+              component={LikedDevLists}
+            />
             <Route
               exact
               path="/profile/employer/jobs"
@@ -81,6 +86,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/view/developers" component={DeveloperLists} />
             <Route exact path="/view/jobs" component={JobLists} />
+            <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/job/:jobId" />
             <Route exact path="/" component={Home} />
           </Switch>

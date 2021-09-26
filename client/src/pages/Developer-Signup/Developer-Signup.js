@@ -103,8 +103,7 @@ const DeveloperSignUp = () => {
           {data ? (
             <div>
               <p>
-                Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
+                Success! You may now head <Link to="/">to the home page.</Link>
               </p>
             </div>
           ) : (
