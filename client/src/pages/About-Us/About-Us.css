@@ -1,0 +1,14 @@
+.title {
+  font-family: "Patrick Hand", cursive;
+  font-size: 2.8rem;
+  text-align: center;
+}
+
+.customSkew {
+  transform: skewX(-2deg);
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.customSkew:hover {
+  transform: skewX(0deg);
+}
