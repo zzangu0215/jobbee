@@ -72,7 +72,7 @@ const DevListCard = ({ developer }) => {
   console.log(linkedInButton());
 
   return (
-    <div className="px-10 mt-8" style={{ flex: "1 1 300px" }}>
+    <div className="px-10 mt-8" style={{ flex: "1 1 450px" }}>
       <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
           {Auth.loggedIn() ? (

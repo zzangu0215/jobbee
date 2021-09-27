@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Auth from "../../utils/auth";
+import LinksModalBody from "../../components/Links-modal-body/Links-modal-body";
 
 import homeLogo from "../../content/logo/home-logo";
 import { Link } from "react-router-dom";
+import Modal from "@material-tailwind/react/Modal";
+import ModalHeader from "@material-tailwind/react/ModalHeader";
+import ModalBody from "@material-tailwind/react/ModalBody";
+import ModalFooter from "@material-tailwind/react/ModalFooter";
+import Button from "@material-tailwind/react/Button";
 
 function Home() {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const [showModal, setShowModal] = useState(false);
+
+  const devSigned = window.localStorage.getItem("devSignUp");
+
+  useEffect(() => {
+    setShowModal(devSigned);
+    window.localStorage.removeItem("devSignUp");
+  }, []);
 
   return (
     <div className="flex flex-wrap justify-center homeDiv">
@@ -20,6 +35,23 @@ function Home() {
           className="shadow rounded max-w-full h-auto align-middle border-none"
         />
       </div>
+      <Modal
+        size="large"
+        active={showModal}
+        toggler={() => setShowModal(false)}
+      >
+        <ModalHeader toggler={() => setShowModal(false)}>
+          Be More Competitive!
+        </ModalHeader>
+        <ModalBody>
+          <LinksModalBody />
+        </ModalBody>
+        <ModalFooter>
+          <Button color="green" onClick={(e) => setShowModal(false)}>
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
       <div className="flex justify-center w-10/12 welcome">
         <h1>Welcome to JOBBEE!</h1>
       </div>

@@ -50,7 +50,7 @@ const DeveloperSignUp = () => {
       const { data } = await addDeveloper({
         variables: { name, email, password, githubName },
       });
-      console.log(data.addDeveloper);
+      window.localStorage.setItem("devSignUp", true);
       Auth.login(data.addDeveloper.token);
     } else {
       console.log(error);
