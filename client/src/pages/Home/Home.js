@@ -24,6 +24,8 @@ function Home() {
   useEffect(() => {
     setShowModal(devSigned);
     window.localStorage.removeItem("devSignUp");
+    // this useEffect has an empty array in the parameters that it only runs once after a render, that is the only time we want the modal to appear for now.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
