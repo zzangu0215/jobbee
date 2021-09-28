@@ -82,6 +82,8 @@ const typeDefs = gql`
 
     addDevLike(developerId: ID!): Employer
 
+    removeLike(developerId: ID!): Employer
+
     addLinkedIn(developerId: ID!, linkedIn: String): Developer
 
     addResumeLink(developerId: ID!, resumeLink: String): Developer

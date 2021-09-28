@@ -84,6 +84,38 @@ const resolvers = {
       }
     },
 
+    removeLike: async (parent, { developerId }, context) => {
+      if (context.user) {
+        const query = { _id: developerId };
+        const query2 = { _id: context.user._id };
+
+        const update = {
+          $pull: {
+            likedBy: context.user._id,
+          },
+        };
+        const update2 = {
+          $pull: {
+            likedDevelopers: developerId,
+          },
+        };
+        const options = {
+          new: true,
+        };
+
+        const test = await Developer.findOneAndUpdate(query, update, options);
+
+        console.log({ test });
+
+        const [updatedDev, updateEmp] = await Promise.all([
+          Developer.findOneAndUpdate(query, update, options),
+          Employer.findOneAndUpdate(query2, update2, options),
+        ]);
+
+        return updateEmp;
+      }
+    },
+
     jobApply: async (parent, { employerId, jobID, message }, context) => {
       if (context.user) {
         const jobInfo = await Job.findOne({ _id: jobID });

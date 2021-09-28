@@ -12,8 +12,8 @@ function LinksModalBody() {
   const [resumeStatus, setResumeStatus] = useState(false);
   const [linkedInButtonStatus, setLinkedInButtonStatus] = useState("+");
   const [resumeButtonStatus, setResumeButtonStatus] = useState("+");
-  const [updateLinkedIn, { error, data }] = useMutation(UPDATE_LINKEDIN);
-  const [updateResumeLink, { e, d }] = useMutation(UPDATE_RESUME);
+  const [updateLinkedIn] = useMutation(UPDATE_LINKEDIN);
+  const [updateResumeLink] = useMutation(UPDATE_RESUME);
 
   const handleLinkedInSubmit = async (e) => {
     e.preventDefault();
@@ -56,6 +56,8 @@ function LinksModalBody() {
 
   useEffect(() => {
     linkedInButtonChange();
+    // linkedIn button change does not need to be a dependency because is only ever called or altered here in the useEffect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [linkedInStatus]);
 
   const resumeButtonChange = () => {
@@ -70,6 +72,8 @@ function LinksModalBody() {
 
   useEffect(() => {
     resumeButtonChange();
+    // resume button change does not need to be a dependency because is only ever called or altered here in the useEffect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resumeStatus]);
 
   return (

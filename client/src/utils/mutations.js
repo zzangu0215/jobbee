@@ -98,6 +98,14 @@ export const ADD_DEV_LIKE = gql`
   }
 `;
 
+export const REMOVE_DEV_LIKE = gql`
+  mutation removeLike($developerId: ID!) {
+    removeLike(developerId: $developerId) {
+      _id
+    }
+  }
+`;
+
 export const APPLY_MESSAGE = gql`
   mutation applyMessage($employerId: ID!, $jobID: ID!, $message: String!) {
     applyMessage(employerId: $employerId, jobID: $jobID, message: $message) {

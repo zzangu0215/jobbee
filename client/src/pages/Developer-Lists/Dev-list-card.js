@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import Heart from "react-heart";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_DEV_LIKE } from "../../utils/mutations";
+import { REMOVE_DEV_LIKE } from "../../utils/mutations";
 
 import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
-import { QUERY_ME, QUERY_DEVELOPERS } from "../../utils/queries";
+import {
+  QUERY_ME,
+  QUERY_DEVELOPERS,
+  QUERY_EMPLIKEDLIST,
+} from "../../utils/queries";
 import Auth from "../../utils/auth";
 
 const getGithubInfo = async (user) => {
@@ -32,9 +37,18 @@ const DevListCard = ({ developer }) => {
 
   const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.githubName}&show_icons=true&locale=en&layout=compact`;
 
+  // the 1st parameter is not needed, but the space needs to be occupied to access the next parameter
+  // eslint-disable-next-line no-unused-vars
+  const { load, data } = useQuery(QUERY_EMPLIKEDLIST);
   useEffect(() => {
     getGithubInfo(developer.githubName).then(setGithubInfo);
-  }, [developer.githubName]);
+    checkLiked();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [developer.githubName, data]);
+
+  const [removeLike] = useMutation(REMOVE_DEV_LIKE, {
+    refetchQueries: [QUERY_DEVELOPERS],
+  });
 
   const [addDevLike] = useMutation(ADD_DEV_LIKE, {
     refetchQueries: [QUERY_DEVELOPERS],
@@ -42,34 +56,41 @@ const DevListCard = ({ developer }) => {
 
   const { loading, data: userData } = useQuery(QUERY_ME);
 
-  const userId = userData?.me._id || "";
+  const likedArr = data?.EmpLikedList.likedDevelopers || [];
+
+  const checkLiked = () => {
+    likedArr?.forEach((e) => {
+      if (e._id === developer._id) {
+        setActive(true);
+      }
+    });
+  };
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  const handleAddLike = async (developerId) => {
-    try {
-      setDeveloperId(developerId);
-      await addDevLike({
-        variables: { developerId: developerId },
-      });
-    } catch (error) {
-      console.log(error);
+  const handleUpdateLike = async (developerId) => {
+    if (active) {
+      try {
+        setDeveloperId(developerId);
+        await removeLike({
+          variables: { developerId: developerId },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        setDeveloperId(developerId);
+        await addDevLike({
+          variables: { developerId: developerId },
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
-
-  const linkedInButton = () => {
-    if (developer.linkedIn) {
-      return (
-        <a href={developer.linkedIn}>
-          <FaLinkedin size={40} />
-        </a>
-      );
-    }
-  };
-
-  console.log(linkedInButton());
 
   return (
     <div className="px-10 mt-8" style={{ flex: "1 1 450px" }}>
@@ -80,7 +101,7 @@ const DevListCard = ({ developer }) => {
               isActive={active}
               onClick={() => {
                 setActive(!active);
-                handleAddLike(developer._id);
+                handleUpdateLike(developer._id);
               }}
               animationScale={1.25}
               style={{ marginBottom: "1rem" }}

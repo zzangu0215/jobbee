@@ -24,7 +24,7 @@ function AboutUsCard(props) {
               data-link={props.linkedIn}
               className="m-1 p-2 rounded-lg bg-white hover:bg-gray-200"
             >
-              Github
+              LinkedIn
             </button>
             <button
               onClick={buttonClick}
@@ -38,7 +38,7 @@ function AboutUsCard(props) {
               data-link={props.github}
               className="m-1 p-2 rounded-md bg-white hover:rounded-sm hover:bg-gray-200"
             >
-              LinkedIn
+              Github
             </button>
           </div>
         </div>
@@ -65,7 +65,7 @@ function AboutUsCard(props) {
             data-link={props.linkedIn}
             className="m-1 p-2 rounded-lg bg-white hover:bg-gray-200"
           >
-            Github
+            LinkedIn
           </button>
           <button
             onClick={buttonClick}
@@ -79,7 +79,7 @@ function AboutUsCard(props) {
             data-link={props.github}
             className="m-1 p-2 rounded-md bg-white hover:rounded-sm hover:bg-gray-200"
           >
-            LinkedIn
+            Github
           </button>
         </div>
       </div>
