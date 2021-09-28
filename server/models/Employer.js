@@ -4,7 +4,6 @@ const User = require("./User");
 const employerSchema = new Schema({
   companyName: {
     type: String,
-    unique: true,
     required: true,
     trim: true,
   },

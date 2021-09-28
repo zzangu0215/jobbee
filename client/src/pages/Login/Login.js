@@ -93,7 +93,7 @@ function Login() {
             </form>
           )}
           {error && (
-            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+            <div className="my-3 p-3 bg-danger text-red">{error.message}</div>
           )}
 
           <p className="text-center text-gray-500 text-xs">

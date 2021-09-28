@@ -14,7 +14,6 @@ const DeveloperSignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [githubName, setGithubName] = useState("");
-  const [linkedIn, setLinkedIn] = useState("");
   const [errorsName, seterrorsName] = useState("");
   const [errorsEmail1, seterrorsEmail1] = useState("");
   const [errorsEmail2, seterrorsEmail2] = useState("");
@@ -50,7 +49,7 @@ const DeveloperSignUp = () => {
       const { data } = await addDeveloper({
         variables: { name, email, password, githubName },
       });
-      console.log(data.addDeveloper);
+      window.localStorage.setItem("devSignUp", true);
       Auth.login(data.addDeveloper.token);
     } else {
       console.log(error);
