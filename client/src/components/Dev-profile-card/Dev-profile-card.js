@@ -1,6 +1,5 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import Heart from "react-heart";
 import { FaArrowRight, FaFile, FaGithub, FaLinkedin } from "react-icons/fa";
 import auth from "../../utils/auth";
 import { UPDATE_LINKEDIN, UPDATE_RESUME } from "../../utils/mutations";
@@ -16,11 +15,10 @@ const DevProfileCard = ({
 }) => {
   const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&locale=en&layout=compact`;
 
-  const [active, setActive] = useState(false);
   const [linkedInValue, setLinkedInValue] = useState("");
   const [resumeLinkValue, setResumeLinkValue] = useState("");
-  const [updateLinkedIn, { error, data }] = useMutation(UPDATE_LINKEDIN);
-  const [updateResumeLink, { e, d }] = useMutation(UPDATE_RESUME);
+  const [updateLinkedIn] = useMutation(UPDATE_LINKEDIN);
+  const [updateResumeLink] = useMutation(UPDATE_RESUME);
 
   const handleLinkedInSubmit = async () => {
     try {
@@ -53,12 +51,6 @@ const DevProfileCard = ({
       <div className="md:flex-1 px-10 mt-8">
         <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
           <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
-            <Heart
-              isActive={active}
-              onClick={() => setActive(!active)}
-              animationScale={1.25}
-              style={{ marginBottom: "1rem" }}
-            />
             <div style={{ display: "flex", justifyContent: "end" }}>
               <a href={github}>
                 <FaGithub size={40} />

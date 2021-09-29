@@ -24,7 +24,7 @@ const developerSchema = new Schema({
   appliedJobs: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Application",
+      ref: "Job",
     },
   ],
 });

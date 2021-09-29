@@ -19,13 +19,13 @@ const resolvers = {
     },
     Developer: async (parent, args, context) => {
       if (context.user) {
-        return await User.findById({ _id: context.user._id }).populate(
-          "likedBy"
-        );
+        return await Developer.findById({ _id: context.user._id })
+          .populate("appliedJobs")
+          .populate("likedBy");
       }
     },
     Developers: async () => {
-      return await Developer.find();
+      return await Developer.find().populate("appliedJobs").populate("likedBy");
     },
 
     Employer: async (parent, args, context) => {
@@ -136,7 +136,7 @@ const resolvers = {
 
         await Developer.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { appliedJobs: newApplication._id } }
+          { $addToSet: { appliedJobs: jobID } }
         );
 
         return newApplication;
