@@ -14,6 +14,9 @@ const resolvers = {
     Jobs: async () => {
       return await Job.find();
     },
+    Job: async (parent, args, context) => {
+      return await Job.findById({ _id: args._id });
+    },
     Developer: async (parent, args, context) => {
       if (context.user) {
         return await User.findById({ _id: context.user._id }).populate(
@@ -172,6 +175,7 @@ const resolvers = {
           description,
           website,
           companyName: context.user.companyName,
+          poster: context.user._id,
         });
 
         await Employer.findOneAndUpdate(

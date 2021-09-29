@@ -106,11 +106,14 @@ export const REMOVE_DEV_LIKE = gql`
   }
 `;
 
-export const APPLY_MESSAGE = gql`
-  mutation applyMessage($employerId: ID!, $jobID: ID!, $message: String!) {
-    applyMessage(employerId: $employerId, jobID: $jobID, message: $message) {
+export const JOB_APPLY = gql`
+  mutation jobApply($employerId: ID!, $jobID: ID!, $message: String!) {
+    jobApply(employerId: $employerId, jobID: $jobID, message: $message) {
       _id
-      name
+      companyName
+      listingName
+      message
+      createdAt
     }
   }
 `;

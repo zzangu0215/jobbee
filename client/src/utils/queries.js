@@ -23,6 +23,14 @@ export const QUERY_ME = gql`
   }
 `;
 
+export const QUERY_JOB = gql`
+  query Job($_id: ID!) {
+    Job(_id: $_id) {
+      poster
+    }
+  }
+`;
+
 export const QUERY_JOBS = gql`
   query Jobs {
     Jobs {

@@ -12,10 +12,13 @@ const applicationSchema = new Schema({
   },
   message: {
     type: String,
-    requiered: "Must have a message for the job application",
+    required: "Must have a message for the job application",
     minLength: 1,
     maxLength: 300,
     trim: true,
+  },
+  poster: {
+    type: String,
   },
   createdAt: {
     type: Date,
