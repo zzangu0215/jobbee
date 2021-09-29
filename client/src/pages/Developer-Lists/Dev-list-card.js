@@ -33,18 +33,20 @@ const getGithubInfo = async (user) => {
 const DevListCard = ({ developer }) => {
   const [{ username, bio, avatar, github }, setGithubInfo] = useState({});
   const [active, setActive] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [developerId, setDeveloperId] = useState("");
+  // console.log(developerId);
 
   const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${developer.githubName}&show_icons=true&locale=en&layout=compact`;
 
   // the 1st parameter is not needed, but the space needs to be occupied to access the next parameter
   // eslint-disable-next-line no-unused-vars
-  const { load, data } = useQuery(QUERY_EMPLIKEDLIST);
+  const { load, data: listData } = useQuery(QUERY_EMPLIKEDLIST);
   useEffect(() => {
     getGithubInfo(developer.githubName).then(setGithubInfo);
     checkLiked();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [developer.githubName, data]);
+  }, [developer.githubName, listData]);
 
   const [removeLike] = useMutation(REMOVE_DEV_LIKE, {
     refetchQueries: [QUERY_DEVELOPERS],
@@ -56,7 +58,13 @@ const DevListCard = ({ developer }) => {
 
   const { loading, data: userData } = useQuery(QUERY_ME);
 
-  const likedArr = data?.EmpLikedList.likedDevelopers || [];
+  let likedArr;
+
+  if (Auth.loggedIn()) {
+    likedArr = listData?.EmpLikedList.likedDevelopers || [];
+  } else {
+    likedArr = [];
+  }
 
   const checkLiked = () => {
     likedArr?.forEach((e) => {
@@ -96,7 +104,7 @@ const DevListCard = ({ developer }) => {
     <div className="px-10 mt-8" style={{ flex: "1 1 450px" }}>
       <div className="bg-white relative mx-auto rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
         <div className="absolute top-10 right-10" style={{ width: "3rem" }}>
-          {Auth.loggedIn() ? (
+          {Auth.loggedIn() && userData.me.__typename === "Employer" ? (
             <Heart
               isActive={active}
               onClick={() => {
