@@ -12,7 +12,7 @@ function AboutUs() {
       orientation: "left",
       name: "Daeyoung Bae",
       aka: "Wooglow",
-      bio: "Stuff goes here.",
+      bio: "The secret agent we will never truly understand...",
       linkedIn: "https://www.linkedin.com/feed/",
       github: "https://github.com/wooglow",
       portfolio: "https://wooglow.github.io/react-portfolio/#/about",
