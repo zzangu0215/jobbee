@@ -20,7 +20,7 @@ const createDeveloper = async (devData) => {
   const { _id } = await Developer.create(devData);
 
   return Employer.findOneAndUpdate(
-    { name: "Jun Park" },
+    { name: "Jenny Lee" },
     {
       $addToSet: {
         likedDevelopers: _id,
