@@ -22,7 +22,9 @@ function LikedByEmpCard({ name, companyName }) {
         </div>
         <div>
           <h1 className="text-xl font-bold text-gray-700 mb-2">{name}</h1>
-          <p className="text-gray-600 w-80 text-sm">{companyName}</p>
+          <p className="text-gray-600 w-80 text-sm">
+            <strong>Company Name:</strong> {companyName}
+          </p>
         </div>
       </div>
     </div>

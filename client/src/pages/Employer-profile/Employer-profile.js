@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import "./Employer-profile.css";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
 import { POST_JOB } from "../../utils/mutations";
 
 function EmployerProfile() {
   const [listingName, setListingName] = useState("");
   const [description, setDescription] = useState("");
   const [website, setWebsite] = useState("");
+
+  const { loading, data: userData } = useQuery(QUERY_ME);
 
   const [addJobb, { error, data }] = useMutation(POST_JOB);
 
@@ -35,8 +39,15 @@ function EmployerProfile() {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
+      <div className="mt-8 flex justify-center dev-profile">
+        Welcome, {userData?.me.name}!
+      </div>
       <div className="container mx-auto job-post">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
