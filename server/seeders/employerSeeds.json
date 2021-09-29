@@ -1,8 +1,14 @@
 [
   {
-    "name": "Jun Park",
-    "email": "tajo0215@gmail.com",
+    "name": "Daeyoung Bae",
+    "email": "wooglow@gmail.com",
     "password": "password1",
-    "companyName": "Jobbee"
+    "companyName": "Secret Agency"
+  },
+  {
+    "name": "Jenny Lee",
+    "email": "jinnywinny@gmail.com",
+    "password": "password1",
+    "companyName": "UCSD Kojobs"
   }
 ]

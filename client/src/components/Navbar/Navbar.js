@@ -27,7 +27,16 @@ export default function Navbar() {
 
   const { loading, data: userData } = useQuery(QUERY_ME);
 
+  // let loggedInUser;
+
+  // if (Auth.loggedIn()) {
+  //   loggedInUser = userData?.me.__typename || "";
+  // } else {
+  //   loggedInUser = "";
+  // }
+
   const loggedInUser = userData?.me.__typename || "";
+  console.log(userData);
 
   if (loading) {
     return <div>Loading...</div>;
