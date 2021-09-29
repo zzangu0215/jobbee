@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import DevProfileCard from "../../components/Dev-profile-card/Dev-profile-card";
@@ -44,7 +45,7 @@ const DeveloperProfile = () => {
       <div className="mt-8 flex justify-center dev-profile">
         {userData?.me.name}'s Profile
       </div>
-      <div className="min-h-screen bg-gray-100 flex justify-center">
+      <div className="bg-gray-100 flex justify-center">
         <DevProfileCard
           name={userData?.me.name}
           username={username}
@@ -54,6 +55,19 @@ const DeveloperProfile = () => {
           linkedIn={userData?.me.linkedIn}
           resumeLink={userData?.me.resumeLink}
         />
+      </div>
+      <div className="container flex flex-wrap justify-center emp-profile-button pt-8 pb-8">
+        <Link to="/profile/developer/appliedjobs">
+          <div className="p-2 md:w-50 ">
+            <div className="flex items-center p-4 bg-blue-200 rounded-lg shadow-xs cursor-pointer hover:bg-blue-500 hover:text-gray-100">
+              <div>
+                <p className="text-xs font-medium ml-2 view-jobs">
+                  Jobs you applied to
+                </p>
+              </div>
+            </div>
+          </div>
+        </Link>
       </div>
     </>
   );

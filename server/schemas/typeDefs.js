@@ -29,8 +29,8 @@ const typeDefs = gql`
     githubName: String
     linkedIn: String
     resumeLink: String
-    likedBy: [Employer!]!
-    appliedJobs: [Application]
+    likedBy: [Employer]
+    appliedJobs: [Job]
   }
 
   type Employer {
@@ -93,7 +93,7 @@ const typeDefs = gql`
     Jobs: [Job]
     Job(_id: ID!): Job
     Developers: [Developer]
-    Developer: User
+    Developer: Developer
     Employer: User
     EmpLikedList: User
     employerJobs(_id: ID!): Employer

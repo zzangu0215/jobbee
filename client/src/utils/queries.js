@@ -60,7 +60,6 @@ export const QUERY_DEVELOPER = gql`
           createdAt
           listingName
           companyName
-          message
         }
       }
     }
