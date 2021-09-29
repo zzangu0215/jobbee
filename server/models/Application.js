@@ -20,6 +20,16 @@ const applicationSchema = new Schema({
   poster: {
     type: String,
   },
+  applicant: {
+    type: Schema.Types.ObjectId,
+    ref: "Developer",
+  },
+  githubName: {
+    type: String,
+  },
+  name: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
