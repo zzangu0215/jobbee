@@ -42,14 +42,25 @@ function Home() {
         active={showModal}
         toggler={() => setShowModal(false)}
       >
-        <ModalHeader toggler={() => setShowModal(false)}>
+        <ModalHeader
+          toggler={() => {
+            setShowModal(false);
+            window.location.reload();
+          }}
+        >
           Be More Competitive!
         </ModalHeader>
         <ModalBody>
           <LinksModalBody />
         </ModalBody>
         <ModalFooter>
-          <Button color="green" onClick={(e) => setShowModal(false)}>
+          <Button
+            color="green"
+            onClick={(e) => {
+              setShowModal(false);
+              window.location.reload();
+            }}
+          >
             Close
           </Button>
         </ModalFooter>
