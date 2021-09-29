@@ -79,14 +79,6 @@ const JobListCard = ({
                 >
                   Close
                 </Button>
-
-                <Button
-                  color="green"
-                  onClick={(e) => setShowModal(false)}
-                  ripple="light"
-                >
-                  Confirm
-                </Button>
               </ModalFooter>
             </Modal>
           </div>
