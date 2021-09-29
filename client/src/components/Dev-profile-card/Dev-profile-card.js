@@ -28,6 +28,7 @@ const DevProfileCard = ({
         variables: { developerId: userId, linkedIn: linkedInValue },
       });
       setLinkedInValue("");
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -41,6 +42,7 @@ const DevProfileCard = ({
         variables: { developerId: userId, resumeLink: resumeLinkValue },
       });
       setResumeLinkValue("");
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
