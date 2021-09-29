@@ -1,16 +1,6 @@
 import React from "react";
 
-function ApplicantCard({
-  applicant,
-  name,
-  githubName,
-  companyName,
-  listingName,
-  message,
-  createdAt,
-}) {
-  const githubURL = `https://github.com/${githubName}`;
-
+function AppliedJobCard({ companyName, listingName, createdAt }) {
   return (
     <div className="md:flex-1 px-10 mt-8">
       <div className="p-6 bg-white flex items-center space-x-6 rounded-lg shadow-md hover:scale-105 transition transform cursor-pointer">
@@ -32,15 +22,10 @@ function ApplicantCard({
         </div>
         <div>
           <h1 className="text-xl font-bold text-gray-700 mb-2">
-            {name} <a href={githubURL}>({githubName})</a>
+            {companyName}
           </h1>
-          <h2 className="text-lg font-bold text-gray-700 mb-2">
-            {companyName}: {listingName}
-          </h2>
-          <p className="text-gray-600 w-80 text-sm">
-            <strong>Message: </strong>
-            {message}
-          </p>
+          <p className="text-gray-600 w-80 text-sm">{listingName}</p>
+          <br />
           <p className="text-gray-600 w-80 text-sm">
             <strong>Created At:</strong> {createdAt}
           </p>
@@ -50,4 +35,4 @@ function ApplicantCard({
   );
 }
 
-export default ApplicantCard;
+export default AppliedJobCard;

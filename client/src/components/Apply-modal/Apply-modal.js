@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+
+import { JOB_APPLY } from "../../utils/mutations";
+import { QUERY_JOB } from "../../utils/queries";
 // f
 function ApplyModal({ jobId, companyName, listingName }) {
+  const [message, setMessage] = useState("");
+
+  const [jobApply] = useMutation(JOB_APPLY);
+  const { loading, data: posterData } = useQuery(QUERY_JOB, {
+    variables: { _id: jobId },
+  });
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(posterData);
+    const employerID = posterData?.Job.poster;
+    console.log(employerID);
+
+    setMessage("");
+
+    try {
+      await jobApply({
+        variables: { employerId: employerID, jobID: jobId, message },
+      });
+
+      window.location.assign("/view/jobs");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   const msg = `${jobId}msg`;
-  const file = `${jobId}file`;
 
   return (
     <div className="container mx-auto job-post">
@@ -34,7 +67,8 @@ function ApplyModal({ jobId, companyName, listingName }) {
                       name="about"
                       rows={7}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                      placeholder=""
+                      placeholder="Pick me up!"
+                      onChange={(event) => setMessage(event.target.value)}
                       defaultValue={""}
                     />
                   </div>
@@ -42,32 +76,14 @@ function ApplyModal({ jobId, companyName, listingName }) {
                     Tell the employer that you are a good developer!
                   </p>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Resume
-                  </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                    <div className="space-y-1 text-center">
-                      <div className="flex text-sm text-gray-600">
-                        <label
-                          htmlFor="file-upload"
-                          className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                        >
-                          <span>Upload a file</span>
-                          <input
-                            id={file}
-                            name="file-upload"
-                            type="file"
-                            className="sr-only"
-                          />
-                        </label>
-                        <p className="pl-1">or drag and drop</p>
-                      </div>
-                      <p className="text-xs text-gray-500">
-                        PNG, JPG, GIF up to 10MB
-                      </p>
-                    </div>
-                  </div>
+                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={handleFormSubmit}
+                  >
+                    Apply
+                  </button>
                 </div>
               </div>
             </div>

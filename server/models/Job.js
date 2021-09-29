@@ -27,6 +27,9 @@ const jobSchema = new Schema({
     type: String,
     // required: true,
   },
+  poster: {
+    type: String,
+  },
 });
 
 const Job = model("Job", jobSchema);

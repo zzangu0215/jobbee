@@ -6,6 +6,9 @@ const typeDefs = gql`
     companyName: String
     listingName: String
     message: String
+    applicant: ID
+    githubName: String
+    name: String
     createdAt: String
   }
 
@@ -16,6 +19,7 @@ const typeDefs = gql`
     createdAt: String
     companyName: String
     website: String
+    poster: String
   }
 
   union User = Developer | Employer
@@ -28,8 +32,8 @@ const typeDefs = gql`
     githubName: String
     linkedIn: String
     resumeLink: String
-    likedBy: [Employer!]!
-    appliedJobs: [Application]
+    likedBy: [Employer]
+    appliedJobs: [Job]
   }
 
   type Employer {
@@ -52,13 +56,6 @@ const typeDefs = gql`
     addUser(name: String!, email: String!, password: String!): User
 
     addJobb(listingName: String!, description: String!, website: String!): Job
-
-    addJob(
-      listingName: String!
-      description: String!
-      website: String!
-      companyName: String!
-    ): Auth
 
     addDeveloper(
       name: String!
@@ -97,16 +94,14 @@ const typeDefs = gql`
     User: [User]
     me: User
     Jobs: [Job]
-    aJob(companyName: String!): Job
+    Job(_id: ID!): Job
     Developers: [Developer]
-    Developer: User
+    Developer: Developer
     Employer: User
-    aEmployer(_id: ID!): Employer
     EmpLikedList: User
+    Applicant(_id: ID!): Developer
     employerJobs(_id: ID!): Employer
   }
 `;
 
 module.exports = typeDefs;
-
-// addDevToEmployerList(employerId: ID!, developerId: ID!): Auth

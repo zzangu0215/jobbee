@@ -23,6 +23,17 @@ export const QUERY_ME = gql`
   }
 `;
 
+export const QUERY_JOB = gql`
+  query Job($_id: ID!) {
+    Job(_id: $_id) {
+      poster
+      companyName
+      listingName
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_JOBS = gql`
   query Jobs {
     Jobs {
@@ -32,6 +43,20 @@ export const QUERY_JOBS = gql`
       createdAt
       companyName
       website
+    }
+  }
+`;
+
+export const QUERY_APPLICANT = gql`
+  query Applicant($applicantID: ID!) {
+    Applicant(_id: $applicantID) {
+      githubName
+      appliedJobs {
+        _id
+        createdAt
+        listingName
+        companyName
+      }
     }
   }
 `;
@@ -52,7 +77,6 @@ export const QUERY_DEVELOPER = gql`
           createdAt
           listingName
           companyName
-          message
         }
       }
     }
@@ -72,7 +96,6 @@ export const QUERY_DEVELOPERS = gql`
         createdAt
         listingName
         companyName
-        message
       }
     }
   }
@@ -91,6 +114,16 @@ export const QUERY_EMPLOYER = gql`
           listingName
           website
           description
+        }
+        messages {
+          _id
+          companyName
+          listingName
+          message
+          applicant
+          githubName
+          name
+          createdAt
         }
       }
     }

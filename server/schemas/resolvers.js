@@ -10,15 +10,17 @@ const resolvers = {
     },
   },
   Query: {
-    // This gives every users
     Jobs: async () => {
       return await Job.find();
     },
+    Job: async (parent, args, context) => {
+      return await Job.findById({ _id: args._id });
+    },
     Developer: async (parent, args, context) => {
       if (context.user) {
-        return await User.findById({ _id: context.user._id }).populate(
-          "likedBy"
-        );
+        return await Developer.findById({ _id: context.user._id })
+          .populate("appliedJobs")
+          .populate("likedBy");
       }
     },
     Developers: async () => {
@@ -27,15 +29,23 @@ const resolvers = {
 
     Employer: async (parent, args, context) => {
       if (context.user) {
-        return await Employer.findById({ _id: context.user._id }).populate(
-          "jobs"
-        );
+        return await Employer.findById({ _id: context.user._id })
+          .populate("jobs")
+          .populate("messages");
       }
     },
     EmpLikedList: async (parent, args, context) => {
       if (context.user) {
         return await User.findById({ _id: context.user._id }).populate(
           "likedDevelopers"
+        );
+      }
+    },
+
+    Applicant: async (parent, args, context) => {
+      if (context.user) {
+        return await Developer.findById({ _id: args._id }).populate(
+          "appliedJobs"
         );
       }
     },
@@ -124,6 +134,9 @@ const resolvers = {
           companyName: jobInfo.companyName,
           listingName: jobInfo.listingName,
           message,
+          applicant: context.user._id,
+          githubName: context.user.githubName,
+          name: context.user.name,
         });
 
         await Employer.findOneAndUpdate(
@@ -133,7 +146,7 @@ const resolvers = {
 
         await Developer.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { appliedJobs: newApplication._id } }
+          { $addToSet: { appliedJobs: jobID } }
         );
 
         return newApplication;
@@ -172,6 +185,7 @@ const resolvers = {
           description,
           website,
           companyName: context.user.companyName,
+          poster: context.user._id,
         });
 
         await Employer.findOneAndUpdate(
