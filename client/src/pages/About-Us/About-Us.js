@@ -2,6 +2,9 @@ import React from "react";
 import AboutUsCard from "./About-Us-Card";
 import "./About-Us.css";
 import maxImg from "../../content/images/max.jpg";
+import israelImg from "../../content/images/israel.jpg";
+import junImg from "../../content/images/jun.png";
+import daeyoungImg from "../../content/images/daeyoung-avatar.png";
 
 function AboutUs() {
   const jobbeeDevs = [
@@ -10,42 +13,42 @@ function AboutUs() {
       name: "Daeyoung Bae",
       aka: "Wooglow",
       bio: "Stuff goes here.",
-      linkedIn: "LinkedIn Link here",
-      github: "Github link here",
-      portfolio: "Portfolio link here",
-      bgColor: "green",
+      linkedIn: "https://www.linkedin.com/feed/",
+      github: "https://github.com/wooglow",
+      portfolio: "https://wooglow.github.io/react-portfolio/#/about",
+      bgColor: "orange",
       bgWeight: "200",
-      pic: "",
+      pic: daeyoungImg,
     },
     {
       orientation: "right",
       name: "Israel Magallon",
-      aka: "I'm a Gallon",
-      bio: "Stuff goes here.",
-      linkedIn: "LinkedIn Link here",
-      github: "Github link here",
-      portfolio: "Portfolio link here",
-      bgColor: "purple",
+      aka: "Izzy",
+      bio: "Sometimes I can't find all the worms I dug up.",
+      linkedIn: "https://www.linkedin.com/in/izzymag/",
+      github: "https://github.com/imagallon",
+      portfolio: "https://imagallon.github.io/react-portfolio/",
+      bgColor: "green",
       bgWeight: "300",
-      pic: "",
+      pic: israelImg,
     },
     {
       orientation: "left",
       name: "Jun Park",
-      aka: "The North Korean",
-      bio: "Stuff goes here.",
-      linkedIn: "LinkedIn Link here",
-      github: "Github link here",
-      portfolio: "Portfolio link here",
+      aka: "Kakao talky",
+      bio: "North Korean who loves dogs.",
+      linkedIn: "https://www.linkedin.com/in/junnyzzangu/",
+      github: "https://github.com/zzangu0215",
+      portfolio: "https://zzangu0215.github.io/portfolio-v3/",
       bgColor: "red",
       bgWeight: "200",
-      pic: "",
+      pic: junImg,
     },
     {
       orientation: "right",
       name: "Maxwell Dunn",
-      aka: "The Machine",
-      bio: "Never takes breaks. Strives to always be the hardest worker in the room.",
+      aka: "Maxo",
+      bio: "Keyboard thocks and gamer socks.",
       linkedIn: "https://www.linkedin.com/in/maxwell-dunn-a30374188/",
       github: "https://github.com/maxd66",
       portfolio: "https://mdd-portfolio.herokuapp.com/",
