@@ -10,7 +10,6 @@ const resolvers = {
     },
   },
   Query: {
-    // This gives every users
     Jobs: async () => {
       return await Job.find();
     },
@@ -25,20 +24,28 @@ const resolvers = {
       }
     },
     Developers: async () => {
-      return await Developer.find().populate("appliedJobs").populate("likedBy");
+      return await Developer.find();
     },
 
     Employer: async (parent, args, context) => {
       if (context.user) {
-        return await Employer.findById({ _id: context.user._id }).populate(
-          "jobs"
-        );
+        return await Employer.findById({ _id: context.user._id })
+          .populate("jobs")
+          .populate("messages");
       }
     },
     EmpLikedList: async (parent, args, context) => {
       if (context.user) {
         return await User.findById({ _id: context.user._id }).populate(
           "likedDevelopers"
+        );
+      }
+    },
+
+    Applicant: async (parent, args, context) => {
+      if (context.user) {
+        return await Developer.findById({ _id: args._id }).populate(
+          "appliedJobs"
         );
       }
     },
@@ -127,6 +134,9 @@ const resolvers = {
           companyName: jobInfo.companyName,
           listingName: jobInfo.listingName,
           message,
+          applicant: context.user._id,
+          githubName: context.user.githubName,
+          name: context.user.name,
         });
 
         await Employer.findOneAndUpdate(

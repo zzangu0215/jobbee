@@ -6,6 +6,9 @@ const typeDefs = gql`
     companyName: String
     listingName: String
     message: String
+    applicant: ID
+    githubName: String
+    name: String
     createdAt: String
   }
 
@@ -96,6 +99,7 @@ const typeDefs = gql`
     Developer: Developer
     Employer: User
     EmpLikedList: User
+    Applicant(_id: ID!): Developer
     employerJobs(_id: ID!): Employer
   }
 `;

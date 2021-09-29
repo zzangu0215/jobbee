@@ -1,8 +1,15 @@
 import React from "react";
 
-function ApplicantCard({githubName}) {
+function ApplicantCard({
+  applicant,
+  name,
+  githubName,
+  companyName,
+  listingName,
+  message,
+  createdAt,
+}) {
   const githubURL = `https://github.com/${githubName}`;
-  const skillsURL = `https://github-readme-stats.vercel.app/api/top-langs?username=${githubName}&show_icons=true&locale=en&layout=compact`;
 
   return (
     <div className="md:flex-1 px-10 mt-8">
@@ -24,16 +31,23 @@ function ApplicantCard({githubName}) {
           </svg>
         </div>
         <div>
-          <h1 className="text-xl font-bold text-gray-700 mb-2">Name <a href={githubURL}>({githubName})</a></h1>
-          <h2 className="text-lg font-bold text-gray-700 mb-2">Job Title</h2>
-          <div className="mt-4 sm:flex sm:justify-center">
-            <img src={skillsURL} alt={githubName} />
-          </div> <br />
-          <p className="text-gray-600 w-80 text-sm">Message!dfafdasfdsafffdsffadsf adsfdsafdsfdsfdsafads dsaf adsfdas fdasf das adsf asd fads fsd</p>
+          <h1 className="text-xl font-bold text-gray-700 mb-2">
+            {name} <a href={githubURL}>({githubName})</a>
+          </h1>
+          <h2 className="text-lg font-bold text-gray-700 mb-2">
+            {companyName}: {listingName}
+          </h2>
+          <p className="text-gray-600 w-80 text-sm">
+            <strong>Message: </strong>
+            {message}
+          </p>
+          <p className="text-gray-600 w-80 text-sm">
+            <strong>Created At:</strong> {createdAt}
+          </p>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ApplicantCard;
